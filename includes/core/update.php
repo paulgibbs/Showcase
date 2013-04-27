@@ -237,25 +237,3 @@ function dps_version_updater() {
 	// Delete rewrite rules to force a flush
 	dps_delete_rewrite_rules();
 }
-
-/**
- * Redirect user to showcase's What's New page on activation
- *
- * @since Showcase (1.0)
- *
- * @internal Used internally to redirect showcase to the about page on activation
- *
- * @uses is_network_admin() To bail if being network activated
- * @uses set_transient() To drop the activation transient for 30 seconds
- *
- * @return If network admin or bulk activation
- */
-function dps_add_activation_redirect() {
-
-	// Bail if activating from network, or bulk
-	if ( is_network_admin() || isset( $_GET['activate-multi'] ) )
-		return;
-
-	// Add the transient to redirect
-    set_transient( '_dps_activation_redirect', true, 30 );
-}
