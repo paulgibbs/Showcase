@@ -158,64 +158,6 @@ function dps_setup_updater() {
 }
 
 /**
- * Create a default forum, topic, and reply
- *
- * @since Showcase (1.0)
- * @param array $args Array of arguments to override default values
- */
-function dps_create_initial_content( $args = array() ) {
-
-	// Parse arguments against default values
-	$r = dps_parse_args( $args, array(
-		'forum_parent'  => 0,
-		'forum_status'  => 'publish',
-		'forum_title'   => __( 'General',                                  'showcase' ),
-		'forum_content' => __( 'General chit-chat',                        'showcase' ),
-		'topic_title'   => __( 'Hello World!',                             'showcase' ),
-		'topic_content' => __( 'I am the first topic in your new forums.', 'dps' ),
-		'reply_title'   => __( 'Re: Hello World!',                         'showcase' ),
-		'reply_content' => __( 'Oh, and this is what a reply looks like.', 'dps' ),
-	), 'create_initial_content' );
-
-	// Create the initial forum
-	$forum_id = dps_insert_forum( array(
-		'post_parent'  => $r['forum_parent'],
-		'post_status'  => $r['forum_status'],
-		'post_title'   => $r['forum_title'],
-		'post_content' => $r['forum_content']
-	) );
-
-	// Create the initial topic
-	$topic_id = dps_insert_topic(
-		array(
-			'post_parent'  => $forum_id,
-			'post_title'   => $r['topic_title'],
-			'post_content' => $r['topic_content']
-		),
-		array( 'forum_id'  => $forum_id )
-	);
-
-	// Create the initial reply
-	$reply_id = dps_insert_reply(
-		array(
-			'post_parent'  => $topic_id,
-			'post_title'   => $r['reply_title'],
-			'post_content' => $r['reply_content']
-		),
-		array(
-			'forum_id'     => $forum_id,
-			'topic_id'     => $topic_id
-		)
-	);
-
-	return array(
-		'forum_id' => $forum_id,
-		'topic_id' => $topic_id,
-		'reply_id' => $reply_id
-	);
-}
-
-/**
  * Showcase's version updater looks at what the current database version is, and
  * runs whatever other code is needed.
  *

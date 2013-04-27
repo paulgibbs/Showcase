@@ -61,9 +61,6 @@ add_action( 'dps_activation', 'dps_delete_rewrite_rules'    );
 add_action( 'dps_deactivation', 'dps_remove_caps'          );
 add_action( 'dps_deactivation', 'dps_delete_rewrite_rules' );
 
-// New Site
-add_action( 'dps_new_site', 'dps_create_initial_content', 8 );
-
 // Contextual Helpers
 add_action( 'load-settings_page_showcase', 'dps_admin_settings_help' );
 
