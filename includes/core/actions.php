@@ -19,7 +19,7 @@
  */
 
 // Exit if accessed directly
-if ( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Attach showcase to WordPress
@@ -105,5 +105,5 @@ add_action( 'make_ham_user',  'dps_make_ham_user'  );
 add_action( 'make_spam_user', 'dps_make_spam_user' );
 
 // Template redirects
-add_action( 'dps_template_redirect', 'dps_post_request',          10 );
-add_action( 'dps_template_redirect', 'dps_get_request',           10 );
+add_action( 'dps_template_redirect', 'dps_post_request', 10 );
+add_action( 'dps_template_redirect', 'dps_get_request',  10 );
