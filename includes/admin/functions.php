@@ -62,39 +62,6 @@ function dps_do_uninstall( $site_id = 0 ) {
 }
 
 /**
- * Redirect user to showcase's What's New page on activation
- *
- * @since Showcase (1.0)
- *
- * @internal Used internally to redirect showcase to the about page on activation
- *
- * @uses get_transient() To see if transient to redirect exists
- * @uses delete_transient() To delete the transient if it exists
- * @uses is_network_admin() To bail if being network activated
- * @uses wp_safe_redirect() To redirect
- * @uses add_query_arg() To help build the URL to redirect to
- * @uses admin_url() To get the admin URL to index.php
- *
- * @return If no transient, or in network admin, or is bulk activation
- */
-function dps_do_activation_redirect() {
-
-	// Bail if no activation redirect
-    if ( ! get_transient( '_dps_activation_redirect' ) )
-		return;
-
-	// Delete the redirect transient
-	delete_transient( '_dps_activation_redirect' );
-
-	// Bail if activating from network, or bulk
-	if ( is_network_admin() || isset( $_GET['activate-multi'] ) )
-		return;
-
-	// Redirect to showcase about page
-	wp_safe_redirect( add_query_arg( array( 'page' => 'bbp-about' ), admin_url( 'index.php' ) ) );
-}
-
-/**
  * This tells WP to highlight the Tools > Forums menu item,
  * regardless of which actual showcase Tools screen we are on.
  *

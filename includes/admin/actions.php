@@ -47,7 +47,6 @@ add_action( 'wpmu_new_blog',           'dps_new_site',               10, 6 );
 // Hook on to admin_init
 add_action( 'dps_admin_init', 'dps_admin_forums'                );
 add_action( 'dps_admin_init', 'dps_setup_updater',          999 );
-add_action( 'dps_admin_init', 'dps_register_admin_settings'     );
 add_action( 'dps_admin_init', 'dps_do_activation_redirect', 1   );
 
 // Initialize the admin area
@@ -139,14 +138,4 @@ function dps_admin_head() {
  */
 function dps_admin_notices() {
 	do_action( 'dps_admin_notices' );
-}
-
-/**
- * Dedicated action to register admin settings
- *
- * @since Showcase (1.0)
- * @uses do_action() Calls 'dps_register_admin_settings'
- */
-function dps_register_admin_settings() {
-	do_action( 'dps_register_admin_settings' );
 }
