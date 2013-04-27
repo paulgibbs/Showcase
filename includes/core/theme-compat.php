@@ -705,7 +705,7 @@ function dps_replace_the_content( $content = '' ) {
 	$new_content = '';
 
 	// Bail if shortcodes are unset somehow
-	if ( !is_a( $bbp->shortcodes, 'BB_Shortcodes' ) )
+	if ( !is_a( $bbp->shortcodes, 'DPS_Shortcodes' ) )
 		return $content;
 
 	// Use shortcode API to display forums/topics/replies because they are

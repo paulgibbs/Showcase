@@ -10,13 +10,13 @@
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
-if ( !class_exists( 'BB_Shortcodes' ) ) :
+if ( !class_exists( 'DPS_Shortcodes' ) ) :
 /**
  * Showcase Shortcode Class
  *
  * @since Showcase (1.0)
  */
-class BB_Shortcodes {
+class DPS_Shortcodes {
 
 	/** Vars ******************************************************************/
 
@@ -167,7 +167,7 @@ class BB_Shortcodes {
 	 *
 	 * @since Showcase (1.0)
 	 *
-	 * @uses BB_Shortcodes::unset_globals() Cleans up global values
+	 * @uses DPS_Shortcodes::unset_globals() Cleans up global values
 	 * @return string Contents of output buffer.
 	 */
 	private function end() {
