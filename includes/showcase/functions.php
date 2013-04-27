@@ -328,7 +328,7 @@ function dps_new_forum_handler( $action = '' ) {
 	// Errors
 	} else {
 		$append_error = ( is_wp_error( $forum_id ) && $forum_id->get_error_message() ) ? $forum_id->get_error_message() . ' ' : '';
-		dps_add_error( 'dps_forum_error', __( '<strong>ERROR</strong>: The following problem(s) have been found with your forum:' . $append_error', 'showcase' ) );
+		dps_add_error( 'dps_forum_error', __( '<strong>ERROR</strong>: The following problem(s) have been found with your forum:' . $append_error, 'showcase' ) );
 	}
 }
 
