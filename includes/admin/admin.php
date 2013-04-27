@@ -82,9 +82,8 @@ class DPS_Admin {
 	 * @access private
 	 */
 	private function setup_globals() {
-		$bbp = showcase();
-		$this->admin_dir  = trailingslashit( $bbp->includes_dir . 'admin'  ); // Admin path
-		$this->admin_url  = trailingslashit( $bbp->includes_url . 'admin'  ); // Admin url
+		$this->admin_dir  = trailingslashit( showcase()->includes_dir . 'admin'  ); // Admin path
+		$this->admin_url  = trailingslashit( showcase()->includes_url . 'admin'  ); // Admin url
 		$this->images_url = trailingslashit( $this->admin_url   . 'images' ); // Admin images URL
 		$this->styles_url = trailingslashit( $this->admin_url   . 'styles' ); // Admin styles URL
 	}

@@ -93,15 +93,14 @@ class DPS_Theme_Compat {
  * @param DPS_Theme_Compat $theme
  */
 function dps_setup_theme_compat( $theme = '' ) {
-	$bbp = showcase();
 
 	// Make sure theme package is available, set to default if not
-	if ( ! isset( $bbp->theme_compat->packages[$theme] ) || ! is_a( $bbp->theme_compat->packages[$theme], 'DPS_Theme_Compat' ) ) {
+	if ( ! isset( showcase()->theme_compat->packages[$theme] ) || ! is_a( showcase()->theme_compat->packages[$theme], 'DPS_Theme_Compat' ) ) {
 		$theme = 'default';
 	}
 
 	// Set the active theme compat theme
-	$bbp->theme_compat->theme = $bbp->theme_compat->packages[$theme];
+	showcase()->theme_compat->theme = showcase()->theme_compat->packages[$theme];
 }
 
 /**
@@ -181,12 +180,10 @@ function dps_get_theme_compat_url() {
  * @return bool
  */
 function dps_is_theme_compat_active() {
-	$bbp = showcase();
-
-	if ( empty( $bbp->theme_compat->active ) )
+	if ( empty( showcase()->theme_compat->active ) )
 		return false;
 
-	return $bbp->theme_compat->active;
+	return showcase()->theme_compat->active;
 }
 
 /**
@@ -253,12 +250,10 @@ function dps_set_theme_compat_original_template( $template = '' ) {
  * @since Showcase (1.0)
  */
 function dps_is_theme_compat_original_template( $template = '' ) {
-	$bbp = showcase();
-
-	if ( empty( $bbp->theme_compat->original_template ) )
+	if ( empty( showcase()->theme_compat->original_template ) )
 		return false;
 
-	return (bool) ( $bbp->theme_compat->original_template == $template );
+	return (bool) ( showcase()->theme_compat->original_template == $template );
 }
 
 /**
@@ -277,13 +272,7 @@ function dps_register_theme_package( $theme = array(), $override = true ) {
 	if ( ! is_a( $theme, 'DPS_Theme_Compat' ) )
 		return;
 
-	// Load up showcase
-	$bbp = showcase();
-
-	// Only override if the flag is set and not previously registered
-	if ( empty( $bbp->theme_compat->packages[$theme->id] ) || ( true === $override ) ) {
-		$bbp->theme_compat->packages[$theme->id] = $theme;
-	}
+	// Only override if the
 }
 /**
  * This fun little function fills up some WordPress globals with dummy data to
@@ -300,7 +289,7 @@ function dps_theme_compat_reset_post( $args = array() ) {
 	// Default arguments
 	$defaults = array(
 		'ID'                    => -9999,
-		'post_status'           => dps_get_public_status_id(),
+		'post_status'           => 'publish'),
 		'post_author'           => 0,
 		'post_parent'           => 0,
 		'post_type'             => 'page',
@@ -699,13 +688,11 @@ function dps_replace_the_content( $content = '' ) {
 	if ( ! in_the_loop() )
 		return $content;
 
-	$bbp = showcase();
-
 	// Define local variable(s)
 	$new_content = '';
 
 	// Bail if shortcodes are unset somehow
-	if ( !is_a( $bbp->shortcodes, 'DPS_Shortcodes' ) )
+	if ( !is_a( showcase()->shortcodes, 'DPS_Shortcodes' ) )
 		return $content;
 
 	// Use shortcode API to display forums/topics/replies because they are
@@ -752,16 +739,16 @@ function dps_replace_the_content( $content = '' ) {
 
 		// No page so show the archive
 		} else {
-			$new_content = $bbp->shortcodes->display_forum_index();
+			$new_content = showcase()->shortcodes->display_forum_index();
 		}
 
 	// Forum Edit
 	} elseif ( dps_is_forum_edit() ) {
-		$new_content = $bbp->shortcodes->display_forum_form();
+		$new_content = showcase()->shortcodes->display_forum_form();
 
 	// Single Forum
 	} elseif ( dps_is_single_forum() ) {
-		$new_content = $bbp->shortcodes->display_forum( array( 'id' => get_the_ID() ) );
+		$new_content = showcase()->shortcodes->display_forum( array( 'id' => get_the_ID() ) );
 
 	/** Topics ************************************************************/
 
@@ -792,7 +779,7 @@ function dps_replace_the_content( $content = '' ) {
 
 		// No page so show the archive
 		} else {
-			$new_content = $bbp->shortcodes->display_topic_index();
+			$new_content = showcase()->shortcodes->display_topic_index();
 		}
 
 	// Topic Edit
@@ -820,18 +807,18 @@ function dps_replace_the_content( $content = '' ) {
 
 		// Edit
 		} else {
-			$new_content = $bbp->shortcodes->display_topic_form();
+			$new_content = showcase()->shortcodes->display_topic_form();
 		}
 
 	// Single Topic
 	} elseif ( dps_is_single_topic() ) {
-		$new_content = $bbp->shortcodes->display_topic( array( 'id' => get_the_ID() ) );
+		$new_content = showcase()->shortcodes->display_topic( array( 'id' => get_the_ID() ) );
 
 	/** Replies ***********************************************************/
 
 	// Reply archive
 	} elseif ( is_post_type_archive( dps_get_reply_post_type() ) ) {
-		//$new_content = $bbp->shortcodes->display_reply_index();
+		//$new_content = showcase()->shortcodes->display_reply_index();
 
 	// Reply Edit
 	} elseif ( dps_is_reply_edit() ) {
@@ -848,32 +835,32 @@ function dps_replace_the_content( $content = '' ) {
 	
 		// Edit
 		} else {
-			$new_content = $bbp->shortcodes->display_reply_form();
+			$new_content = showcase()->shortcodes->display_reply_form();
 		}
 
 	// Single Reply
 	} elseif ( dps_is_single_reply() ) {
-		$new_content = $bbp->shortcodes->display_reply( array( 'id' => get_the_ID() ) );
+		$new_content = showcase()->shortcodes->display_reply( array( 'id' => get_the_ID() ) );
 
 	/** Views *************************************************************/
 
 	} elseif ( dps_is_single_view() ) {
-		$new_content = $bbp->shortcodes->display_view( array( 'id' => get_query_var( 'dps_view' ) ) );
+		$new_content = showcase()->shortcodes->display_view( array( 'id' => get_query_var( 'dps_view' ) ) );
 
 	/** Search ************************************************************/
 
 	} elseif ( dps_is_search() ) {
-		$new_content = $bbp->shortcodes->display_search( array( 'search' => get_query_var( 'dps_search' ) ) );
+		$new_content = showcase()->shortcodes->display_search( array( 'search' => get_query_var( 'dps_search' ) ) );
 
 	/** Topic Tags ********************************************************/
 
 	// Show topics of tag
 	} elseif ( dps_is_topic_tag() ) {
-		$new_content = $bbp->shortcodes->display_topics_of_tag( array( 'id' => dps_get_topic_tag_id() ) );
+		$new_content = showcase()->shortcodes->display_topics_of_tag( array( 'id' => dps_get_topic_tag_id() ) );
 
 	// Edit topic tag
 	} elseif ( dps_is_topic_tag_edit() ) {
-		$new_content = $bbp->shortcodes->display_topic_tag_form();
+		$new_content = showcase()->shortcodes->display_topic_tag_form();
 	}
 
 	// Juggle the content around and try to prevent unsightly comments
@@ -909,8 +896,6 @@ function dps_replace_the_content( $content = '' ) {
 function dps_remove_all_filters( $tag, $priority = false ) {
 	global $wp_filter, $merged_filters;
 
-	$bbp = showcase();
-
 	// Filters exist
 	if ( isset( $wp_filter[$tag] ) ) {
 
@@ -918,7 +903,7 @@ function dps_remove_all_filters( $tag, $priority = false ) {
 		if ( !empty( $priority ) && isset( $wp_filter[$tag][$priority] ) ) {
 
 			// Store filters in a backup
-			$bbp->filters->wp_filter[$tag][$priority] = $wp_filter[$tag][$priority];
+			showcase()->filters->wp_filter[$tag][$priority] = $wp_filter[$tag][$priority];
 
 			// Unset the filters
 			unset( $wp_filter[$tag][$priority] );
@@ -927,7 +912,7 @@ function dps_remove_all_filters( $tag, $priority = false ) {
 		} else {
 
 			// Store filters in a backup
-			$bbp->filters->wp_filter[$tag] = $wp_filter[$tag];
+			showcase()->filters->wp_filter[$tag] = $wp_filter[$tag];
 
 			// Unset the filters
 			unset( $wp_filter[$tag] );
@@ -938,7 +923,7 @@ function dps_remove_all_filters( $tag, $priority = false ) {
 	if ( isset( $merged_filters[$tag] ) ) {
 
 		// Store filters in a backup
-		$bbp->filters->merged_filters[$tag] = $merged_filters[$tag];
+		showcase()->filters->merged_filters[$tag] = $merged_filters[$tag];
 
 		// Unset the filters
 		unset( $merged_filters[$tag] );
@@ -961,39 +946,37 @@ function dps_remove_all_filters( $tag, $priority = false ) {
 function dps_restore_all_filters( $tag, $priority = false ) {
 	global $wp_filter, $merged_filters;
 
-	$bbp = showcase();
-
 	// Filters exist
-	if ( isset( $bbp->filters->wp_filter[$tag] ) ) {
+	if ( isset( showcase()->filters->wp_filter[$tag] ) ) {
 
 		// Filters exist in this priority
-		if ( !empty( $priority ) && isset( $bbp->filters->wp_filter[$tag][$priority] ) ) {
+		if ( !empty( $priority ) && isset( showcase()->filters->wp_filter[$tag][$priority] ) ) {
 
 			// Store filters in a backup
-			$wp_filter[$tag][$priority] = $bbp->filters->wp_filter[$tag][$priority];
+			$wp_filter[$tag][$priority] = showcase()->filters->wp_filter[$tag][$priority];
 
 			// Unset the filters
-			unset( $bbp->filters->wp_filter[$tag][$priority] );
+			unset( showcase()->filters->wp_filter[$tag][$priority] );
 
 		// Priority is empty
 		} else {
 
 			// Store filters in a backup
-			$wp_filter[$tag] = $bbp->filters->wp_filter[$tag];
+			$wp_filter[$tag] = showcase()->filters->wp_filter[$tag];
 
 			// Unset the filters
-			unset( $bbp->filters->wp_filter[$tag] );
+			unset( showcase()->filters->wp_filter[$tag] );
 		}
 	}
 
 	// Check merged filters
-	if ( isset( $bbp->filters->merged_filters[$tag] ) ) {
+	if ( isset( showcase()->filters->merged_filters[$tag] ) ) {
 
 		// Store filters in a backup
-		$merged_filters[$tag] = $bbp->filters->merged_filters[$tag];
+		$merged_filters[$tag] = showcase()->filters->merged_filters[$tag];
 
 		// Unset the filters
-		unset( $bbp->filters->merged_filters[$tag] );
+		unset( showcase()->filters->merged_filters[$tag] );
 	}
 
 	return true;

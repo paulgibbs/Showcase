@@ -1185,45 +1185,6 @@ function dps_sanitize_val( $request = '', $input_type = 'text' ) {
 	}
 
 /**
- * Output the current tab index of a given form
- *
- * Use this function to handle the tab indexing of user facing forms within a
- * template file. Calling this function will automatically increment the global
- * tab index by default.
- *
- * @since Showcase (1.0)
- *
- * @param int $auto_increment Optional. Default true. Set to false to prevent
- *                             increment
- */
-function dps_tab_index( $auto_increment = true ) {
-	echo dps_get_tab_index( $auto_increment );
-}
-
-	/**
-	 * Output the current tab index of a given form
-	 *
-	 * Use this function to handle the tab indexing of user facing forms
-	 * within a template file. Calling this function will automatically
-	 * increment the global tab index by default.
-	 *
-	 * @since Showcase (1.0)
-	 *
-	 * @uses apply_filters Allows return value to be filtered
-	 * @param int $auto_increment Optional. Default true. Set to false to
-	 *                             prevent the increment
-	 * @return int $bbp->tab_index The global tab index
-	 */
-	function dps_get_tab_index( $auto_increment = true ) {
-		$bbp = showcase();
-
-		if ( true === $auto_increment )
-			++$bbp->tab_index;
-
-		return apply_filters( 'dps_get_tab_index', (int) $bbp->tab_index );
-	}
-
-/**
  * Output a select box allowing to pick which forum/topic a new topic/reply
  * belongs in.
  *
@@ -1796,122 +1757,6 @@ function dps_get_quicktags_settings( $settings = array() ) {
 	return apply_filters( 'dps_get_quicktags_settings', $settings );
 }
 
-/** Views *********************************************************************/
-
-/**
- * Output the view id
- *
- * @since Showcase (1.0)
- *
- * @param string $view Optional. View id
- * @uses dps_get_view_id() To get the view id
- */
-function dps_view_id( $view = '' ) {
-	echo dps_get_view_id( $view );
-}
-
-	/**
-	 * Get the view id
-	 *
-	 * If a view id is supplied, that is used. Otherwise the 'dps_view'
-	 * query var is checked for.
-	 *
-	 * @since Showcase (1.0)
-	 *
-	 * @param string $view Optional. View id.
-	 * @uses sanitize_title() To sanitize the view id
-	 * @uses get_query_var() To get the view id from query var 'dps_view'
-	 * @return bool|string ID on success, false on failure
-	 */
-	function dps_get_view_id( $view = '' ) {
-		$bbp = showcase();
-
-		$view = !empty( $view ) ? sanitize_title( $view ) : get_query_var( 'dps_view' );
-
-		if ( array_key_exists( $view, $bbp->views ) )
-			return $view;
-
-		return false;
-	}
-
-/**
- * Output the view name aka title
- *
- * @since Showcase (1.0)
- *
- * @param string $view Optional. View id
- * @uses dps_get_view_title() To get the view title
- */
-function dps_view_title( $view = '' ) {
-	echo dps_get_view_title( $view );
-}
-
-	/**
-	 * Get the view name aka title
-	 *
-	 * If a view id is supplied, that is used. Otherwise the dps_view
-	 * query var is checked for.
-	 *
-	 * @since Showcase (1.0)
-	 *
-	 * @param string $view Optional. View id
-	 * @uses dps_get_view_id() To get the view id
-	 * @return bool|string Title on success, false on failure
-	 */
-	function dps_get_view_title( $view = '' ) {
-		$bbp = showcase();
-
-		$view = dps_get_view_id( $view );
-		if ( empty( $view ) )
-			return false;
-
-		return $bbp->views[$view]['title'];
-	}
-
-/**
- * Output the view url
- *
- * @since Showcase (1.0)
- *
- * @param string $view Optional. View id
- * @uses dps_get_view_url() To get the view url
- */
-function dps_view_url( $view = false ) {
-	echo dps_get_view_url( $view );
-}
-	/**
-	 * Return the view url
-	 *
-	 * @since Showcase (1.0)
-	 *
-	 * @param string $view Optional. View id
-	 * @uses sanitize_title() To sanitize the view id
-	 * @uses home_url() To get blog home url
-	 * @uses add_query_arg() To add custom args to the url
-	 * @uses apply_filters() Calls 'dps_get_view_url' with the view url,
-	 *                        used view id
-	 * @return string View url (or home url if the view was not found)
-	 */
-	function dps_get_view_url( $view = false ) {
-		global $wp_rewrite;
-
-		$view = dps_get_view_id( $view );
-		if ( empty( $view ) )
-			return home_url();
-
-		// Pretty permalinks
-		if ( $wp_rewrite->using_permalinks() ) {
-			$url = $wp_rewrite->root . dps_get_view_slug() . '/' . $view;
-			$url = home_url( user_trailingslashit( $url ) );
-
-		// Unpretty permalinks
-		} else {
-			$url = add_query_arg( array( 'dps_view' => $view ), home_url( '/' ) );
-		}
-
-		return apply_filters( 'dps_get_view_link', $url, $view );
-	}
-
 /** Query *********************************************************************/
 
 /**
@@ -2320,17 +2165,14 @@ function dps_template_notices() {
 	// Define local variable(s)
 	$errors = $messages = array();
 
-	// Get showcase
-	$bbp = showcase();
-
 	// Loop through notices
-	foreach ( $bbp->errors->get_error_codes() as $code ) {
+	foreach ( showcase()->errors->get_error_codes() as $code ) {
 
 		// Get notice severity
-		$severity = $bbp->errors->get_error_data( $code );
+		$severity = showcase()->errors->get_error_data( $code );
 
 		// Loop through notices and separate errors from messages
-		foreach ( $bbp->errors->get_error_messages( $code ) as $error ) {
+		foreach ( showcase()->errors->get_error_messages( $code ) as $error ) {
 			if ( 'message' == $severity ) {
 				$messages[] = $error;
 			} else {

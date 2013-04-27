@@ -127,23 +127,21 @@ function dps_forum_id( $forum_id = 0 ) {
 	function dps_get_forum_id( $forum_id = 0 ) {
 		global $wp_query;
 
-		$bbp = showcase();
-
 		// Easy empty checking
 		if ( !empty( $forum_id ) && is_numeric( $forum_id ) ) {
 			$dps_forum_id = $forum_id;
 
 		// Currently inside a forum loop
-		} elseif ( !empty( $bbp->forum_query->in_the_loop ) && isset( $bbp->forum_query->post->ID ) ) {
-			$dps_forum_id = $bbp->forum_query->post->ID;
+		} elseif ( !empty( showcase()->forum_query->in_the_loop ) && isset( showcase()->forum_query->post->ID ) ) {
+			$dps_forum_id = showcase()->forum_query->post->ID;
 
 		// Currently inside a search loop
-		} elseif ( !empty( $bbp->search_query->in_the_loop ) && isset( $bbp->search_query->post->ID ) && dps_is_forum( $bbp->search_query->post->ID ) ) {
-			$dps_forum_id = $bbp->search_query->post->ID;
+		} elseif ( !empty( showcase()->search_query->in_the_loop ) && isset( showcase()->search_query->post->ID ) && dps_is_forum( showcase()->search_query->post->ID ) ) {
+			$dps_forum_id = showcase()->search_query->post->ID;
 
 		// Currently viewing a forum
-		} elseif ( dps_is_single_forum() && !empty( $bbp->current_forum_id ) ) {
-			$dps_forum_id = $bbp->current_forum_id;
+		} elseif ( dps_is_single_forum() && !empty( showcase()->current_forum_id ) ) {
+			$dps_forum_id = showcase()->current_forum_id;
 
 		// Currently viewing a forum
 		} elseif ( dps_is_single_forum() && isset( $wp_query->post->ID ) ) {

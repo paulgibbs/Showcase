@@ -116,19 +116,18 @@ class DPS_Shortcodes {
 	 * @since Showcase (1.0)
 	 */
 	private function unset_globals() {
-		$bbp = showcase();
 
 		// Unset global queries
-		$bbp->forum_query  = new stdClass;
-		$bbp->topic_query  = new stdClass;
-		$bbp->reply_query  = new stdClass;
-		$bbp->search_query = new stdClass;
+		showcase()->forum_query  = new stdClass;
+		showcase()->topic_query  = new stdClass;
+		showcase()->reply_query  = new stdClass;
+		showcase()->search_query = new stdClass;
 
 		// Unset global ID's
-		$bbp->current_forum_id     = 0;
-		$bbp->current_topic_id     = 0;
-		$bbp->current_reply_id     = 0;
-		$bbp->current_topic_tag_id = 0;
+		showcase()->current_forum_id     = 0;
+		showcase()->current_topic_id     = 0;
+		showcase()->current_reply_id     = 0;
+		showcase()->current_topic_tag_id = 0;
 
 		// Reset the post data
 		wp_reset_postdata();
@@ -344,17 +343,15 @@ class DPS_Shortcodes {
 		// Reset the queries if not in theme compat
 		if ( !dps_is_theme_compat_active() ) {
 
-			$bbp = showcase();
-
 			// Reset necessary forum_query attributes for topics loop to function
-			$bbp->forum_query->query_vars['post_type'] = dps_get_showcase_post_type();
-			$bbp->forum_query->in_the_loop             = true;
-			$bbp->forum_query->post                    = get_post( $forum_id );
+			showcase()->forum_query->query_vars['post_type'] = dps_get_showcase_post_type();
+			showcase()->forum_query->in_the_loop             = true;
+			showcase()->forum_query->post                    = get_post( $forum_id );
 
 			// Reset necessary topic_query attributes for topics loop to function
-			$bbp->topic_query->query_vars['post_type'] = dps_get_topic_post_type();
-			$bbp->topic_query->in_the_loop             = true;
-			$bbp->topic_query->post                    = get_post( $topic_id );
+			showcase()->topic_query->query_vars['post_type'] = dps_get_topic_post_type();
+			showcase()->topic_query->in_the_loop             = true;
+			showcase()->topic_query->post                    = get_post( $topic_id );
 		}
 
 		// Start output buffer
@@ -426,12 +423,10 @@ class DPS_Shortcodes {
 		// Reset the queries if not in theme compat
 		if ( !dps_is_theme_compat_active() ) {
 
-			$bbp = showcase();
-
 			// Reset necessary forum_query attributes for replys loop to function
-			$bbp->forum_query->query_vars['post_type'] = dps_get_showcase_post_type();
-			$bbp->forum_query->in_the_loop             = true;
-			$bbp->forum_query->post                    = get_post( $forum_id );
+			showcase()->forum_query->query_vars['post_type'] = dps_get_showcase_post_type();
+			showcase()->forum_query->in_the_loop             = true;
+			showcase()->forum_query->post                    = get_post( $forum_id );
 		}
 
 		// Start output buffer
