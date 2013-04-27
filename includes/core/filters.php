@@ -212,9 +212,6 @@ add_filter( 'dps_pre_anonymous_post_author_website', 'wp_strip_all_tags',   10 )
 add_filter( 'dps_pre_anonymous_post_author_website', 'esc_url_raw',         10 );
 add_filter( 'dps_pre_anonymous_post_author_website', 'wp_filter_kses',      10 );
 
-// Queries
-add_filter( 'posts_request', '_dps_has_replies_where', 10, 2 );
-
 
 /** Deprecated ****************************************************************/
 

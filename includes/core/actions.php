@@ -131,9 +131,6 @@ add_action( 'dps_head',             'dps_login_notices'    );
 add_action( 'dps_head',             'dps_topic_notices'    );
 add_action( 'dps_template_notices', 'dps_template_notices' );
 
-// Always exclude private/hidden forums if needed
-add_action( 'pre_get_posts', 'dps_pre_get_posts_normalize_forum_visibility', 4 );
-
 // Profile Page Messages
 add_action( 'dps_template_notices', 'dps_notice_edit_user_success'           );
 add_action( 'dps_template_notices', 'dps_notice_edit_user_is_super_admin', 2 );

@@ -47,7 +47,6 @@ add_action( 'wpmu_new_blog',           'dps_new_site',               10, 6 );
 // Hook on to admin_init
 add_action( 'dps_admin_init', 'dps_admin_forums'                );
 add_action( 'dps_admin_init', 'dps_setup_updater',          999 );
-add_action( 'dps_admin_init', 'dps_do_activation_redirect', 1   );
 
 // Initialize the admin area
 add_action( 'dps_init', 'dps_admin' );
