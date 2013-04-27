@@ -45,13 +45,9 @@ add_action( 'generate_rewrite_rules',   'dps_generate_rewrite_rules',   10    );
 add_action( 'wp_enqueue_scripts',       'dps_enqueue_scripts',          10    );
 add_action( 'wp_head',                  'dps_head',                     10    );
 add_action( 'wp_footer',                'dps_footer',                   10    );
-add_action( 'set_current_user',         'dps_setup_current_user',       10    );
 add_action( 'setup_theme',              'dps_setup_theme',              10    );
 add_action( 'after_setup_theme',        'dps_after_setup_theme',        10    );
 add_action( 'template_redirect',        'dps_template_redirect',        8     ); // Before BuddyPress's 10 [BB2225]
-add_action( 'login_form_login',         'dps_login_form_login',         10    );
-add_action( 'profile_update',           'dps_profile_update',           10, 2 ); // user_id and old_user_data
-add_action( 'user_register',            'dps_user_register',            10    );
 
 /**
  * dps_loaded - Attached to 'plugins_loaded' above
@@ -66,7 +62,6 @@ add_action( 'dps_loaded', 'dps_includes',                  6  );
 add_action( 'dps_loaded', 'dps_setup_globals',             8  );
 add_action( 'dps_loaded', 'dps_setup_option_filters',      10 );
 add_action( 'dps_loaded', 'dps_register_theme_packages',   14 );
-add_action( 'dps_loaded', 'dps_filter_user_roles_option',  16 );
 
 /**
  * dps_init - Attached to 'init' above

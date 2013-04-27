@@ -132,23 +132,6 @@ function dps_widgets_init() {
 	do_action( 'dps_widgets_init' );
 }
 
-/**
- * Setup the currently logged-in user
- *
- * @since Showcase (1.0)
- * @uses did_action() To make sure the user isn't loaded out of order
- * @uses do_action() Calls 'dps_setup_current_user'
- */
-function dps_setup_current_user() {
-
-	// If the current user is being setup before the "init" action has fired,
-	// strange (and difficult to debug) role/capability issues will occur.
-	if ( ! did_action( 'after_setup_theme' ) ) {
-		_doing_it_wrong( __FUNCTION__, __( 'The current user is being initialized without using $wp->init().', 'dps' ), '2.3' );
-	}
-
-	do_action( 'dps_setup_current_user' );
-}
 
 /** Supplemental Actions ******************************************************/
 
@@ -232,41 +215,6 @@ function dps_add_rewrite_tags() {
 	do_action( 'dps_add_rewrite_tags' );
 }
 
-/**
- * Add the showcase-specific login forum action
- *
- * @since Showcase (1.0)
- * @uses do_action() Calls 'dps_login_form_login'
- */
-function dps_login_form_login() {
-	do_action( 'dps_login_form_login' );
-}
-
-/** User Actions **************************************************************/
-
-/**
- * The main action for hooking into when a user account is updated
- *
- * @since Showcase (1.0)
- *
- * @param int $user_id ID of user being edited
- * @param array $old_user_data The old, unmodified user data
- * @uses do_action() Calls 'dps_profile_update'
- */
-function dps_profile_update( $user_id = 0, $old_user_data = array() ) {
-	do_action( 'dps_profile_update', $user_id, $old_user_data );
-}
-
-/**
- * The main action for hooking into a user being registered
- *
- * @since Showcase (1.0)
- * @param int $user_id ID of user being edited
- * @uses do_action() Calls 'dps_user_register'
- */
-function dps_user_register( $user_id = 0 ) {
-	do_action( 'dps_user_register', $user_id );
-}
 
 /** Final Action **************************************************************/
 
