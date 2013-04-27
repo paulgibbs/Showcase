@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @since Showcase (1.0)
  */
-class BB_Theme_Compat {
+class DPS_Theme_Compat {
 
 	/**
 	 * Should be like:
@@ -90,13 +90,13 @@ class BB_Theme_Compat {
  * Setup the default theme compat theme
  *
  * @since Showcase (1.0)
- * @param BB_Theme_Compat $theme
+ * @param DPS_Theme_Compat $theme
  */
 function dps_setup_theme_compat( $theme = '' ) {
 	$bbp = showcase();
 
 	// Make sure theme package is available, set to default if not
-	if ( ! isset( $bbp->theme_compat->packages[$theme] ) || ! is_a( $bbp->theme_compat->packages[$theme], 'BB_Theme_Compat' ) ) {
+	if ( ! isset( $bbp->theme_compat->packages[$theme] ) || ! is_a( $bbp->theme_compat->packages[$theme], 'DPS_Theme_Compat' ) ) {
 		$theme = 'default';
 	}
 
@@ -269,12 +269,12 @@ function dps_is_theme_compat_original_template( $template = '' ) {
  */
 function dps_register_theme_package( $theme = array(), $override = true ) {
 
-	// Create new BB_Theme_Compat object from the $theme array
+	// Create new DPS_Theme_Compat object from the $theme array
 	if ( is_array( $theme ) )
-		$theme = new BB_Theme_Compat( $theme );
+		$theme = new DPS_Theme_Compat( $theme );
 
 	// Bail if $theme isn't a proper object
-	if ( ! is_a( $theme, 'BB_Theme_Compat' ) )
+	if ( ! is_a( $theme, 'DPS_Theme_Compat' ) )
 		return;
 
 	// Load up showcase

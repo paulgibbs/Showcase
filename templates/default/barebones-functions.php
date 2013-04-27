@@ -4,7 +4,7 @@
  * Functions of Showcase' default theme
  *
  * @package Showcase
- * @subpackage BB_Theme_Compat
+ * @subpackage DPS_Theme_Compat
  * @since Showcase (1.0)
  */
 
@@ -25,14 +25,14 @@ if ( !class_exists( 'BB_Default' ) ) :
  * can copy these files into your theme without needing to merge anything
  * together; Showcase should safely handle the rest.
  *
- * See @link BB_Theme_Compat() for more.
+ * See @link DPS_Theme_Compat() for more.
  *
  * @since Showcase (1.0)
  *
  * @package Showcase
- * @subpackage BB_Theme_Compat
+ * @subpackage DPS_Theme_Compat
  */
-class BB_Default extends BB_Theme_Compat {
+class BB_Default extends DPS_Theme_Compat {
 
 	/** Functions *************************************************************/
 
