@@ -197,8 +197,8 @@ final class Showcase {
 
 		/** Queries ***********************************************************/
 
-		$this->current_showcase_id = 0; // Current forum id
-		$this->showcase_query      = new stdClass(); // Main forum query
+		$this->current_showcase_id = 0;              // Current showcase id
+		$this->showcase_query      = new stdClass(); // Main showcase query
 
 
 		/** Theme Compat ******************************************************/
@@ -246,10 +246,10 @@ final class Showcase {
 		require( $this->includes_dir . 'common/widgets.php'        );
 		require( $this->includes_dir . 'common/shortcodes.php'     );
 
-		// Forums
-		require( $this->includes_dir . 'forums/capabilities.php'   );
-		require( $this->includes_dir . 'forums/functions.php'      );
-		require( $this->includes_dir . 'forums/template-tags.php'  );
+		// Showcase
+		require( $this->includes_dir . 'showcase/capabilities.php'   );
+		require( $this->includes_dir . 'showcase/functions.php'      );
+		require( $this->includes_dir . 'showcase/template-tags.php'  );
 
 
 		/** Hooks *************************************************************/
@@ -288,9 +288,9 @@ final class Showcase {
 		// Array of Showcase core actions
 		$actions = array(
 			'setup_theme',              // Setup the default theme compat
-			'register_post_types',      // Register post types (forum)
+			'register_post_types',      // Register post types (showcase)
 			'register_post_statuses',   // Register post statuses
-			'register_taxonomies',      // Register taxonomies (topic-tag)
+			'register_taxonomies',      // Register taxonomies
 			'register_shortcodes',      // Register shortcodes
 			'register_theme_packages',  // Register bundled theme packages (showcase)
 			'load_textdomain',          // Load textdomain (showcase)

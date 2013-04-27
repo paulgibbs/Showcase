@@ -1117,7 +1117,7 @@ function dps_forum_topics_link( $forum_id = 0 ) {
 	function dps_get_forum_topics_link( $forum_id = 0 ) {
 		$forum    = dps_get_forum( $forum_id );
 		$forum_id = $forum->ID;
-		$topics   = sprintf( _n( '%s topic', '%s topics', dps_get_forum_topic_count( $forum_id, true, false )' 'showcase' ), dps_get_forum_topic_count( $forum_id ) );
+		$topics   = sprintf( _n( '%s topic', '%s topics', dps_get_forum_topic_count( $forum_id, true, false )', 'showcase' ), dps_get_forum_topic_count( $forum_id ) );
 		$retval   = '';
 
 		// First link never has view=all
@@ -1844,7 +1844,7 @@ function dps_single_forum_description( $args = '' ) {
 
 		// Has replies
 		if ( !empty( $reply_count ) ) {
-			$reply_text = sprintf( _n( '%s reply', '%s replies', $rc_int' 'showcase' ), $reply_count );
+			$reply_text = sprintf( _n( '%s reply', '%s replies', $rc_int', 'showcase' ), $reply_count );
 		}
 
 		// Forum has active data
@@ -1855,7 +1855,7 @@ function dps_single_forum_description( $args = '' ) {
 
 		// Forum has no last active data
 		} else {
-			$topic_text      = sprintf( _n( '%s topic', '%s topics', $tc_int' 'showcase' ), $topic_count );
+			$topic_text      = sprintf( _n( '%s topic', '%s topics', $tc_int', 'showcase' ), $topic_count );
 		}
 
 		// Forum has active data
