@@ -28,8 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Theme Compatibility base class
  *
  * This is only intended to be extended, and is included here as a basic guide
- * for future Theme Packs to use. @link BB_Twenty_Ten is a good example of
- * extending this class, as is @link dps_setup_theme_compat()
+ * for future Theme Packs to use.
  *
  * @since Showcase (1.0)
  */
@@ -289,7 +288,7 @@ function dps_theme_compat_reset_post( $args = array() ) {
 	// Default arguments
 	$defaults = array(
 		'ID'                    => -9999,
-		'post_status'           => 'publish'),
+		'post_status'           => 'publish',
 		'post_author'           => 0,
 		'post_parent'           => 0,
 		'post_type'             => 'page',
@@ -418,27 +417,6 @@ function dps_theme_compat_reset_post( $args = array() ) {
  *
  * @since Showcase (1.0)
  * @param string $template
- * @uses dps_is_single_user() To check if page is single user
- * @uses dps_get_single_user_template() To get user template
- * @uses dps_is_single_user_edit() To check if page is single user edit
- * @uses dps_get_single_user_edit_template() To get user edit template
- * @uses dps_is_single_view() To check if page is single view
- * @uses dps_get_single_view_template() To get view template
- * @uses dps_is_search() To check if page is search
- * @uses dps_get_search_template() To get search template
- * @uses dps_is_forum_edit() To check if page is forum edit
- * @uses dps_get_forum_edit_template() To get forum edit template
- * @uses dps_is_topic_merge() To check if page is topic merge
- * @uses dps_get_topic_merge_template() To get topic merge template
- * @uses dps_is_topic_split() To check if page is topic split
- * @uses dps_get_topic_split_template() To get topic split template
- * @uses dps_is_topic_edit() To check if page is topic edit
- * @uses dps_get_topic_edit_template() To get topic edit template
- * @uses dps_is_reply_move() To check if page is reply move
- * @uses dps_get_reply_move_template() To get reply move template
- * @uses dps_is_reply_edit() To check if page is reply edit
- * @uses dps_get_reply_edit_template() To get reply edit template
- * @uses dps_set_theme_compat_template() To set the global theme compat template
  */
 function dps_template_include_theme_compat( $template = '' ) {
 
@@ -453,172 +431,37 @@ function dps_template_include_theme_compat( $template = '' ) {
 	if ( function_exists( 'is_buddypress' ) && is_buddypress() )
 		return $template;
 
-	/** Users *************************************************************/
+	/** Showcase ************************************************************/
 
-	if ( dps_is_single_user_edit() || dps_is_single_user() ) {
-
-		// Reset post
-		dps_theme_compat_reset_post( array(
-			'ID'             => 0,
-			'post_author'    => 0,
-			'post_date'      => 0,
-			'post_content'   => '',
-			'post_type'      => '',
-			'post_title'     => esc_attr( dps_get_displayed_user_field( 'display_name' ) ),
-			'post_status'    => dps_get_public_status_id(),
-			'is_archive'     => false,
-			'comment_status' => 'closed'
-		) );
-
-	/** Forums ************************************************************/
-
-	// Forum archive
-	} elseif ( dps_is_forum_archive() ) {
+	// Showcase archive
+	if ( dps_is_showcase_archive() ) {
 
 		// Reset post
 		dps_theme_compat_reset_post( array(
 			'ID'             => 0,
-			'post_title'     => dps_get_forum_archive_title(),
+			'post_title'     => dps_get_showcase_archive_title(),
 			'post_author'    => 0,
 			'post_date'      => 0,
 			'post_content'   => '',
 			'post_type'      => dps_get_showcase_post_type(),
-			'post_status'    => dps_get_public_status_id(),
+			'post_status'    => 'publish',
 			'is_archive'     => true,
 			'comment_status' => 'closed'
 		) );
 
-	// Single Forum
-	} elseif ( dps_is_forum_edit() || dps_is_single_forum() ) {
+	// Single showcase
+	} elseif ( dps_is_single_showcase() ) {
 
 		// Reset post
 		dps_theme_compat_reset_post( array(
-			'ID'             => dps_get_forum_id(),
-			'post_title'     => dps_get_forum_title(),
-			'post_author'    => dps_get_forum_author_id(),
+			'ID'             => dps_get_showcase_id(),
+			'post_title'     => dps_get_showcase_title(),
+			'post_author'    => dps_get_showcase_author_id(),
 			'post_date'      => 0,
-			'post_content'   => get_post_field( 'post_content', dps_get_forum_id() ),
+			'post_content'   => get_post_field( 'post_content', dps_get_showcase_id() ),
 			'post_type'      => dps_get_showcase_post_type(),
-			'post_status'    => dps_get_forum_visibility(),
+			'post_status'    => 'publish',
 			'is_single'      => true,
-			'comment_status' => 'closed'
-		) );
-
-	/** Topics ************************************************************/
-
-	// Topic archive
-	} elseif ( dps_is_topic_archive() ) {
-
-		// Reset post
-		dps_theme_compat_reset_post( array(
-			'ID'             => 0,
-			'post_title'     => dps_get_topic_archive_title(),
-			'post_author'    => 0,
-			'post_date'      => 0,
-			'post_content'   => '',
-			'post_type'      => dps_get_topic_post_type(),
-			'post_status'    => dps_get_public_status_id(),
-			'is_archive'     => true,
-			'comment_status' => 'closed'
-		) );
-
-	// Single Topic
-	} elseif ( dps_is_topic_edit() || dps_is_single_topic() ) {
-
-		// Reset post
-		dps_theme_compat_reset_post( array(
-			'ID'             => dps_get_topic_id(),
-			'post_title'     => dps_get_topic_title(),
-			'post_author'    => dps_get_topic_author_id(),
-			'post_date'      => 0,
-			'post_content'   => get_post_field( 'post_content', dps_get_topic_id() ),
-			'post_type'      => dps_get_topic_post_type(),
-			'post_status'    => dps_get_topic_status(),
-			'is_single'      => true,
-			'comment_status' => 'closed'
-		) );
-
-	/** Replies ***********************************************************/
-
-	// Reply archive
-	} elseif ( is_post_type_archive( dps_get_reply_post_type() ) ) {
-
-		// Reset post
-		dps_theme_compat_reset_post( array(
-			'ID'             => 0,
-			'post_title'     => __( 'Replies', 'dps' ),
-			'post_author'    => 0,
-			'post_date'      => 0,
-			'post_content'   => '',
-			'post_type'      => dps_get_reply_post_type(),
-			'post_status'    => dps_get_public_status_id(),
-			'comment_status' => 'closed'
-		) );
-
-	// Single Reply
-	} elseif ( dps_is_reply_edit() || dps_is_single_reply() ) {
-
-		// Reset post
-		dps_theme_compat_reset_post( array(
-			'ID'             => dps_get_reply_id(),
-			'post_title'     => dps_get_reply_title(),
-			'post_author'    => dps_get_reply_author_id(),
-			'post_date'      => 0,
-			'post_content'   => get_post_field( 'post_content', dps_get_reply_id() ),
-			'post_type'      => dps_get_reply_post_type(),
-			'post_status'    => dps_get_reply_status(),
-			'comment_status' => 'closed'
-		) );
-
-	/** Views *************************************************************/
-
-	} elseif ( dps_is_single_view() ) {
-
-		// Reset post
-		dps_theme_compat_reset_post( array(
-			'ID'             => 0,
-			'post_title'     => dps_get_view_title(),
-			'post_author'    => 0,
-			'post_date'      => 0,
-			'post_content'   => '',
-			'post_type'      => '',
-			'post_status'    => dps_get_public_status_id(),
-			'comment_status' => 'closed'
-		) );
-
-	/** Search ************************************************************/
-
-	} elseif ( dps_is_search() ) {
-
-		// Reset post
-		dps_theme_compat_reset_post( array(
-			'ID'             => 0,
-			'post_title'     => dps_get_search_title(),
-			'post_author'    => 0,
-			'post_date'      => 0,
-			'post_content'   => '',
-			'post_type'      => '',
-			'post_status'    => dps_get_public_status_id(),
-			'comment_status' => 'closed'
-		) );
-
-	/** Topic Tags ********************************************************/
-
-	// Topic Tag Edit
-	} elseif ( dps_is_topic_tag_edit() || dps_is_topic_tag() ) {
-
-		// Stash the current term in a new var
-		set_query_var( 'dps_topic_tag', get_query_var( 'term' ) );
-
-		// Reset the post with our new title
-		dps_theme_compat_reset_post( array(
-			'ID'             => 0,
-			'post_author'    => 0,
-			'post_date'      => 0,
-			'post_content'   => '',
-			'post_type'      => '',
-			'post_title'     => sprintf( __( 'Topic Tag: %s', 'dps' ), '<span>' . dps_get_topic_tag_name() . '</span>' ),
-			'post_status'    => dps_get_public_status_id(),
 			'comment_status' => 'closed'
 		) );
 	}
@@ -626,15 +469,13 @@ function dps_template_include_theme_compat( $template = '' ) {
 	/**
 	 * Bail if the template already matches a showcase template. This includes
 	 * archive-* and single-* WordPress post_type matches (allowing
-	 * themes to use the expected format) as well as all showcase-specific
-	 * template files for users, topics, forums, etc...
+	 * themes to use the expected format) as well as all showcase-specific template files.
 	 *
-	 * We do this after the above checks to prevent incorrect 404 body classes
-	 * and header statuses.
+	 * We do this after the above checks to prevent incorrect 404 body classes and header statuses.
 	 *
 	 * @see http://bbpress.trac.wordpress.org/ticket/1478/
 	 */
-	if ( !empty( showcase()->theme_compat->showcase_template ) )
+	if ( ! empty( showcase()->theme_compat->showcase_template ) )
 		return $template;
 
 	/**
@@ -692,32 +533,22 @@ function dps_replace_the_content( $content = '' ) {
 	$new_content = '';
 
 	// Bail if shortcodes are unset somehow
-	if ( !is_a( showcase()->shortcodes, 'DPS_Shortcodes' ) )
+	if ( ! is_a( showcase()->shortcodes, 'DPS_Shortcodes' ) )
 		return $content;
 
-	// Use shortcode API to display forums/topics/replies because they are
-	// already output buffered and ready to fit inside the_content
+	/**
+	 * Use shortcode API to display forums/topics/replies because they are
+	 * already output buffered and ready to fit inside the_content.
+	 */
 
-	/** Users *************************************************************/
+	/** Showcase ************************************************************/
 
-	// Profile View
-	if ( dps_is_single_user_edit() || dps_is_single_user() ) {
-		ob_start();
-
-		dps_get_template_part( 'content', 'single-user' );
-
-		$new_content = ob_get_contents();
-
-		ob_end_clean();
-
-	/** Forums ************************************************************/
-
-	// Forum archive
-	} elseif ( dps_is_forum_archive() ) {
+	// Showcase archive
+	if ( dps_is_showcasem_archive() ) {
 
 		// Page exists where this archive should be
 		$page = dps_get_page_by_path( dps_get_root_slug() );
-		if ( !empty( $page ) ) {
+		if ( ! empty( $page ) ) {
 
 			// Restore previously unset filters
 			dps_restore_all_filters( 'the_content' );
@@ -739,128 +570,12 @@ function dps_replace_the_content( $content = '' ) {
 
 		// No page so show the archive
 		} else {
-			$new_content = showcase()->shortcodes->display_forum_index();
+			$new_content = showcase()->shortcodes->display_showcase_index();
 		}
 
-	// Forum Edit
-	} elseif ( dps_is_forum_edit() ) {
-		$new_content = showcase()->shortcodes->display_forum_form();
-
-	// Single Forum
+	// Single showcase
 	} elseif ( dps_is_single_forum() ) {
-		$new_content = showcase()->shortcodes->display_forum( array( 'id' => get_the_ID() ) );
-
-	/** Topics ************************************************************/
-
-	// Topic archive
-	} elseif ( dps_is_topic_archive() ) {
-
-		// Page exists where this archive should be
-		$page = dps_get_page_by_path( dps_get_topic_archive_slug() );
-		if ( !empty( $page ) ) {
-
-			// Restore previously unset filters
-			dps_restore_all_filters( 'the_content' );
-
-			// Remove 'dps_replace_the_content' filter to prevent infinite loops
-			remove_filter( 'the_content', 'dps_replace_the_content' );
-
-			// Start output buffer
-			ob_start();
-
-			// Grab the content of this page
-			$new_content = apply_filters( 'the_content', $page->post_content );
-
-			// Clean up the buffer
-			ob_end_clean();
-
-			// Add 'dps_replace_the_content' filter back (@see $this::start())
-			add_filter( 'the_content', 'dps_replace_the_content' );
-
-		// No page so show the archive
-		} else {
-			$new_content = showcase()->shortcodes->display_topic_index();
-		}
-
-	// Topic Edit
-	} elseif ( dps_is_topic_edit() ) {
-
-		// Split
-		if ( dps_is_topic_split() ) {
-			ob_start();
-
-			dps_get_template_part( 'form', 'topic-split' );
-
-			$new_content = ob_get_contents();
-
-			ob_end_clean();
-
-		// Merge
-		} elseif ( dps_is_topic_merge() ) {
-			ob_start();
-
-			dps_get_template_part( 'form', 'topic-merge' );
-
-			$new_content = ob_get_contents();
-
-			ob_end_clean();
-
-		// Edit
-		} else {
-			$new_content = showcase()->shortcodes->display_topic_form();
-		}
-
-	// Single Topic
-	} elseif ( dps_is_single_topic() ) {
-		$new_content = showcase()->shortcodes->display_topic( array( 'id' => get_the_ID() ) );
-
-	/** Replies ***********************************************************/
-
-	// Reply archive
-	} elseif ( is_post_type_archive( dps_get_reply_post_type() ) ) {
-		//$new_content = showcase()->shortcodes->display_reply_index();
-
-	// Reply Edit
-	} elseif ( dps_is_reply_edit() ) {
-	
-		// Move
-		if ( dps_is_reply_move() ) {
-			ob_start();
-
-			dps_get_template_part( 'form', 'reply-move' );
-
-			$new_content = ob_get_contents();
-
-			ob_end_clean();
-	
-		// Edit
-		} else {
-			$new_content = showcase()->shortcodes->display_reply_form();
-		}
-
-	// Single Reply
-	} elseif ( dps_is_single_reply() ) {
-		$new_content = showcase()->shortcodes->display_reply( array( 'id' => get_the_ID() ) );
-
-	/** Views *************************************************************/
-
-	} elseif ( dps_is_single_view() ) {
-		$new_content = showcase()->shortcodes->display_view( array( 'id' => get_query_var( 'dps_view' ) ) );
-
-	/** Search ************************************************************/
-
-	} elseif ( dps_is_search() ) {
-		$new_content = showcase()->shortcodes->display_search( array( 'search' => get_query_var( 'dps_search' ) ) );
-
-	/** Topic Tags ********************************************************/
-
-	// Show topics of tag
-	} elseif ( dps_is_topic_tag() ) {
-		$new_content = showcase()->shortcodes->display_topics_of_tag( array( 'id' => dps_get_topic_tag_id() ) );
-
-	// Edit topic tag
-	} elseif ( dps_is_topic_tag_edit() ) {
-		$new_content = showcase()->shortcodes->display_topic_tag_form();
+		$new_content = showcase()->shortcodes->display_showcase( array( 'id' => get_the_ID() ) );
 	}
 
 	// Juggle the content around and try to prevent unsightly comments

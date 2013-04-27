@@ -399,7 +399,7 @@ final class Showcase {
 
 		// Showcase rewrite
 		$post_type['rewrite'] = array(
-			'slug'       => dps_get_showcase_slug(),
+			'slug'       => dps_get_root_slug(),
 			'with_front' => false
 		);
 

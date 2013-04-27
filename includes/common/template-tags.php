@@ -152,17 +152,17 @@ function dps_is_showcase_archive() {
 }
 
 /**
- * Viewing a single forum
+ * Viewing a single showcase
  *
  * @since Showcase (1.0)
  * @return bool
  */
-function dps_is_single_forum() {
+function dps_is_single_showcase() {
 
 	// Assume false
 	$retval = false;
 
-	// Edit is not a single forum
+	// Edit is not a single showcase
 	if ( dps_is_forum_edit() )
 		return false;
 
@@ -819,28 +819,6 @@ function dps_is_edit() {
  *
  * @param array $wp_classes
  * @param array $custom_classes
- * @uses dps_is_single_forum()
- * @uses dps_is_single_topic()
- * @uses dps_is_topic_edit()
- * @uses dps_is_topic_merge()
- * @uses dps_is_topic_split()
- * @uses dps_is_single_reply()
- * @uses dps_is_reply_edit()
- * @uses dps_is_reply_move()
- * @uses dps_is_single_view()
- * @uses dps_is_single_user_edit()
- * @uses dps_is_single_user()
- * @uses dps_is_user_home()
- * @uses dps_is_subscriptions()
- * @uses dps_is_favorites()
- * @uses dps_is_topics_created()
- * @uses dps_is_forum_archive()
- * @uses dps_is_topic_archive()
- * @uses dps_is_topic_tag()
- * @uses dps_is_topic_tag_edit()
- * @uses dps_get_topic_tag_tax_id()
- * @uses dps_get_topic_tag_slug()
- * @uses dps_get_topic_tag_id()
  * @return array Body Classes
  */
 function dps_body_class( $wp_classes, $custom_classes = false ) {
@@ -848,95 +826,12 @@ function dps_body_class( $wp_classes, $custom_classes = false ) {
 	$dps_classes = array();
 
 	/** Archives **************************************************************/
-
-	if ( dps_is_forum_archive() ) {
+	if ( dps_is_showcase_archive() ) {
 		$dps_classes[] = dps_get_showcase_post_type() . '-archive';
 
-	} elseif ( dps_is_topic_archive() ) {
-		$dps_classes[] = dps_get_topic_post_type() . '-archive';
-
-	/** Topic Tags ************************************************************/
-
-	} elseif ( dps_is_topic_tag() ) {
-		$dps_classes[] = dps_get_topic_tag_tax_id();
-		$dps_classes[] = dps_get_topic_tag_tax_id() . '-' . dps_get_topic_tag_slug();
-		$dps_classes[] = dps_get_topic_tag_tax_id() . '-' . dps_get_topic_tag_id();
-	} elseif ( dps_is_topic_tag_edit() ) {
-		$dps_classes[] = dps_get_topic_tag_tax_id() . '-edit';
-		$dps_classes[] = dps_get_topic_tag_tax_id() . '-' . dps_get_topic_tag_slug() . '-edit';
-		$dps_classes[] = dps_get_topic_tag_tax_id() . '-' . dps_get_topic_tag_id()   . '-edit';
-
 	/** Components ************************************************************/
-
-	} elseif ( dps_is_single_forum() ) {
+	} elseif ( dps_is_single_showcase() ) {
 		$dps_classes[] = dps_get_showcase_post_type();
-
-	} elseif ( dps_is_single_topic() ) {
-		$dps_classes[] = dps_get_topic_post_type();
-
-	} elseif ( dps_is_single_reply() ) {
-		$dps_classes[] = dps_get_reply_post_type();
-
-	} elseif ( dps_is_topic_edit() ) {
-		$dps_classes[] = dps_get_topic_post_type() . '-edit';
-
-	} elseif ( dps_is_topic_merge() ) {
-		$dps_classes[] = dps_get_topic_post_type() . '-merge';
-
-	} elseif ( dps_is_topic_split() ) {
-		$dps_classes[] = dps_get_topic_post_type() . '-split';
-
-	} elseif ( dps_is_reply_edit() ) {
-		$dps_classes[] = dps_get_reply_post_type() . '-edit';
-
-	} elseif ( dps_is_reply_move() ) {
-		$dps_classes[] = dps_get_reply_post_type() . '-move';
-
-	} elseif ( dps_is_single_view() ) {
-		$dps_classes[] = 'bbp-view';
-
-	/** User ******************************************************************/
-
-	} elseif ( dps_is_single_user_edit() ) {
-		$dps_classes[] = 'bbp-user-edit';
-		$dps_classes[] = 'single';
-		$dps_classes[] = 'singular';
-
-	} elseif ( dps_is_single_user() ) {
-		$dps_classes[] = 'bbp-user-page';
-		$dps_classes[] = 'single';
-		$dps_classes[] = 'singular';
-
-	} elseif ( dps_is_user_home() ) {
-		$dps_classes[] = 'bbp-user-home';
-		$dps_classes[] = 'single';
-		$dps_classes[] = 'singular';
-
-	} elseif ( dps_is_user_home_edit() ) {
-		$dps_classes[] = 'bbp-user-home-edit';
-		$dps_classes[] = 'single';
-		$dps_classes[] = 'singular';
-
-	} elseif ( dps_is_topics_created() ) {
-		$dps_classes[] = 'bbp-topics-created';
-		$dps_classes[] = 'single';
-		$dps_classes[] = 'singular';
-
-	} elseif ( dps_is_favorites() ) {
-		$dps_classes[] = 'bbp-favorites';
-		$dps_classes[] = 'single';
-		$dps_classes[] = 'singular';
-
-	} elseif ( dps_is_subscriptions() ) {
-		$dps_classes[] = 'bbp-subscriptions';
-		$dps_classes[] = 'single';
-		$dps_classes[] = 'singular';
-
-	/** Search ****************************************************************/
-
-	} elseif ( dps_is_search() ) {
-		$dps_classes[] = 'bbp-search';
-		$dps_classes[] = 'forum-search';
 	}
 
 	/** Clean up **************************************************************/
@@ -2240,27 +2135,8 @@ function dps_logout_link( $redirect_to = '' ) {
  * @since Showcase (1.0)
  *
  * @param string $title Optional. The title (not used).
- * @param string $sep Optional, default is '&raquo;'. How to separate the
- *                     various items within the page title.
+ * @param string $sep Optional, default is '&raquo;'. How to separate the various items within the page title.
  * @param string $seplocation Optional. Direction to display title, 'right'.
- * @uses dps_is_single_user() To check if it's a user profile page
- * @uses dps_is_single_user_edit() To check if it's a user profile edit page
- * @uses dps_is_user_home() To check if the profile page is of the current user
- * @uses get_query_var() To get the user id
- * @uses get_userdata() To get the user data
- * @uses dps_is_single_forum() To check if it's a forum
- * @uses dps_get_forum_title() To get the forum title
- * @uses dps_is_single_topic() To check if it's a topic
- * @uses dps_get_topic_title() To get the topic title
- * @uses dps_is_single_reply() To check if it's a reply
- * @uses dps_get_reply_title() To get the reply title
- * @uses is_tax() To check if it's the tag page
- * @uses get_queried_object() To get the queried object
- * @uses dps_is_single_view() To check if it's a view
- * @uses dps_get_view_title() To get the view title
- * @uses apply_filters() Calls 'dps_raw_title' with the title
- * @uses apply_filters() Calls 'dps_profile_page_wp_title' with the title,
- *                        separator and separator location
  * @return string The tite
  */
 function dps_title( $title = '', $sep = '&raquo;', $seplocation = '' ) {
@@ -2268,74 +2144,13 @@ function dps_title( $title = '', $sep = '&raquo;', $seplocation = '' ) {
 	// Store original title to compare
 	$_title = $title;
 
-	/** Archives **************************************************************/
+	// Showcase Archive
+	if ( dps_is_Showcase_archive() ) {
+		$title = dps_get_Showcase_archive_title();
 
-	// Forum Archive
-	if ( dps_is_forum_archive() ) {
-		$title = dps_get_forum_archive_title();
-
-	// Topic Archive
-	} elseif ( dps_is_topic_archive() ) {
-		$title = dps_get_topic_archive_title();
-
-	/** Singles ***************************************************************/
-
-	// Forum page
-	} elseif ( dps_is_single_forum() ) {
-		$title = sprintf( __( 'Forum: %s', 'dps' ), dps_get_forum_title() );
-
-	// Topic page
-	} elseif ( dps_is_single_topic() ) {
-		$title = sprintf( __( 'Topic: %s', 'dps' ), dps_get_topic_title() );
-
-	// Replies
-	} elseif ( dps_is_single_reply() ) {
-		$title = dps_get_reply_title();
-
-	// Topic tag page (or edit)
-	} elseif ( dps_is_topic_tag() || dps_is_topic_tag_edit() || get_query_var( 'dps_topic_tag' ) ) {
-		$term  = get_queried_object();
-		$title = sprintf( __( 'Topic Tag: %s', 'dps' ), $term->name );
-
-	/** Users *****************************************************************/
-
-	// Profile page
-	} elseif ( dps_is_single_user() ) {
-
-		// Current users profile
-		if ( dps_is_user_home() ) {
-			$title = __( 'Your Profile', 'dps' );
-
-		// Other users profile
-		} else {
-			$userdata = get_userdata( dps_get_user_id() );
-			$title    = sprintf( __( '%s\'s Profile', 'dps' ), $userdata->display_name );
-		}
-
-	// Profile edit page
-	} elseif ( dps_is_single_user_edit() ) {
-
-		// Current users profile
-		if ( dps_is_user_home_edit() ) {
-			$title = __( 'Edit Your Profile', 'dps' );
-
-		// Other users profile
-		} else {
-			$userdata = get_userdata( dps_get_user_id() );
-			$title    = sprintf( __( 'Edit %s\'s Profile', 'dps' ), $userdata->display_name );
-		}
-
-	/** Views *****************************************************************/
-
-	// Views
-	} elseif ( dps_is_single_view() ) {
-		$title = sprintf( __( 'View: %s', 'dps' ), dps_get_view_title() );
-
-	/** Search ****************************************************************/
-
-	// Search
-	} elseif ( dps_is_search() ) {
-		$title = dps_get_search_title();
+	// Showcase page
+	} elseif ( dps_is_single_Showcase() ) {
+		$title = sprintf( __( 'Showcase: %s', 'dps' ), dps_get_forum_title() );
 	}
 
 	// Filter the raw title

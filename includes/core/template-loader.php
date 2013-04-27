@@ -81,20 +81,20 @@ function dps_get_single_showcase_template() {
 	$templates = array(
 		'single-' . dps_get_showcase_post_type() . '.php' // Single showcase
 	);
-	return dps_get_query_template( 'single_forum', $templates );
+	return dps_get_query_template( 'single_showcase', $templates );
 }
 
 /**
- * Get the forum archive template
+ * Get the showcase archive template
  *
  * @since Showcase (1.0)
  * @return string Path to template file
  */
-function dps_get_forum_archive_template() {
+function dps_get_showcase_archive_template() {
 	$templates = array(
 		'archive-' . dps_get_showcase_post_type() . '.php' // Showcase archive
 	);
-	return dps_get_query_template( 'forum_archive', $templates );
+	return dps_get_query_template( 'showcase_archive', $templates );
 }
 
 /**
