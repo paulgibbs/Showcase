@@ -230,7 +230,6 @@ final class Showcase {
 		require( $this->includes_dir . 'core/functions.php'          );
 		require( $this->includes_dir . 'core/cache.php'              );
 		require( $this->includes_dir . 'core/options.php'            );
-		require( $this->includes_dir . 'core/capabilities.php'       );
 		require( $this->includes_dir . 'core/update.php'             );
 		require( $this->includes_dir . 'core/template-functions.php' );
 		require( $this->includes_dir . 'core/template-loader.php'    );
