@@ -12,7 +12,7 @@
  * Author:      You!
  * Author URI:  http://example.org
  * Version:     1.0
- * Text Domain: showcase
+ * Text Domain: dps
  * Domain Path: ../../languages/plugins/
  */
 
@@ -182,11 +182,11 @@ final class Showcase {
 		$this->includes_url = apply_filters( 'dps_includes_url', trailingslashit( $this->plugin_url . 'includes'  ) );
 
 		// Languages
-		$this->lang_dir     = apply_filters( 'dps_lang_dir',     trailingslashit( $this->plugin_dir . 'languages' ) );
+		$this->lang_dir = apply_filters( 'dps_lang_dir', trailingslashit( $this->plugin_dir . 'languages' ) );
 
 		// Templates
-		$this->themes_dir = apply_filters( 'dps_themes_dir',   trailingslashit( $this->plugin_dir . 'templates' ) );
-		$this->themes_url = apply_filters( 'dps_themes_url',   trailingslashit( $this->plugin_url . 'templates' ) );
+		$this->themes_dir = apply_filters( 'dps_themes_dir', trailingslashit( $this->plugin_dir . 'templates' ) );
+		$this->themes_url = apply_filters( 'dps_themes_url', trailingslashit( $this->plugin_url . 'templates' ) );
 
 
 		/** Identifiers *******************************************************/
@@ -197,21 +197,21 @@ final class Showcase {
 
 		/** Queries ***********************************************************/
 
-		$this->current_showcase_id  = 0; // Current forum id
-		$this->showcase_query       = new stdClass(); // Main forum query
+		$this->current_showcase_id = 0; // Current forum id
+		$this->showcase_query      = new stdClass(); // Main forum query
 
 
 		/** Theme Compat ******************************************************/
 
-		$this->theme_compat   = new stdClass(); // Base theme compatibility class
-		$this->filters        = new stdClass(); // Used when adding/removing filters
+		$this->theme_compat = new stdClass(); // Base theme compatibility class
+		$this->filters      = new stdClass(); // Used when adding/removing filters
 
 
 		/** Misc **************************************************************/
 
-		$this->domain         = 'showcase';     // Unique identifier for retrieving translated strings
-		$this->extend         = new stdClass(); // Plugins add data here
-		$this->errors         = new WP_Error(); // Feedback
+		$this->domain = 'dps';          // Unique identifier for retrieving translated strings
+		$this->extend = new stdClass(); // Plugins add data here
+		$this->errors = new WP_Error(); // Feedback
 	}
 
 	/**
@@ -319,7 +319,7 @@ final class Showcase {
 		// Register the default theme compatibility package
 		dps_register_theme_package( array(
 			'id'      => 'default',
-			'name'    => __( 'showcase default', 'dps' ),
+			'name'    => __( 'Showcase Default', 'dps' ),
 			'version' => dps_get_version(),
 			'dir'     => trailingslashit( $this->themes_dir . 'default' ),
 			'url'     => trailingslashit( $this->themes_url . 'default' )
@@ -368,72 +368,63 @@ final class Showcase {
 	}
 
 	/**
-	 * Setup the post types for forums, topics and replies
+	 * Setup the post type for the showcase
 	 *
 	 * @since Showcase (1.0)
 	 * @uses register_post_type() To register the post types
-	 * @uses apply_filters() Calls various filters to modify the arguments
-	 *                        sent to register_post_type()
+	 * @uses apply_filters() Calls various filters to modify the arguments sent to register_post_type()
 	 */
 	public static function register_post_types() {
 
 		// Define local variable(s)
 		$post_type = array();
 
-		/** Forums ************************************************************/
+		/** Showcase ************************************************************/
 
-		// Forum labels
+		// Showcase labels
 		$post_type['labels'] = array(
-			'name'               => __( 'Forums',                   'showcase' ),
-			'menu_name'          => __( 'Forums',                   'showcase' ),
-			'singular_name'      => __( 'Forum',                    'showcase' ),
-			'all_items'          => __( 'All Forums',               'showcase' ),
-			'add_new'            => __( 'New Forum',                'showcase' ),
-			'add_new_item'       => __( 'Create New Forum',         'showcase' ),
-			'edit'               => __( 'Edit',                     'showcase' ),
-			'edit_item'          => __( 'Edit Forum',               'showcase' ),
-			'new_item'           => __( 'New Forum',                'showcase' ),
-			'view'               => __( 'View Forum',               'showcase' ),
-			'view_item'          => __( 'View Forum',               'showcase' ),
-			'search_items'       => __( 'Search Forums',            'showcase' ),
-			'not_found'          => __( 'No forums found',          'showcase' ),
-			'not_found_in_trash' => __( 'No forums found in Trash', 'dps' ),
-			'parent_item_colon'  => __( 'Parent Forum:',            'showcase' )
+			'name'               => __( 'Showcase',                'dps' ),
+			'menu_name'          => __( 'Showcase',                'dps' ),
+			'singular_name'      => __( 'Showcase',                'dps' ),
+			'all_items'          => __( 'All Sites',               'dps' ),
+			'add_new'            => __( 'New Site',                'dps' ),
+			'add_new_item'       => __( 'Add New Site',            'dps' ),
+			'edit'               => __( 'Edit',                    'dps' ),
+			'edit_item'          => __( 'Edit Site',               'dps' ),
+			'new_item'           => __( 'New Site',                'dps' ),
+			'view'               => __( 'View Showcase',           'dps' ),
+			'view_item'          => __( 'View Sites',              'dps' ),
+			'search_items'       => __( 'Search Showcase',         'dps' ),
+			'not_found'          => __( 'No sites found',          'dps' ),
+			'not_found_in_trash' => __( 'No sites found in Trash', 'dps' ),
 		);
 
-		// Forum rewrite
+		// Showcase rewrite
 		$post_type['rewrite'] = array(
-			'slug'       => dps_get_forum_slug(),
+			'slug'       => dps_get_showcase_slug(),
 			'with_front' => false
 		);
 
-		// Forum supports
+		// Showcase supports
 		$post_type['supports'] = array(
-			'title',
 			'editor',
-			'revisions'
+			'excerpt',
+			'revisions',
+			'thumbnail',
+			'title',
 		);
 
-		// Register Forum content type
+		// Register Showcase content type
 		register_post_type(
-			dps_get_forum_post_type(),
-			apply_filters( 'dps_register_forum_post_type', array(
+			dps_get_showcase_post_type(),
+			apply_filters( 'dps_register_showcase_post_type', array(
+				'description'         => __( 'Showcase', 'dps' ),
+				'has_archive'         => dps_get_root_slug(),
 				'labels'              => $post_type['labels'],
+				'public'              => true,
+				'query_var'           => true,
 				'rewrite'             => $post_type['rewrite'],
 				'supports'            => $post_type['supports'],
-				'description'         => __( 'Showcase Forums', 'dps' ),
-				'capabilities'        => dps_get_forum_caps(),
-				'capability_type'     => array( 'forum', 'forums' ),
-				'menu_position'       => 555555,
-				'has_archive'         => dps_get_root_slug(),
-				'exclude_from_search' => true,
-				'show_in_nav_menus'   => true,
-				'public'              => true,
-				'show_ui'             => current_user_can( 'dps_forums_admin' ),
-				'can_export'          => true,
-				'hierarchical'        => true,
-				'query_var'           => true,
-				'menu_icon'           => ''
 			) )
 		);
 	}
@@ -441,76 +432,27 @@ final class Showcase {
 	/**
 	 * Register the post statuses used by Showcase
 	 *
-	 * We do some manipulation of the 'trash' status so trashed topics and
-	 * replies can be viewed from within the theme.
-	 *
 	 * @since Showcase (1.0)
-	 * @uses register_post_status() To register post statuses
-	 * @uses $wp_post_statuses To modify trash and private statuses
-	 * @uses current_user_can() To check if the current user is capable & modify $wp_post_statuses accordingly
 	 */
 	public static function register_post_statuses() {
 	}
 
 	/**
-	 * Register the topic tag taxonomy
+	 * Register taxonomies
 	 *
 	 * @since Showcase (1.0)
-	 * @uses register_taxonomy() To register the taxonomy
 	 */
 	public static function register_taxonomies() {
-
-		// Define local variable(s)
-		$topic_tag = array();
-
-		// Topic tag labels
-		$topic_tag['labels'] = array(
-			'name'          => __( 'Topic Tags',     'showcase' ),
-			'singular_name' => __( 'Topic Tag',      'showcase' ),
-			'search_items'  => __( 'Search Tags',    'showcase' ),
-			'popular_items' => __( 'Popular Tags',   'showcase' ),
-			'all_items'     => __( 'All Tags',       'showcase' ),
-			'edit_item'     => __( 'Edit Tag',       'showcase' ),
-			'update_item'   => __( 'Update Tag',     'showcase' ),
-			'add_new_item'  => __( 'Add New Tag',    'showcase' ),
-			'new_item_name' => __( 'New Tag Name',   'showcase' ),
-			'view_item'     => __( 'View Topic Tag', 'dps' )
-		);
-
-		// Topic tag rewrite
-		$topic_tag['rewrite'] = array(
-			'slug'       => dps_get_topic_tag_tax_slug(),
-			'with_front' => false
-		);
-
-		// Register the topic tag taxonomy
-		register_taxonomy(
-			dps_get_topic_tag_tax_id(),
-			dps_get_topic_post_type(),
-			apply_filters( 'dps_register_topic_taxonomy', array(
-				'labels'                => $topic_tag['labels'],
-				'rewrite'               => $topic_tag['rewrite'],
-				'capabilities'          => dps_get_topic_tag_caps(),
-				'update_count_callback' => '_update_post_term_count',
-				'query_var'             => true,
-				'show_tagcloud'         => true,
-				'hierarchical'          => false,
-				'show_in_nav_menus'     => false,
-				'public'                => true,
-				'show_ui'               => dps_allow_topic_tags() && current_user_can( 'dps_topic_tags_admin' )
-			)
-		) );
 	}
 
 	/**
 	 * Register the Showcase shortcodes
 	 *
 	 * @since Showcase (1.0)
-	 *
-	 * @uses BB_Shortcodes
+	 * @uses DPS_Shortcodes
 	 */
 	public function register_shortcodes() {
-		$this->shortcodes = new BB_Shortcodes();
+		$this->shortcodes = new DPS_Shortcodes();
 	}
 
 
@@ -520,21 +462,15 @@ final class Showcase {
 	 * Add the Showcase-specific rewrite tags
 	 *
 	 * @since Showcase (1.0)
-	 * @uses add_rewrite_tag() To add the rewrite tags
 	 */
 	public static function add_rewrite_tags() {
 	}
 
 	/**
-	 * Register Showcase-specific rewrite rules for uri's that are not
-	 * setup for us by way of custom post types or taxonomies. This includes:
-	 * - Front-end editing
-	 * - Topic views
-	 * - User profiles
+	 * Register Showcase-specific rewrite rules for URIs that are not setup for us by way of custom post types or taxonomies.
 	 *
 	 * @since Showcase (1.0)
-	 * @param WP_Rewrite $wp_rewrite Varebones-sepecific rules are appended in
-	 *                                $wp_rewrite->rules
+	 * @param WP_Rewrite $wp_rewrite Varebones-sepecific rules are appended in $wp_rewrite->rules
 	 */
 	public static function generate_rewrite_rules( $wp_rewrite ) {
 		return $wp_rewrite;
@@ -542,10 +478,10 @@ final class Showcase {
 }
 
 /**
- * The main function responsible for returning the one true Showcase Instance to functions everywhere.
+ * The main function responsible for returning the one true Showcase instance to functions everywhere.
  *
  * Use this function like you would a global variable, except without needing to declare the global.
- * Example: <?php $bb = showcase(); ?>
+ * Example: <?php $showcase = showcase(); ?>
  *
  * @return The one true Showcase Instance
  */
