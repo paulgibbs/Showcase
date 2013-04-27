@@ -10,7 +10,7 @@
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) exit;
 
-if ( !class_exists( 'BB_Admin' ) ) :
+if ( !class_exists( 'DPS_Admin' ) ) :
 /**
  * Loads showcase plugin admin area
  *
@@ -18,7 +18,7 @@ if ( !class_exists( 'BB_Admin' ) ) :
  * @subpackage Administration
  * @since Showcase (1.0)
  */
-class BB_Admin {
+class DPS_Admin {
 
 	/** Directory *************************************************************/
 
@@ -65,9 +65,9 @@ class BB_Admin {
 	 *
 	 * @since Showcase (1.0)
 	 *
-	 * @uses BB_Admin::setup_globals() Setup the globals needed
-	 * @uses BB_Admin::includes() Include the required files
-	 * @uses BB_Admin::setup_actions() Setup the hooks and actions
+	 * @uses DPS_Admin::setup_globals() Setup the globals needed
+	 * @uses DPS_Admin::includes() Include the required files
+	 * @uses DPS_Admin::setup_actions() Setup the hooks and actions
 	 */
 	public function __construct() {
 		$this->setup_globals();
@@ -130,8 +130,8 @@ endif; // class_exists check
  *
  * @since Showcase (1.0)
  *
- * @uses BB_Admin
+ * @uses DPS_Admin
  */
 function dps_admin() {
-	showcase()->admin = new BB_Admin();
+	showcase()->admin = new DPS_Admin();
 }

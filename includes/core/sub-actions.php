@@ -411,27 +411,3 @@ function dps_template_include( $template = '' ) {
 function dps_generate_rewrite_rules( $wp_rewrite ) {
 	do_action_ref_array( 'dps_generate_rewrite_rules', array( &$wp_rewrite ) );
 }
-
-/**
- * Filter the allowed themes list for showcase specific themes
- *
- * @since Showcase (1.0)
- * @uses apply_filters() Calls 'dps_allowed_themes' with the allowed themes list
- */
-function dps_allowed_themes( $themes ) {
-	return apply_filters( 'dps_allowed_themes', $themes );
-}
-
-/**
- * Maps forum/topic/reply caps to built in WordPress caps
- *
- * @since Showcase (1.0)
- *
- * @param array $caps Capabilities for meta capability
- * @param string $cap Capability name
- * @param int $user_id User id
- * @param mixed $args Arguments
- */
-function dps_map_meta_caps( $caps = array(), $cap = '', $user_id = 0, $args = array() ) {
-	return apply_filters( 'dps_map_meta_caps', $caps, $cap, $user_id, $args );
-}

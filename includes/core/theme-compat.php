@@ -893,62 +893,6 @@ function dps_replace_the_content( $content = '' ) {
 	return $content;
 }
 
-/** Helpers *******************************************************************/
-
-/**
- * Remove the canonical redirect to allow pretty pagination
- *
- * @since Showcase (1.0)
- * @param string $redirect_url Redirect url
- * @uses WP_Rewrite::using_permalinks() To check if the blog is using permalinks
- * @uses dps_get_paged() To get the current page number
- * @uses dps_is_single_topic() To check if it's a topic page
- * @uses dps_is_single_forum() To check if it's a forum page
- * @return bool|string False if it's a topic/forum and their first page,
- *                      otherwise the redirect url
- */
-function dps_redirect_canonical( $redirect_url ) {
-	global $wp_rewrite;
-
-	// Canonical is for the beautiful
-	if ( $wp_rewrite->using_permalinks() ) {
-
-		// If viewing beyond page 1 of several
-		if ( 1 < dps_get_paged() ) {
-
-			// Only on single topics...
-			if ( dps_is_single_topic() ) {
-				$redirect_url = false;
-
-			// ...and single forums...
-			} elseif ( dps_is_single_forum() ) {
-				$redirect_url = false;
-
-			// ...and single replies...
-			} elseif ( dps_is_single_reply() ) {
-				$redirect_url = false;
-
-			// ...and any single anything else...
-			//
-			// @todo - Find a more accurate way to disable paged canonicals for
-			//          paged shortcode usage within other posts.
-			} elseif ( is_page() || is_singular() ) {
-				$redirect_url = false;
-			}
-
-		// If editing a topic
-		} elseif ( dps_is_topic_edit() ) {
-			$redirect_url = false;
-
-		// If editing a reply
-		} elseif ( dps_is_reply_edit() ) {
-			$redirect_url = false;
-		}
-	}
-
-	return $redirect_url;
-}
-
 /** Filters *******************************************************************/
 
 /**
@@ -1053,33 +997,4 @@ function dps_restore_all_filters( $tag, $priority = false ) {
 	}
 
 	return true;
-}
-
-/**
- * Force comments_status to 'closed' for showcase post types
- *
- * @since Showcase (1.0)
- * @param bool $open True if open, false if closed
- * @param int $post_id ID of the post to check
- * @return bool True if open, false if closed
- */
-function dps_force_comment_status( $open, $post_id = 0 ) {
-
-	// Get the post type of the post ID
-	$post_type = get_post_type( $post_id );
-
-	// Default return value is what is passed in $open
-	$retval = $open;
-
-	// Only force for showcase post types
-	switch ( $post_type ) {
-		case dps_get_showcase_post_type() :
-		case dps_get_topic_post_type() :
-		case dps_get_reply_post_type() :
-			$retval = false;
-			break;
-	}
-
-	// Allow override of the override
-	return apply_filters( 'dps_force_comment_status', $retval, $open, $post_id, $post_type );
 }

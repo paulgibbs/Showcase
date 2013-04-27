@@ -13,7 +13,7 @@
  * There are a few common places that additional actions can currently be found
  *
  *  - showcase: In {@link Showcase::setup_actions()} in showcase.php
- *  - Admin: More in {@link BB_Admin::setup_actions()} in admin.php
+ *  - Admin: More in {@link DPS_Admin::setup_actions()} in admin.php
  *
  * @see /core/filters.php
  */

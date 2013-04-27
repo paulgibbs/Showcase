@@ -245,7 +245,6 @@ function dps_get_query_template( $type, $templates = array() ) {
 function dps_get_template_locations( $templates = array() ) {
 	$locations = array(
 		'showcase',
-		'forums',
 		''
 	);
 	return apply_filters( 'dps_get_template_locations', $locations, $templates );
