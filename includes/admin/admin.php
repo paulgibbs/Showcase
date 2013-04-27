@@ -278,26 +278,6 @@ class BB_Admin {
 		// What capability is being checked?
 		switch ( $cap ) {
 
-			// BuddyPress
-			case 'dps_settings_buddypress' :
-				if ( ( is_plugin_active( 'buddypress/bp-loader.php' ) && defined( 'BP_VERSION' ) && bp_is_root_blog() ) && is_super_admin() ) {
-					$caps = array( showcase()->admin->minimum_capability );
-				} else {
-					$caps = array( 'do_not_allow' );
-				}
-
-				break;
-
-			// Akismet
-			case 'dps_settings_akismet' :
-				if ( ( is_plugin_active( 'akismet/akismet.php' ) && defined( 'AKISMET_VERSION' ) ) && is_super_admin() ) {
-					$caps = array( showcase()->admin->minimum_capability );
-				} else {
-					$caps = array( 'do_not_allow' );
-				}
-
-				break;
-
 			// showcase
 			case 'dps_about_page'            : // About and Credits
 			case 'dps_tools_page'            : // Tools Page

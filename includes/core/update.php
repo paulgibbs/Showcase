@@ -229,49 +229,7 @@ function dps_version_updater() {
 	// Get the raw database version
 	$raw_db_version = (int) dps_get_db_version_raw();
 
-	/** 2.0 Branch ************************************************************/
-
-	// 2.0, 2.0.1, 2.0.2, 2.0.3
-	if ( $raw_db_version < 200 ) {
-		// No changes
-	}
-
-	/** 2.1 Branch ************************************************************/
-
-	// 2.1, 2.1.1
-	if ( $raw_db_version < 211 ) {
-
-		/**
-		 * Repair private and hidden forum data
-		 *
-		 * @link http://bbpress.trac.wordpress.org/ticket/1891
-		 */
-		dps_admin_repair_forum_visibility();
-	}
-
-	/** 2.2 Branch ************************************************************/
-
-	// 2.2
-	if ( $raw_db_version < 220 ) {
-
-		// Remove the Moderator role from the database
-		remove_role( dps_get_moderator_role() );
-
-		// Remove the Participant role from the database
-		remove_role( dps_get_participant_role() );
-
-		// Remove capabilities
-		dps_remove_caps();
-	}
-
-	/** 2.3 Branch ************************************************************/
-
-	// 2.3
-	if ( $raw_db_version < 230 ) {
-		// No changes
-	}
-
-	/** All done! *************************************************************/
+	// Nothing for now!
 
 	// Bump the version
 	dps_version_bump();

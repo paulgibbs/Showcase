@@ -9,10 +9,11 @@
  * Plugin Name: Showcase
  * Plugin URI:  http://example.org
  * Description: Showcase is a kit that helps you build a powerful, modern WordPress plugin.
- * Author:      You!
- * Author URI:  http://example.org
- * Version:     1.0
+ * Author: Paul Gibbs
+ * Author URI: http://byotos.com/
  * Text Domain: dps
+ * License:     GPLv2
+ * Version:     1.0
  * Domain Path: ../../languages/plugins/
  */
 

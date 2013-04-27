@@ -65,7 +65,6 @@ add_action( 'dps_loaded', 'dps_boot_strap_globals',        4  );
 add_action( 'dps_loaded', 'dps_includes',                  6  );
 add_action( 'dps_loaded', 'dps_setup_globals',             8  );
 add_action( 'dps_loaded', 'dps_setup_option_filters',      10 );
-add_action( 'dps_loaded', 'dps_setup_user_option_filters', 12 );
 add_action( 'dps_loaded', 'dps_register_theme_packages',   14 );
 add_action( 'dps_loaded', 'dps_filter_user_roles_option',  16 );
 
@@ -95,14 +94,6 @@ add_action( 'dps_init', 'dps_ready',            999 );
 add_action( 'dps_after_setup_theme', 'dps_add_forums_roles', 1 );
 
 /**
- * When setting up the current user, make sure they have a role for the forums.
- *
- * This is multisite aware, thanks to dps_filter_user_roles_option(), hooked to
- * the 'dps_loaded' action above.
- */
-add_action( 'dps_setup_current_user', 'dps_set_current_user_default_role' );
-
-/**
  * dps_register - Attached to 'init' above on 0 priority
  *
  * Attach various initialization actions early to the init action.
@@ -115,19 +106,13 @@ add_action( 'dps_register', 'dps_register_taxonomies',     6  );
 add_action( 'dps_register', 'dps_register_views',          8  );
 add_action( 'dps_register', 'dps_register_shortcodes',     10 );
 
-// Autoembeds
-add_action( 'dps_init', 'dps_reply_content_autoembed', 8   );
-add_action( 'dps_init', 'dps_topic_content_autoembed', 8   );
-
 /**
  * dps_ready - attached to end 'dps_init' above
  *
  * Attach actions to the ready action after showcase has fully initialized.
  * The load order helps to execute code at the correct time.
- *                                                v---Load order
  */
-add_action( 'dps_ready',  'dps_setup_akismet',    2  ); // Spam prevention for topics and replies
-add_action( 'bp_include', 'dps_setup_buddypress', 10 ); // Social network integration
+//add_action( 'dps_ready', '???', );
 
 // Try to load the showcase-functions.php file from the active themes
 add_action( 'dps_after_setup_theme', 'dps_load_theme_functions', 10 );

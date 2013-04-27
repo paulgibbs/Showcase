@@ -46,11 +46,7 @@ add_action( 'wpmu_new_blog',           'dps_new_site',               10, 6 );
 
 // Hook on to admin_init
 add_action( 'dps_admin_init', 'dps_admin_forums'                );
-add_action( 'dps_admin_init', 'dps_admin_topics'                );
-add_action( 'dps_admin_init', 'dps_admin_replies'               );
 add_action( 'dps_admin_init', 'dps_setup_updater',          999 );
-add_action( 'dps_admin_init', 'dps_register_importers'          );
-add_action( 'dps_admin_init', 'dps_register_admin_style'        );
 add_action( 'dps_admin_init', 'dps_register_admin_settings'     );
 add_action( 'dps_admin_init', 'dps_do_activation_redirect', 1   );
 
@@ -143,26 +139,6 @@ function dps_admin_head() {
  */
 function dps_admin_notices() {
 	do_action( 'dps_admin_notices' );
-}
-
-/**
- * Dedicated action to register showcase importers
- *
- * @since Showcase (1.0)
- * @uses do_action() Calls 'dps_admin_notices'
- */
-function dps_register_importers() {
-	do_action( 'dps_register_importers' );
-}
-
-/**
- * Dedicated action to register admin styles
- *
- * @since Showcase (1.0)
- * @uses do_action() Calls 'dps_admin_notices'
- */
-function dps_register_admin_style() {
-	do_action( 'dps_register_admin_style' );
 }
 
 /**

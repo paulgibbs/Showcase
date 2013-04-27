@@ -27,7 +27,7 @@ function dps_showcase_post_type() {
 	 * @return string The unique forum post type id
 	 */
 	function dps_get_showcase_post_type() {
-		return apply_filters( 'dps_get_forum_post_type', showcase()->forum_post_type );
+		return apply_filters( 'dps_get_showcase_post_type', showcase()->showcase_post_type );
 	}
 
 /** Forum Loop ****************************************************************/
