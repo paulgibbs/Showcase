@@ -493,7 +493,7 @@ function dps_template_include_theme_compat( $template = '' ) {
 			'post_author'    => 0,
 			'post_date'      => 0,
 			'post_content'   => '',
-			'post_type'      => dps_get_forum_post_type(),
+			'post_type'      => dps_get_showcase_post_type(),
 			'post_status'    => dps_get_public_status_id(),
 			'is_archive'     => true,
 			'comment_status' => 'closed'
@@ -509,7 +509,7 @@ function dps_template_include_theme_compat( $template = '' ) {
 			'post_author'    => dps_get_forum_author_id(),
 			'post_date'      => 0,
 			'post_content'   => get_post_field( 'post_content', dps_get_forum_id() ),
-			'post_type'      => dps_get_forum_post_type(),
+			'post_type'      => dps_get_showcase_post_type(),
 			'post_status'    => dps_get_forum_visibility(),
 			'is_single'      => true,
 			'comment_status' => 'closed'
@@ -1073,7 +1073,7 @@ function dps_force_comment_status( $open, $post_id = 0 ) {
 
 	// Only force for showcase post types
 	switch ( $post_type ) {
-		case dps_get_forum_post_type() :
+		case dps_get_showcase_post_type() :
 		case dps_get_topic_post_type() :
 		case dps_get_reply_post_type() :
 			$retval = false;

@@ -48,12 +48,6 @@ class BB_Forums_Admin {
 	 *
 	 * @since Showcase (1.0)
 	 * @access private
-	 *
-	 * @uses add_action() To add various actions
-	 * @uses add_filter() To add various filters
-	 * @uses dps_get_forum_post_type() To get the forum post type
-	 * @uses dps_get_topic_post_type() To get the topic post type
-	 * @uses dps_get_reply_post_type() To get the reply post type
 	 */
 	private function setup_actions() {
 
@@ -99,7 +93,7 @@ class BB_Forums_Admin {
 	 * @access private
 	 */
 	private function setup_globals() {
-		$this->post_type = dps_get_forum_post_type();
+		$this->post_type = dps_get_showcase_post_type();
 	}
 
 	/** Contextual Help *******************************************************/
@@ -240,10 +234,6 @@ class BB_Forums_Admin {
 	 * Add the forum attributes metabox
 	 *
 	 * @since Showcase (1.0)
-	 *
-	 * @uses dps_get_forum_post_type() To get the forum post type
-	 * @uses add_meta_box() To add the metabox
-	 * @uses do_action() Calls 'dps_forum_attributes_metabox'
 	 */
 	public function attributes_metabox() {
 
@@ -325,12 +315,6 @@ class BB_Forums_Admin {
 	 * Add some general styling to the admin area
 	 *
 	 * @since Showcase (1.0)
-	 *
-	 * @uses dps_get_forum_post_type() To get the forum post type
-	 * @uses dps_get_topic_post_type() To get the topic post type
-	 * @uses dps_get_reply_post_type() To get the reply post type
-	 * @uses sanitize_html_class() To sanitize the classes
-	 * @uses do_action() Calls 'dps_admin_head'
 	 */
 	public function admin_head() {
 

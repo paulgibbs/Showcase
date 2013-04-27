@@ -275,14 +275,11 @@ function dps_get_search_template() {
  * Get the single forum template
  *
  * @since Showcase (1.0)
- *
- * @uses dps_get_forum_post_type()
- * @uses dps_get_query_template()
  * @return string Path to template file
  */
 function dps_get_single_forum_template() {
 	$templates = array(
-		'single-' . dps_get_forum_post_type() . '.php' // Single Forum
+		'single-' . dps_get_showcase_post_type() . '.php' // Single Forum
 	);
 	return dps_get_query_template( 'single_forum', $templates );
 }
@@ -291,14 +288,11 @@ function dps_get_single_forum_template() {
  * Get the forum archive template
  *
  * @since Showcase (1.0)
- *
- * @uses dps_get_forum_post_type()
- * @uses dps_get_query_template()
  * @return string Path to template file
  */
 function dps_get_forum_archive_template() {
 	$templates = array(
-		'archive-' . dps_get_forum_post_type() . '.php' // Forum Archive
+		'archive-' . dps_get_showcase_post_type() . '.php' // Forum Archive
 	);
 	return dps_get_query_template( 'forum_archive', $templates );
 }
@@ -307,14 +301,11 @@ function dps_get_forum_archive_template() {
  * Get the forum edit template
  *
  * @since Showcase (1.0)
- *
- * @uses dps_get_topic_post_type()
- * @uses dps_get_query_template()
  * @return string Path to template file
  */
 function dps_get_forum_edit_template() {
 	$templates = array(
-		'single-' . dps_get_forum_post_type() . '-edit.php' // Single Forum Edit
+		'single-' . dps_get_showcase_post_type() . '-edit.php' // Single Forum Edit
 	);
 	return dps_get_query_template( 'forum_edit', $templates );
 }

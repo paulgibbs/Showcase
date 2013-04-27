@@ -554,7 +554,7 @@ class BB_Forums_Widget extends WP_Widget {
 		// Note: private and hidden forums will be excluded via the
 		// dps_pre_get_posts_exclude_forums filter and function.
 		$widget_query = new WP_Query( array(
-			'post_type'      => dps_get_forum_post_type(),
+			'post_type'      => dps_get_showcase_post_type(),
 			'post_parent'    => $settings['parent_forum'],
 			'post_status'    => dps_get_public_status_id(),
 			'posts_per_page' => get_option( '_dps_forums_per_page', 50 ),

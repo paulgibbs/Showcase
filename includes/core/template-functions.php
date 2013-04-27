@@ -291,22 +291,7 @@ function dps_add_template_stack_locations( $stacks = array() ) {
  * If it's a search page, WP_Query::dps_is_search is set to true
  *
  * @since Showcase (1.0)
- *
  * @param WP_Query $posts_query
- *
- * @uses get_query_var() To get {@link WP_Query} query var
- * @uses is_email() To check if the string is an email
- * @uses get_user_by() To try to get the user by email and nicename
- * @uses get_userdata() to get the user data
- * @uses current_user_can() To check if the current user can edit the user
- * @uses is_user_member_of_blog() To check if user profile page exists
- * @uses WP_Query::set_404() To set a 404 status
- * @uses apply_filters() Calls 'enable_edit_any_user_configuration' with true
- * @uses dps_get_view_query_args() To get the view query args
- * @uses dps_get_forum_post_type() To get the forum post type
- * @uses dps_get_topic_post_type() To get the topic post type
- * @uses dps_get_reply_post_type() To get the reply post type
- * @uses remove_action() To remove the auto save post revision action
  */
 function dps_parse_query( $posts_query ) {
 
@@ -478,7 +463,7 @@ function dps_parse_query( $posts_query ) {
 			switch( $post_type ) {
 
 				// We are editing a forum
-				case dps_get_forum_post_type() :
+				case dps_get_showcase_post_type() :
 					$posts_query->dps_is_forum_edit = true;
 					$posts_query->dps_is_edit       = true;
 					break;

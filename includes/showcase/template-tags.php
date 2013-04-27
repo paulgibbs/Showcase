@@ -16,7 +16,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * Output the unique id of the custom post type for forums
  *
  * @since Showcase (1.0)
- * @uses dps_get_forum_post_type() To get the forum post type
  */
 function dps_showcase_post_type() {
 	echo dps_get_showcase_post_type();
@@ -25,9 +24,6 @@ function dps_showcase_post_type() {
 	 * Return the unique id of the custom post type for forums
 	 *
 	 * @since Showcase (1.0)
-	 *
-	 * @uses apply_filters() Calls 'dps_get_forum_post_type' with the forum
-	 *                        post type id
 	 * @return string The unique forum post type id
 	 */
 	function dps_get_showcase_post_type() {
@@ -42,24 +38,14 @@ function dps_showcase_post_type() {
  * WordPress makes this easy for us.
  *
  * @since Showcase (1.0)
- *
  * @param mixed $args All the arguments supported by {@link WP_Query}
- * @uses WP_Query To make query and get the forums
- * @uses dps_get_forum_post_type() To get the forum post type id
- * @uses dps_get_forum_id() To get the forum id
- * @uses get_option() To get the forums per page option
- * @uses current_user_can() To check if the current user is capable of editing
- *                           others' forums
- * @uses apply_filters() Calls 'dps_has_forums' with
- *                        bbPres::forum_query::have_posts()
- *                        and bbPres::forum_query
  * @return object Multidimensional array of forum information
  */
 function dps_has_forums( $args = '' ) {
 
 	// Parse arguments with default forum query for most circumstances
 	$dps_f = dps_parse_args( $args, array(
-		'post_type'      => dps_get_forum_post_type(),
+		'post_type'      => dps_get_showcase_post_type(),
 		'post_parent'    => dps_is_forum_archive() ? 0 : dps_get_forum_id() ,
 		'post_status'    => dps_get_public_status_id(),
 		'posts_per_page' => get_option( '_dps_forums_per_page', 50 ),
@@ -200,7 +186,7 @@ function dps_get_forum( $forum, $output = OBJECT, $filter = 'raw' ) {
 		return $forum;
 
 	// Bail if post_type is not a forum
-	if ( $forum->post_type !== dps_get_forum_post_type() )
+	if ( $forum->post_type !== dps_get_showcase_post_type() )
 		return null;
 
 	// Tweak the data type to return
@@ -303,16 +289,6 @@ function dps_forum_archive_title( $title = '' ) {
 	 * Return the forum archive title
 	 *
 	 * @since Showcase (1.0)
-	 *
-	 * @param string $title Default text to use as title
-	 *
-	 * @uses dps_get_page_by_path() Check if page exists at root path
-	 * @uses get_the_title() Use the page title at the root path
-	 * @uses get_post_type_object() Load the post type object
-	 * @uses dps_get_forum_post_type() Get the forum post type ID
-	 * @uses get_post_type_labels() Get labels for forum post type
-	 * @uses apply_filters() Allow output to be manipulated
-	 *
 	 * @return string The forum archive title
 	 */
 	function dps_get_forum_archive_title( $title = '' ) {
@@ -327,7 +303,7 @@ function dps_forum_archive_title( $title = '' ) {
 
 			// Default to forum post type name label
 			} else {
-				$fto    = get_post_type_object( dps_get_forum_post_type() );
+				$fto    = get_post_type_object( dps_get_showcase_post_type() );
 				$title  = $fto->labels->name;
 			}
 		}
@@ -632,7 +608,7 @@ function dps_forum_get_subforums( $args = '' ) {
 	// Parse arguments against default values
 	$r = dps_parse_args( $args, array(
 		'post_parent'         => 0,
-		'post_type'           => dps_get_forum_post_type(),
+		'post_type'           => dps_get_showcase_post_type(),
 		'post_status'         => implode( ',', $post_stati ),
 		'posts_per_page'      => get_option( '_dps_forums_per_page', 50 ),
 		'orderby'             => 'menu_order',
@@ -2231,10 +2207,7 @@ function dps_form_forum_visibility_dropdown( $forum_id = 0 ) {
  * Output the link for the forum feed
  *
  * @since Showcase (1.0)
- *
  * @param type $forum_id Optional. Forum ID.
- *
- * @uses dps_get_forum_topics_feed_link()
  */
 function dps_forum_topics_feed_link( $forum_id = 0 ) {
 	echo dps_get_forum_topics_feed_link( $forum_id );
@@ -2243,18 +2216,7 @@ function dps_forum_topics_feed_link( $forum_id = 0 ) {
 	 * Retrieve the link for the forum feed
 	 *
 	 * @since Showcase (1.0)
-	 *
 	 * @param int $forum_id Optional. Forum ID.
-	 *
-	 * @uses dps_get_forum_id()
-	 * @uses get_option()
-	 * @uses trailingslashit()
-	 * @uses dps_get_forum_permalink()
-	 * @uses user_trailingslashit()
-	 * @uses dps_get_forum_post_type()
-	 * @uses get_post_field()
-	 * @uses apply_filters()
-	 *
 	 * @return string
 	 */
 	function dps_get_forum_topics_feed_link( $forum_id = 0 ) {
@@ -2279,7 +2241,7 @@ function dps_forum_topics_feed_link( $forum_id = 0 ) {
 			} else {
 				$url = home_url( add_query_arg( array(
 					'feed'                    => 'rss2',
-					dps_get_forum_post_type() => get_post_field( 'post_name', $forum_id )
+					dps_get_showcase_post_type() => get_post_field( 'post_name', $forum_id )
 				) ) );
 			}
 
@@ -2307,16 +2269,6 @@ function dps_forum_replies_feed_link( $forum_id = 0 ) {
 	 * @since Showcase (1.0)
 	 *
 	 * @param int $forum_id Optional. Forum ID.
-	 *
-	 * @uses dps_get_forum_id()
-	 * @uses get_option()
-	 * @uses trailingslashit()
-	 * @uses dps_get_forum_permalink()
-	 * @uses user_trailingslashit()
-	 * @uses dps_get_forum_post_type()
-	 * @uses get_post_field()
-	 * @uses apply_filters()
-	 *
 	 * @return string
 	 */
 	function dps_get_forum_replies_feed_link( $forum_id = 0 ) {
@@ -2343,7 +2295,7 @@ function dps_forum_replies_feed_link( $forum_id = 0 ) {
 				$url = home_url( add_query_arg( array(
 					'type'                    => 'reply',
 					'feed'                    => 'rss2',
-					dps_get_forum_post_type() => get_post_field( 'post_name', $forum_id )
+					dps_get_showcase_post_type() => get_post_field( 'post_name', $forum_id )
 				) ) );
 			}
 

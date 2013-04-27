@@ -430,15 +430,6 @@ function dps_past_edit_lock( $post_date_gmt ) {
  *                           user has view_trash cap)
  *  - count_tags: Count tags? If set to false, empty tags are also not counted
  *  - count_empty_tags: Count empty tags?
- * @uses dps_count_users() To count the number of registered users
- * @uses dps_get_forum_post_type() To get the forum post type
- * @uses dps_get_topic_post_type() To get the topic post type
- * @uses dps_get_reply_post_type() To get the reply post type
- * @uses wp_count_posts() To count the number of forums, topics and replies
- * @uses wp_count_terms() To count the number of topic tags
- * @uses current_user_can() To check if the user is capable of doing things
- * @uses number_format_i18n() To format the number
- * @uses apply_filters() Calls 'dps_get_statistics' with the statistics and args
  * @return object Walked forum tree
  */
 function dps_get_statistics( $args = '' ) {
@@ -476,7 +467,7 @@ function dps_get_statistics( $args = '' ) {
 
 	// Forums
 	if ( !empty( $r['count_forums'] ) ) {
-		$forum_count = wp_count_posts( dps_get_forum_post_type() )->publish;
+		$forum_count = wp_count_posts( dps_get_showcase_post_type() )->publish;
 	}
 
 	// Post statuses
@@ -1378,7 +1369,7 @@ function dps_get_all_child_ids( $parent_id = 0, $post_type = 'post' ) {
 	switch ( $post_type ) {
 
 		// Forum
-		case dps_get_forum_post_type() :
+		case dps_get_showcase_post_type() :
 			$post_status[] = dps_get_private_status_id();
 			$post_status[] = dps_get_hidden_status_id();
 			break;
@@ -1515,7 +1506,7 @@ function dps_request_feed_trap( $query_vars = array() ) {
 			switch ( $query_vars['post_type'] ) {
 
 				// Forum
-				case dps_get_forum_post_type() :
+				case dps_get_showcase_post_type() :
 
 					// Define local variable(s)
 					$meta_query = array();
@@ -1525,7 +1516,7 @@ function dps_request_feed_trap( $query_vars = array() ) {
 
 						// Load up our own query
 						query_posts( array_merge( array(
-							'post_type' => dps_get_forum_post_type(),
+							'post_type' => dps_get_showcase_post_type(),
 							'feed'      => true
 						), $select_query_vars ) );
 

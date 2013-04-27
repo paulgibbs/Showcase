@@ -347,7 +347,7 @@ class DPS_Shortcodes {
 			$bbp = showcase();
 
 			// Reset necessary forum_query attributes for topics loop to function
-			$bbp->forum_query->query_vars['post_type'] = dps_get_forum_post_type();
+			$bbp->forum_query->query_vars['post_type'] = dps_get_showcase_post_type();
 			$bbp->forum_query->in_the_loop             = true;
 			$bbp->forum_query->post                    = get_post( $forum_id );
 
@@ -429,14 +429,9 @@ class DPS_Shortcodes {
 			$bbp = showcase();
 
 			// Reset necessary forum_query attributes for replys loop to function
-			$bbp->forum_query->query_vars['post_type'] = dps_get_forum_post_type();
+			$bbp->forum_query->query_vars['post_type'] = dps_get_showcase_post_type();
 			$bbp->forum_query->in_the_loop             = true;
 			$bbp->forum_query->post                    = get_post( $forum_id );
-
-			// Reset necessary reply_query attributes for replys loop to function
-			$bbp->reply_query->query_vars['post_type'] = dps_get_reply_post_type();
-			$bbp->reply_query->in_the_loop             = true;
-			$bbp->reply_query->post                    = get_post( $reply_id );
 		}
 
 		// Start output buffer

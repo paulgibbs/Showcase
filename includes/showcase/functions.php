@@ -17,12 +17,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * for the forum to function properly.
  *
  * @since Showcase (1.0)
- *
- * @uses dps_parse_args()
- * @uses dps_get_forum_post_type()
- * @uses wp_insert_post()
- * @uses update_post_meta()
- *
  * @param array $forum_data Forum post data
  * @param arrap $forum_meta Forum meta data
  */
@@ -32,7 +26,7 @@ function dps_insert_forum( $forum_data = array(), $forum_meta = array() ) {
 	$default_forum = array(
 		'post_parent'    => 0, // forum ID
 		'post_status'    => dps_get_public_status_id(),
-		'post_type'      => dps_get_forum_post_type(),
+		'post_type'      => dps_get_showcase_post_type(),
 		'post_author'    => dps_get_current_user_id(),
 		'post_password'  => '',
 		'post_content'   => '',
@@ -78,34 +72,6 @@ function dps_insert_forum( $forum_data = array(), $forum_meta = array() ) {
  * Handles the front end forum submission
  *
  * @param string $action The requested action to compare this function to
- * @uses dps_add_error() To add an error message
- * @uses dps_verify_nonce_request() To verify the nonce and check the request
- * @uses dps_is_anonymous() To check if an anonymous post is being made
- * @uses current_user_can() To check if the current user can publish forum
- * @uses dps_get_current_user_id() To get the current user id
- * @uses dps_filter_anonymous_post_data() To filter anonymous data
- * @uses dps_set_current_anonymous_user_data() To set the anonymous user cookies
- * @uses is_wp_error() To check if the value retrieved is a {@link WP_Error}
- * @uses esc_attr() For sanitization
- * @uses dps_is_forum_category() To check if the forum is a category
- * @uses dps_is_forum_closed() To check if the forum is closed
- * @uses dps_is_forum_private() To check if the forum is private
- * @uses dps_check_for_flood() To check for flooding
- * @uses dps_check_for_duplicate() To check for duplicates
- * @uses dps_get_forum_post_type() To get the forum post type
- * @uses remove_filter() To remove 'wp_filter_kses' filters if needed
- * @uses apply_filters() Calls 'dps_new_forum_pre_title' with the content
- * @uses apply_filters() Calls 'dps_new_forum_pre_content' with the content
- * @uses Showcase::errors::get_error_codes() To get the {@link WP_Error} errors
- * @uses wp_insert_post() To insert the forum
- * @uses do_action() Calls 'dps_new_forum' with the forum id, forum id,
- *                    anonymous data and reply author
- * @uses dps_stick_forum() To stick or super stick the forum
- * @uses dps_unstick_forum() To unstick the forum
- * @uses dps_get_forum_permalink() To get the forum permalink
- * @uses wp_safe_redirect() To redirect to the forum link
- * @uses Showcase::errors::get_error_messages() To get the {@link WP_Error} error
- *                                              messages
  */
 function dps_new_forum_handler( $action = '' ) {
 
@@ -209,7 +175,7 @@ function dps_new_forum_handler( $action = '' ) {
 
 	/** Forum Duplicate *******************************************************/
 
-	if ( !dps_check_for_duplicate( array( 'post_type' => dps_get_forum_post_type(), 'post_author' => $forum_author, 'post_content' => $forum_content, 'anonymous_data' => $anonymous_data ) ) )
+	if ( !dps_check_for_duplicate( array( 'post_type' => dps_get_showcase_post_type(), 'post_author' => $forum_author, 'post_content' => $forum_content, 'anonymous_data' => $anonymous_data ) ) )
 		dps_add_error( 'dps_forum_duplicate', __( '<strong>ERROR</strong>: This forum already exists.', 'dps' ) );
 
 	/** Forum Blacklist *******************************************************/
@@ -241,7 +207,7 @@ function dps_new_forum_handler( $action = '' ) {
 		'post_content'   => $forum_content,
 		'post_parent'    => $forum_parent_id,
 		'post_status'    => $post_status,
-		'post_type'      => dps_get_forum_post_type(),
+		'post_type'      => dps_get_showcase_post_type(),
 		'comment_status' => 'closed'
 	) );
 
@@ -1646,7 +1612,7 @@ function dps_pre_get_posts_normalize_forum_visibility( $posts_query = null ) {
 	$post_types = (array) $posts_query->get( 'post_type' );
 
 	// Forums
-	if ( in_array( dps_get_forum_post_type() , $post_types ) ) {
+	if ( in_array( dps_get_showcase_post_type() , $post_types ) ) {
 
 		// Prevent accidental wp-admin post_row override
 		if ( is_admin() && isset( $_REQUEST['post_status'] ) ) {
@@ -1748,13 +1714,13 @@ function dps_forum_query_topic_ids( $forum_id ) {
  * @since Showcase (1.0)
  *
  * @param int $forum_id Forum id
- * @uses dps_get_forum_post_type() To get the forum post type
+ * @uses dps_get_showcase_post_type() To get the forum post type
  * @uses dps_get_public_child_ids() To get the forum ids
  * @uses apply_filters() Calls 'dps_forum_query_subforum_ids' with the subforum
  *                        ids and forum id
  */
 function dps_forum_query_subforum_ids( $forum_id ) {
-	$subforum_ids = dps_get_all_child_ids( $forum_id, dps_get_forum_post_type() );
+	$subforum_ids = dps_get_all_child_ids( $forum_id, dps_get_showcase_post_type() );
 	//usort( $subforum_ids, '_dps_forum_query_usort_subforum_ids' );
 
 	return apply_filters( 'dps_get_forum_subforum_ids', $subforum_ids, $forum_id );
@@ -1824,7 +1790,7 @@ function dps_forum_query_last_reply_id( $forum_id, $topic_ids = 0 ) {
  * @uses current_user_can() To check if the current user can read private forums
  * @uses is_singular() To check if it's a singular page
  * @uses dps_is_user_keymaster() To check if user is a keymaster
- * @uses dps_get_forum_post_type() To get the forum post type
+ * @uses dps_get_showcase_post_type() To get the forum post type
  * @uses dps_get_topic_post_type() To get the topic post type
  * @uses dps_get_reply_post_type() TO get the reply post type
  * @uses dps_get_topic_forum_id() To get the topic forum id
@@ -1847,7 +1813,7 @@ function dps_forum_enforce_hidden() {
 	switch ( $wp_query->get( 'post_type' ) ) {
 
 		// Forum
-		case dps_get_forum_post_type() :
+		case dps_get_showcase_post_type() :
 			$forum_id = dps_get_forum_id( $wp_query->post->ID );
 			break;
 
@@ -1873,17 +1839,6 @@ function dps_forum_enforce_hidden() {
  * the user can't view it, then sets a 404
  *
  * @since Showcase (1.0)
- *
- * @uses current_user_can() To check if the current user can read private forums
- * @uses is_singular() To check if it's a singular page
- * @uses dps_is_user_keymaster() To check if user is a keymaster
- * @uses dps_get_forum_post_type() To get the forum post type
- * @uses dps_get_topic_post_type() To get the topic post type
- * @uses dps_get_reply_post_type() TO get the reply post type
- * @uses dps_get_topic_forum_id() To get the topic forum id
- * @uses dps_get_reply_forum_id() To get the reply forum id
- * @uses dps_is_forum_private() To check if the forum is private or not
- * @uses dps_set_404() To set a 404 status
  */
 function dps_forum_enforce_private() {
 
@@ -1900,7 +1855,7 @@ function dps_forum_enforce_private() {
 	switch ( $wp_query->get( 'post_type' ) ) {
 
 		// Forum
-		case dps_get_forum_post_type() :
+		case dps_get_showcase_post_type() :
 			$forum_id = dps_get_forum_id( $wp_query->post->ID );
 			break;
 

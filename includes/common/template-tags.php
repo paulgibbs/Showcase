@@ -119,7 +119,6 @@ function dps_is_site_public( $site_id = 0 ) {
  * @since Showcase (1.0)
  *
  * @param int $post_id Possible post_id to check
- * @uses dps_get_forum_post_type() To get the forum post type
  * @return bool True if it's a forum page, false if not
  */
 function dps_is_forum( $post_id = 0 ) {
@@ -128,44 +127,34 @@ function dps_is_forum( $post_id = 0 ) {
 	$retval = false;
 
 	// Supplied ID is a forum
-	if ( !empty( $post_id ) && ( dps_get_forum_post_type() == get_post_type( $post_id ) ))
+	if ( !empty( $post_id ) && ( dps_get_showcase_post_type() == get_post_type( $post_id ) ))
 		$retval = true;
 
 	return (bool) apply_filters( 'dps_is_forum', $retval, $post_id );
 }
 
 /**
- * Check if we are viewing a forum archive.
+ * Check if we are viewing a showcase archive.
  *
  * @since Showcase (1.0)
- *
- * @uses is_post_type_archive() To check if we are looking at the forum archive
- * @uses dps_get_forum_post_type() To get the forum post type ID
- *
  * @return bool
  */
-function dps_is_forum_archive() {
+function dps_is_showcase_archive() {
 
 	// Default to false
 	$retval = false;
 
-	// In forum archive
-	if ( is_post_type_archive( dps_get_forum_post_type() ) || dps_is_query_name( 'dps_forum_archive' ) )
+	// In showcase archive
+	if ( is_post_type_archive( dps_get_showcase_post_type() ) || dps_is_query_name( 'dps_showcase_archive' ) )
 		$retval = true;
 
-	return (bool) apply_filters( 'dps_is_forum_archive', $retval );
+	return (bool) apply_filters( 'dps_is_showcase_archive', $retval );
 }
 
 /**
  * Viewing a single forum
  *
  * @since Showcase (1.0)
- *
- * @uses is_single()
- * @uses dps_get_forum_post_type()
- * @uses get_post_type()
- * @uses apply_filters()
- *
  * @return bool
  */
 function dps_is_single_forum() {
@@ -178,7 +167,7 @@ function dps_is_single_forum() {
 		return false;
 
 	// Single and a match
-	if ( is_singular( dps_get_forum_post_type() ) || dps_is_query_name( 'dps_single_forum' ) )
+	if ( is_singular( dps_get_showcase_post_type() ) || dps_is_query_name( 'dps_single_forum' ) )
 		$retval = true;
 
 	return (bool) apply_filters( 'dps_is_single_forum', $retval );
@@ -203,7 +192,7 @@ function dps_is_forum_edit() {
 		$retval = true;
 
 	// Editing in admin
-	elseif ( is_admin() && ( 'post.php' == $pagenow ) && ( get_post_type() == dps_get_forum_post_type() ) && ( !empty( $_GET['action'] ) && ( 'edit' == $_GET['action'] ) ) )
+	elseif ( is_admin() && ( 'post.php' == $pagenow ) && ( get_post_type() == dps_get_showcase_post_type() ) && ( !empty( $_GET['action'] ) && ( 'edit' == $_GET['action'] ) ) )
 		$retval = true;
 
 	return (bool) apply_filters( 'dps_is_forum_edit', $retval );
@@ -408,11 +397,6 @@ function dps_is_topic_tag_edit() {
  * @since Showcase (1.0)
  *
  * @param mixed $the_post Optional. Post object or post ID.
- * @uses get_post_type()
- * @uses dps_get_forum_post_type()
- * @uses dps_get_topic_post_type()
- * @uses dps_get_reply_post_type()
- *
  * @return bool
  */
 function dps_is_custom_post_type( $the_post = false ) {
@@ -422,9 +406,7 @@ function dps_is_custom_post_type( $the_post = false ) {
 
 	// Viewing one of the showcase post types
 	if ( in_array( get_post_type( $the_post ), array(
-		dps_get_forum_post_type(),
-		dps_get_topic_post_type(),
-		dps_get_reply_post_type()
+		dps_get_showcase_post_type(),
 	) ) )
 		$retval = true;
 
@@ -437,8 +419,6 @@ function dps_is_custom_post_type( $the_post = false ) {
  * @since Showcase (1.0)
  *
  * @param int $post_id Possible post_id to check
- * @uses dps_get_reply_post_type() To get the reply post type
- * @uses get_post_type() To get the post type of the post id
  * @return bool True if it's a reply page, false if not
  */
 function dps_is_reply( $post_id = 0 ) {
@@ -870,7 +850,7 @@ function dps_body_class( $wp_classes, $custom_classes = false ) {
 	/** Archives **************************************************************/
 
 	if ( dps_is_forum_archive() ) {
-		$dps_classes[] = dps_get_forum_post_type() . '-archive';
+		$dps_classes[] = dps_get_showcase_post_type() . '-archive';
 
 	} elseif ( dps_is_topic_archive() ) {
 		$dps_classes[] = dps_get_topic_post_type() . '-archive';
@@ -889,7 +869,7 @@ function dps_body_class( $wp_classes, $custom_classes = false ) {
 	/** Components ************************************************************/
 
 	} elseif ( dps_is_single_forum() ) {
-		$dps_classes[] = dps_get_forum_post_type();
+		$dps_classes[] = dps_get_showcase_post_type();
 
 	} elseif ( dps_is_single_topic() ) {
 		$dps_classes[] = dps_get_topic_post_type();
@@ -1263,7 +1243,7 @@ function dps_dropdown( $args = '' ) {
 	 * @since Showcase (1.0)
 	 *
 	 * @param mixed $args The function supports these args:
-	 *  - post_type: Post type, defaults to dps_get_forum_post_type() (dps_forum)
+	 *  - post_type: Post type, defaults to dps_get_showcase_post_type() (dps_forum)
 	 *  - selected: Selected ID, to not have any value as selected, pass
 	 *               anything smaller than 0 (due to the nature of select
 	 *               box, the first value would of course be selected -
@@ -1288,16 +1268,6 @@ function dps_dropdown( $args = '' ) {
 	 *  - disable_categories: Disable forum categories and closed forums?
 	 *                         Defaults to true. Only for forums and when
 	 *                         the category option is displayed.
-	 * @uses BB_Walker_Dropdown() As the default walker to generate the
-	 *                              dropdown
-	 * @uses current_user_can() To check if the current user can read
-	 *                           private forums
-	 * @uses dps_get_forum_post_type() To get the forum post type
-	 * @uses dps_get_topic_post_type() To get the topic post type
-	 * @uses walk_page_dropdown_tree() To generate the dropdown using the
-	 *                                  walker
-	 * @uses apply_filters() Calls 'dps_get_dropdown' with the dropdown
-	 *                        and args
 	 * @return string The dropdown
 	 */
 	function dps_get_dropdown( $args = '' ) {
@@ -1306,7 +1276,7 @@ function dps_dropdown( $args = '' ) {
 
 		// Parse arguments against default values
 		$r = dps_parse_args( $args, array(
-			'post_type'          => dps_get_forum_post_type(),
+			'post_type'          => dps_get_showcase_post_type(),
 			'selected'           => 0,
 			'sort_column'        => 'menu_order',
 			'exclude'            => array(),
@@ -1350,7 +1320,7 @@ function dps_dropdown( $args = '' ) {
 		$post_stati[] = dps_get_public_status_id();
 
 		// Forums
-		if ( dps_get_forum_post_type() == $r['post_type'] ) {
+		if ( dps_get_showcase_post_type() == $r['post_type'] ) {
 
 			// Private forums
 			if ( current_user_can( 'read_private_forums' ) ) {
@@ -1416,7 +1386,7 @@ function dps_dropdown( $args = '' ) {
 					break;
 
 				// Forums
-				case dps_get_forum_post_type() :
+				case dps_get_showcase_post_type() :
 					$retval = __( 'No forums available', 'dps' );
 					break;
 
@@ -2024,24 +1994,9 @@ function dps_breadcrumb( $args = array() ) {
 	 * Return a breadcrumb ( forum -> topic -> reply )
 	 *
 	 * @since Showcase (1.0)
-	 *
 	 * @param string $sep Separator. Defaults to '&larr;'
 	 * @param bool $current_page Include the current item
 	 * @param bool $root Include the root page if one exists
-	 *
-	 * @uses get_post() To get the post
-	 * @uses dps_get_forum_permalink() To get the forum link
-	 * @uses dps_get_topic_permalink() To get the topic link
-	 * @uses dps_get_reply_permalink() To get the reply link
-	 * @uses get_permalink() To get the permalink
-	 * @uses dps_get_forum_post_type() To get the forum post type
-	 * @uses dps_get_topic_post_type() To get the topic post type
-	 * @uses dps_get_reply_post_type() To get the reply post type
-	 * @uses dps_get_forum_title() To get the forum title
-	 * @uses dps_get_topic_title() To get the topic title
-	 * @uses dps_get_reply_title() To get the reply title
-	 * @uses get_the_title() To get the title
-	 * @uses apply_filters() Calls 'dps_get_breadcrumb' with the crumbs
 	 * @return string Breadcrumbs
 	 */
 	function dps_get_breadcrumb( $args = array() ) {
@@ -2210,7 +2165,7 @@ function dps_breadcrumb( $args = array() ) {
 
 			// Use the root slug
 			} else {
-				$root_url = get_post_type_archive_link( dps_get_forum_post_type() );
+				$root_url = get_post_type_archive_link( dps_get_showcase_post_type() );
 			}
 
 			// Add the breadcrumb
@@ -2234,7 +2189,7 @@ function dps_breadcrumb( $args = array() ) {
 				switch ( $parent->post_type ) {
 
 					// Forum
-					case dps_get_forum_post_type() :
+					case dps_get_showcase_post_type() :
 						$crumbs[] = '<a href="' . dps_get_forum_permalink( $parent->ID ) . '" class="bbp-breadcrumb-forum">' . dps_get_forum_title( $parent->ID ) . '</a>';
 						break;
 

@@ -42,8 +42,6 @@ add_action( 'admin_menu',              'dps_admin_menu'                    );
 add_action( 'admin_init',              'dps_admin_init'                    );
 add_action( 'admin_head',              'dps_admin_head'                    );
 add_action( 'admin_notices',           'dps_admin_notices'                 );
-add_action( 'custom_menu_order',       'dps_admin_custom_menu_order'       );
-add_action( 'menu_order',              'dps_admin_menu_order'              );
 add_action( 'wpmu_new_blog',           'dps_new_site',               10, 6 );
 
 // Hook on to admin_init
@@ -75,12 +73,6 @@ add_action( 'dps_new_site', 'dps_create_initial_content', 8 );
 // Contextual Helpers
 add_action( 'load-settings_page_showcase', 'dps_admin_settings_help' );
 
-// Handle submission of Tools pages
-add_action( 'load-tools_page_bbp-repair', 'dps_admin_repair_handler' );
-add_action( 'load-tools_page_bbp-reset',  'dps_admin_reset_handler'  );
-
-// Add sample permalink filter
-add_filter( 'post_type_link', 'dps_filter_sample_permalink', 10, 4 );
 
 /**
  * When a new site is created in a multisite installation, run the activation

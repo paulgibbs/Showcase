@@ -148,7 +148,7 @@ function dps_clean_post_cache( $_post = '' ) {
 	// Child query types to clean
 	$post_types = array(
 		dps_get_topic_post_type(),
-		dps_get_forum_post_type(),
+		dps_get_showcase_post_type(),
 		dps_get_reply_post_type()
 	);
 
