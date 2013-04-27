@@ -416,7 +416,7 @@ function dps_maybe_get_root_slug() {
  * @since Showcase (1.0)
  * @return string
  */
-function dps_get_forum_slug( $default = 'forum' ) {;
+function dps_get_showcase_slug( $default = 'forum' ) {;
 	return apply_filters( 'dps_get_root_slug', dps_maybe_get_root_slug() . get_option( '_dps_forum_slug', $default ) );
 }
 

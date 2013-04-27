@@ -96,14 +96,9 @@ class BB_Admin {
 	 * @access private
 	 */
 	private function includes() {
-		require( $this->admin_dir . 'tools.php'     );
-		require( $this->admin_dir . 'converter.php' );
 		require( $this->admin_dir . 'settings.php'  );
 		require( $this->admin_dir . 'functions.php' );
-		require( $this->admin_dir . 'metaboxes.php' );
 		require( $this->admin_dir . 'forums.php'    );
-		require( $this->admin_dir . 'topics.php'    );
-		require( $this->admin_dir . 'replies.php'   );
 		require( $this->admin_dir . 'users.php'     );
 	}
 
@@ -1703,6 +1698,4 @@ endif; // class_exists check
  */
 function dps_admin() {
 	showcase()->admin = new BB_Admin();
-
-	showcase()->admin->converter = new BB_Converter();
 }

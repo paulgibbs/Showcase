@@ -18,8 +18,8 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * @since Showcase (1.0)
  * @uses dps_get_forum_post_type() To get the forum post type
  */
-function dps_forum_post_type() {
-	echo dps_get_forum_post_type();
+function dps_showcase_post_type() {
+	echo dps_get_showcase_post_type();
 }
 	/**
 	 * Return the unique id of the custom post type for forums
@@ -30,7 +30,7 @@ function dps_forum_post_type() {
 	 *                        post type id
 	 * @return string The unique forum post type id
 	 */
-	function dps_get_forum_post_type() {
+	function dps_get_showcase_post_type() {
 		return apply_filters( 'dps_get_forum_post_type', showcase()->forum_post_type );
 	}
 
