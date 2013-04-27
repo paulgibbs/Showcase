@@ -14,9 +14,9 @@ if ( !class_exists( 'BB_Component' ) ) :
 /**
  * Showcase Component Class
  *
- * The barebones component class is responsible for simplifying the creation
+ * The showcase component class is responsible for simplifying the creation
  * of components that share similar behaviors and routines. It is used
- * internally by barebones to create forums, topics and replies, but can be
+ * internally by showcase to create forums, topics and replies, but can be
  * extended to create other really neat things.
  *
  * @package Showcase
@@ -174,7 +174,7 @@ endif; // BB_Component
 
 if ( class_exists( 'Walker' ) ) :
 /**
- * Create HTML dropdown list of barebones forums/topics.
+ * Create HTML dropdown list of showcase forums/topics.
  *
  * @package Showcase
  * @subpackage Classes

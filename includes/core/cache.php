@@ -54,9 +54,9 @@ class BB_Skip_Children {
 	}
 
 	/**
-	 * Only clean post caches for main barebones posts.
+	 * Only clean post caches for main showcase posts.
 	 *
-	 * Check that the post being updated is a barebones post type, saves the
+	 * Check that the post being updated is a showcase post type, saves the
 	 * post ID to be used later, and adds an action to 'clean_post_cache' that
 	 * prevents child post caches from being cleared.
 	 *
@@ -67,7 +67,7 @@ class BB_Skip_Children {
 	 */
 	public function pre_post_update( $post_id = 0 ) {
 
-		// Bail if post ID is not a barebones post type
+		// Bail if post ID is not a showcase post type
 		if ( empty( $post_id ) || ! dps_is_custom_post_type( $post_id ) )
 			return;
 
@@ -90,7 +90,7 @@ class BB_Skip_Children {
 	 */
 	public function skip_related_posts( $post_id = 0 ) {
 
-		// Bail if this post is not the current barebones post
+		// Bail if this post is not the current showcase post
 		if ( empty( $post_id ) || ( $this->updating_post !== $post_id ) )
 			return;
 
@@ -154,11 +154,11 @@ function dps_clean_post_cache( $_post = '' ) {
 
 	// Loop through query types and clean caches
 	foreach ( $post_types as $post_type ) {
-		wp_cache_delete( 'dps_get_forum_'     . $_post->ID . '_reply_id',                              'barebones_posts' );
-		wp_cache_delete( 'dps_parent_'        . $_post->ID . '_type_' . $post_type . '_child_last_id', 'barebones_posts' );
-		wp_cache_delete( 'dps_parent_'        . $_post->ID . '_type_' . $post_type . '_child_count',   'barebones_posts' );
-		wp_cache_delete( 'dps_parent_public_' . $_post->ID . '_type_' . $post_type . '_child_ids',     'barebones_posts' );
-		wp_cache_delete( 'dps_parent_all_'    . $_post->ID . '_type_' . $post_type . '_child_ids',     'barebones_posts' );
+		wp_cache_delete( 'dps_get_forum_'     . $_post->ID . '_reply_id',                              'showcase_posts' );
+		wp_cache_delete( 'dps_parent_'        . $_post->ID . '_type_' . $post_type . '_child_last_id', 'showcase_posts' );
+		wp_cache_delete( 'dps_parent_'        . $_post->ID . '_type_' . $post_type . '_child_count',   'showcase_posts' );
+		wp_cache_delete( 'dps_parent_public_' . $_post->ID . '_type_' . $post_type . '_child_ids',     'showcase_posts' );
+		wp_cache_delete( 'dps_parent_all_'    . $_post->ID . '_type_' . $post_type . '_child_ids',     'showcase_posts' );
 	}
 
 	// Invalidate parent caches

@@ -6,13 +6,13 @@
  * @package Showcase
  * @subpackage Admin
  *
- * This file contains the actions that are used through-out barebones Admin. They
+ * This file contains the actions that are used through-out showcase Admin. They
  * are consolidated here to make searching for them easier, and to help developers
  * understand at a glance the order in which things occur.
  *
  * There are a few common places that additional actions can currently be found
  *
- *  - barebones: In {@link Showcase::setup_actions()} in barebones.php
+ *  - showcase: In {@link Showcase::setup_actions()} in showcase.php
  *  - Admin: More in {@link BB_Admin::setup_actions()} in admin.php
  *
  * @see bbp-core-actions.php
@@ -23,20 +23,20 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
- * Attach barebones to WordPress
+ * Attach showcase to WordPress
  *
  * Showcase uses its own internal actions to help aid in third-party plugin
  * development, and to limit the amount of potential future code changes when
  * updates to WordPress core occur.
  *
  * These actions exist to create the concept of 'plugin dependencies'. They
- * provide a safe way for plugins to execute code *only* when barebones is
+ * provide a safe way for plugins to execute code *only* when showcase is
  * installed and activated, without needing to do complicated guesswork.
  *
  * For more information on how this works, see the 'Plugin Dependency' section
  * near the bottom of this file.
  *
- *           v--WordPress Actions       v--barebones Sub-actions
+ *           v--WordPress Actions       v--showcase Sub-actions
  */
 add_action( 'admin_menu',              'dps_admin_menu'                    );
 add_action( 'admin_init',              'dps_admin_init'                    );
@@ -73,7 +73,7 @@ add_action( 'dps_deactivation', 'dps_delete_rewrite_rules' );
 add_action( 'dps_new_site', 'dps_create_initial_content', 8 );
 
 // Contextual Helpers
-add_action( 'load-settings_page_barebones', 'dps_admin_settings_help' );
+add_action( 'load-settings_page_showcase', 'dps_admin_settings_help' );
 
 // Handle submission of Tools pages
 add_action( 'load-tools_page_bbp-repair', 'dps_admin_repair_handler' );
@@ -98,13 +98,13 @@ add_filter( 'post_type_link', 'dps_filter_sample_permalink', 10, 4 );
 function dps_new_site( $blog_id, $user_id, $domain, $path, $site_id, $meta ) {
 
 	// Bail if plugin is not network activated
-	if ( ! is_plugin_active_for_network( barebones()->basename ) )
+	if ( ! is_plugin_active_for_network( showcase()->basename ) )
 		return;
 
 	// Switch to the new blog
 	switch_to_blog( $blog_id );
 
-	// Do the barebones activation routine
+	// Do the showcase activation routine
 	do_action( 'dps_new_site', $blog_id, $user_id, $domain, $path, $site_id, $meta );
 
 	// restore original blog
@@ -154,7 +154,7 @@ function dps_admin_notices() {
 }
 
 /**
- * Dedicated action to register barebones importers
+ * Dedicated action to register showcase importers
  *
  * @since Showcase (1.0)
  * @uses do_action() Calls 'dps_admin_notices'

@@ -5,7 +5,7 @@
  *
  * This file contains functions necessary to mirror the WordPress core template
  * loading process. Many of those functions are not filterable, and even then
- * would not be robust enough to predict where barebones templates might exist.
+ * would not be robust enough to predict where showcase templates might exist.
  *
  * @package Showcase
  * @subpackage TemplateFunctions
@@ -15,7 +15,7 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
- * Adds barebones theme support to any active WordPress theme
+ * Adds showcase theme support to any active WordPress theme
  *
  * @since Showcase (1.0)
  *
@@ -92,7 +92,7 @@ function dps_locate_template( $template_names, $load = false, $require_once = tr
 	}
 
 	/**
-	 * This action exists only to follow the standard barebones coding convention,
+	 * This action exists only to follow the standard showcase coding convention,
 	 * and should not be used to short-circuit any part of the template locator.
 	 *
 	 * If you want to override a specific template part, please either filter
@@ -225,7 +225,7 @@ function dps_get_query_template( $type, $templates = array() ) {
 	if ( empty( $templates ) )
 		$templates = array( "{$type}.php" );
 
-	// Filter possible templates, try to match one, and set any barebones theme
+	// Filter possible templates, try to match one, and set any showcase theme
 	// compat properties so they can be cross-checked later.
 	$templates = apply_filters( "dps_get_{$type}_template", $templates );
 	$templates = dps_set_theme_compat_templates( $templates );
@@ -244,7 +244,7 @@ function dps_get_query_template( $type, $templates = array() ) {
  */
 function dps_get_template_locations( $templates = array() ) {
 	$locations = array(
-		'barebones',
+		'showcase',
 		'forums',
 		''
 	);
@@ -274,7 +274,7 @@ function dps_add_template_stack_locations( $stacks = array() ) {
 }
 
 /**
- * Add checks for barebones conditions to parse_query action
+ * Add checks for showcase conditions to parse_query action
  *
  * If it's a user page, WP_Query::dps_is_single_user is set to true.
  * If it's a user edit page, WP_Query::dps_is_single_user_edit is set to true
@@ -433,7 +433,7 @@ function dps_parse_query( $posts_query ) {
 		$posts_query->set( 'author_name', $user->user_nicename );
 
 		// Set the displayed user global to this user
-		barebones()->displayed_user = $user;
+		showcase()->displayed_user = $user;
 
 	// View Page
 	} elseif ( !empty( $dps_view ) ) {

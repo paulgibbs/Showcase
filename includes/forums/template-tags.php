@@ -31,7 +31,7 @@ function dps_forum_post_type() {
 	 * @return string The unique forum post type id
 	 */
 	function dps_get_forum_post_type() {
-		return apply_filters( 'dps_get_forum_post_type', barebones()->forum_post_type );
+		return apply_filters( 'dps_get_forum_post_type', showcase()->forum_post_type );
 	}
 
 /** Forum Loop ****************************************************************/
@@ -68,7 +68,7 @@ function dps_has_forums( $args = '' ) {
 	), 'has_forums' );
 
 	// Run the query
-	$bbp              = barebones();
+	$bbp              = showcase();
 	$bbp->forum_query = new WP_Query( $dps_f );
 
 	return apply_filters( 'dps_has_forums', $bbp->forum_query->have_posts(), $bbp->forum_query );
@@ -79,14 +79,14 @@ function dps_has_forums( $args = '' ) {
  *
  * @since Showcase (1.0)
  *
- * @uses barebones:forum_query::have_posts() To check if there are more forums
+ * @uses showcase:forum_query::have_posts() To check if there are more forums
  *                                          available
  * @return object Forum information
  */
 function dps_forums() {
 
 	// Put into variable to check against next
-	$have_posts = barebones()->forum_query->have_posts();
+	$have_posts = showcase()->forum_query->have_posts();
 
 	// Reset the post data when finished
 	if ( empty( $have_posts ) )
@@ -100,11 +100,11 @@ function dps_forums() {
  *
  * @since Showcase (1.0)
  *
- * @uses barebones:forum_query::the_post() To get the current forum
+ * @uses showcase:forum_query::the_post() To get the current forum
  * @return object Forum information
  */
 function dps_the_forum() {
-	return barebones()->forum_query->the_post();
+	return showcase()->forum_query->the_post();
 }
 
 /** Forum *********************************************************************/
@@ -141,7 +141,7 @@ function dps_forum_id( $forum_id = 0 ) {
 	function dps_get_forum_id( $forum_id = 0 ) {
 		global $wp_query;
 
-		$bbp = barebones();
+		$bbp = showcase();
 
 		// Easy empty checking
 		if ( !empty( $forum_id ) && is_numeric( $forum_id ) ) {
@@ -527,7 +527,7 @@ function dps_forum_freshness_link( $forum_id = 0) {
 		if ( !empty( $time_since ) && !empty( $link_url ) )
 			$anchor = '<a href="' . $link_url . '" title="' . esc_attr( $title ) . '">' . $time_since . '</a>';
 		else
-			$anchor = __( 'No Topics', 'barebones' );
+			$anchor = __( 'No Topics', 'dps' );
 
 		return apply_filters( 'dps_get_forum_freshness_link', $anchor, $forum_id, $time_since, $link_url, $title, $active_id );
 	}
@@ -1117,7 +1117,7 @@ function dps_forum_topics_link( $forum_id = 0 ) {
 	function dps_get_forum_topics_link( $forum_id = 0 ) {
 		$forum    = dps_get_forum( $forum_id );
 		$forum_id = $forum->ID;
-		$topics   = sprintf( _n( '%s topic', '%s topics', dps_get_forum_topic_count( $forum_id, true, false )' 'barebones' ), dps_get_forum_topic_count( $forum_id ) );
+		$topics   = sprintf( _n( '%s topic', '%s topics', dps_get_forum_topic_count( $forum_id, true, false )' 'showcase' ), dps_get_forum_topic_count( $forum_id ) );
 		$retval   = '';
 
 		// First link never has view=all
@@ -1133,7 +1133,7 @@ function dps_forum_topics_link( $forum_id = 0 ) {
 		if ( !empty( $deleted ) && current_user_can( 'edit_others_topics' ) ) {
 
 			// Extra text
-			$extra = sprintf( __( ' (+ %d hidden)', 'barebones' ), $deleted );
+			$extra = sprintf( __( ' (+ %d hidden)', 'dps' ), $deleted );
 
 			// No link
 			if ( dps_get_view_all() ) {
@@ -1757,7 +1757,7 @@ function dps_forum_class( $forum_id = 0, $classes = array() ) {
 	 * @return string Row class of the forum
 	 */
 	function dps_get_forum_class( $forum_id = 0, $classes = array() ) {
-		$bbp       = barebones();
+		$bbp       = showcase();
 		$forum_id  = dps_get_forum_id( $forum_id );
 		$count     = isset( $bbp->forum_query->current_post ) ? $bbp->forum_query->current_post : 1;
 		$classes   = (array) $classes;
@@ -1844,7 +1844,7 @@ function dps_single_forum_description( $args = '' ) {
 
 		// Has replies
 		if ( !empty( $reply_count ) ) {
-			$reply_text = sprintf( _n( '%s reply', '%s replies', $rc_int' 'barebones' ), $reply_count );
+			$reply_text = sprintf( _n( '%s reply', '%s replies', $rc_int' 'showcase' ), $reply_count );
 		}
 
 		// Forum has active data
@@ -1855,7 +1855,7 @@ function dps_single_forum_description( $args = '' ) {
 
 		// Forum has no last active data
 		} else {
-			$topic_text      = sprintf( _n( '%s topic', '%s topics', $tc_int' 'barebones' ), $topic_count );
+			$topic_text      = sprintf( _n( '%s topic', '%s topics', $tc_int' 'showcase' ), $topic_count );
 		}
 
 		// Forum has active data
@@ -1864,17 +1864,17 @@ function dps_single_forum_description( $args = '' ) {
 			if ( !empty( $reply_count ) ) {
 
 				if ( dps_is_forum_category( $forum_id ) ) {
-					$retstr = sprintf( __( 'This category contains %1$s and %2$s, and was last updated by %3$s %4$s.', 'barebones' ), $topic_text, $reply_text, $last_updated_by, $time_since );
+					$retstr = sprintf( __( 'This category contains %1$s and %2$s, and was last updated by %3$s %4$s.', 'dps' ), $topic_text, $reply_text, $last_updated_by, $time_since );
 				} else {
-					$retstr = sprintf( __( 'This forum contains %1$s and %2$s, and was last updated by %3$s %4$s.',    'barebones' ), $topic_text, $reply_text, $last_updated_by, $time_since );
+					$retstr = sprintf( __( 'This forum contains %1$s and %2$s, and was last updated by %3$s %4$s.',    'showcase' ), $topic_text, $reply_text, $last_updated_by, $time_since );
 				}
 
 			} else {
 
 				if ( dps_is_forum_category( $forum_id ) ) {
-					$retstr = sprintf( __( 'This category contains %1$s, and was last updated by %2$s %3$s.', 'barebones' ), $topic_text, $last_updated_by, $time_since );
+					$retstr = sprintf( __( 'This category contains %1$s, and was last updated by %2$s %3$s.', 'dps' ), $topic_text, $last_updated_by, $time_since );
 				} else {
-					$retstr = sprintf( __( 'This forum contains %1$s, and was last updated by %2$s %3$s.',    'barebones' ), $topic_text, $last_updated_by, $time_since );
+					$retstr = sprintf( __( 'This forum contains %1$s, and was last updated by %2$s %3$s.',    'showcase' ), $topic_text, $last_updated_by, $time_since );
 				}
 			}
 
@@ -1884,9 +1884,9 @@ function dps_single_forum_description( $args = '' ) {
 			if ( !empty( $reply_count ) ) {
 
 				if ( dps_is_forum_category( $forum_id ) ) {
-					$retstr = sprintf( __( 'This category contains %1$s and %2$s.', 'barebones' ), $topic_text, $reply_text );
+					$retstr = sprintf( __( 'This category contains %1$s and %2$s.', 'dps' ), $topic_text, $reply_text );
 				} else {
-					$retstr = sprintf( __( 'This forum contains %1$s and %2$s.',    'barebones' ), $topic_text, $reply_text );
+					$retstr = sprintf( __( 'This forum contains %1$s and %2$s.',    'showcase' ), $topic_text, $reply_text );
 				}
 
 			} else {
@@ -1894,13 +1894,13 @@ function dps_single_forum_description( $args = '' ) {
 				if ( !empty( $topic_count ) ) {
 
 					if ( dps_is_forum_category( $forum_id ) ) {
-						$retstr = sprintf( __( 'This category contains %1$s.', 'barebones' ), $topic_text );
+						$retstr = sprintf( __( 'This category contains %1$s.', 'dps' ), $topic_text );
 					} else {
-						$retstr = sprintf( __( 'This forum contains %1$s.',    'barebones' ), $topic_text );
+						$retstr = sprintf( __( 'This forum contains %1$s.',    'showcase' ), $topic_text );
 					}
 
 				} else {
-					$retstr = __( 'This forum is empty.', 'barebones' );
+					$retstr = __( 'This forum is empty.', 'dps' );
 				}
 			}
 		}
@@ -2102,7 +2102,7 @@ function dps_form_forum_visibility() {
 
 		// No data
 		} else {
-			$forum_visibility = barebones()->public_status_id;
+			$forum_visibility = showcase()->public_status_id;
 		}
 
 		return apply_filters( 'dps_get_form_forum_visibility', esc_attr( $forum_visibility ) );
@@ -2135,8 +2135,8 @@ function dps_form_forum_type_dropdown( $forum_id = 0 ) {
 	function dps_get_form_forum_type_dropdown( $forum_id = 0 ) {
 		$forum_id   = dps_get_forum_id( $forum_id );
 		$forum_attr = apply_filters( 'dps_forum_types', array(
-			'forum'    => __( 'Forum',    'barebones' ),
-			'category' => __( 'Category', 'barebones' )
+			'forum'    => __( 'Forum',    'showcase' ),
+			'category' => __( 'Category', 'dps' )
 		) );
 		$type_output = '<select name="dps_forum_type" id="dps_forum_type_select">' . "\n";
 
@@ -2173,8 +2173,8 @@ function dps_form_forum_status_dropdown( $forum_id = 0 ) {
 	function dps_get_form_forum_status_dropdown( $forum_id = 0 ) {
 		$forum_id   = dps_get_forum_id( $forum_id );
 		$forum_attr = apply_filters( 'dps_forum_statuses', array(
-			'open'   => _x( 'Open',   'Forum Status', 'barebones' ),
-			'closed' => _x( 'Closed', 'Forum Status', 'barebones' )
+			'open'   => _x( 'Open',   'Forum Status', 'dps' ),
+			'closed' => _x( 'Closed', 'Forum Status', 'dps' )
 		) );
 		$status_output = '<select name="dps_forum_status" id="dps_forum_status_select">' . "\n";
 
@@ -2211,9 +2211,9 @@ function dps_form_forum_visibility_dropdown( $forum_id = 0 ) {
 	function dps_get_form_forum_visibility_dropdown( $forum_id = 0 ) {
 		$forum_id   = dps_get_forum_id( $forum_id );
 		$forum_attr = apply_filters( 'dps_forum_visibilities', array(
-			dps_get_public_status_id()  => __( 'Public',  'barebones' ),
-			dps_get_private_status_id() => __( 'Private', 'barebones' ),
-			dps_get_hidden_status_id()  => __( 'Hidden',  'barebones' )
+			dps_get_public_status_id()  => __( 'Public',  'showcase' ),
+			dps_get_private_status_id() => __( 'Private', 'dps' ),
+			dps_get_hidden_status_id()  => __( 'Hidden',  'showcase' )
 		) );
 		$visibility_output = '<select name="dps_forum_visibility" id="dps_forum_visibility_select">' . "\n";
 
@@ -2283,7 +2283,7 @@ function dps_forum_topics_feed_link( $forum_id = 0 ) {
 				) ) );
 			}
 
-			$link = '<a href="' . $url . '" class="bbp-forum-rss-link topics"><span>' . __( 'Topics', 'barebones' ) . '</span></a>';
+			$link = '<a href="' . $url . '" class="bbp-forum-rss-link topics"><span>' . __( 'Topics', 'dps' ) . '</span></a>';
 		}
 
 		return apply_filters( 'dps_get_forum_topics_feed_link', $link, $url, $forum_id );
@@ -2347,7 +2347,7 @@ function dps_forum_replies_feed_link( $forum_id = 0 ) {
 				) ) );
 			}
 
-			$link = '<a href="' . $url . '" class="bbp-forum-rss-link replies"><span>' . __( 'Replies', 'barebones' ) . '</span></a>';
+			$link = '<a href="' . $url . '" class="bbp-forum-rss-link replies"><span>' . __( 'Replies', 'dps' ) . '</span></a>';
 		}
 
 		return apply_filters( 'dps_get_forum_replies_feed_link', $link, $url, $forum_id );

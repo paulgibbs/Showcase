@@ -7,9 +7,9 @@
  * called 'plugin dependency' which enables a plugin to have plugins of their
  * own in a safe and reliable way.
  *
- * We do this in barebones by mirroring existing WordPress hookss in many places
- * allowing dependant plugins to hook into the barebones specific ones, thus
- * guaranteeing proper code execution only when barebones is active.
+ * We do this in showcase by mirroring existing WordPress hookss in many places
+ * allowing dependant plugins to hook into the showcase specific ones, thus
+ * guaranteeing proper code execution only when showcase is active.
  *
  * The following functions are wrappers for hookss, allowing them to be
  * manually called and/or piggy-backed on top of other hooks if needed.
@@ -20,7 +20,7 @@
 /** Activation Actions ********************************************************/
 
 /**
- * Runs on barebones activation
+ * Runs on showcase activation
  *
  * @since Showcase (1.0)
  * @uses register_uninstall_hook() To register our own uninstall hook
@@ -31,7 +31,7 @@ function dps_activation() {
 }
 
 /**
- * Runs on barebones deactivation
+ * Runs on showcase deactivation
  *
  * @since Showcase (1.0)
  * @uses do_action() Calls 'dps_deactivation' hook
@@ -41,7 +41,7 @@ function dps_deactivation() {
 }
 
 /**
- * Runs when uninstalling barebones
+ * Runs when uninstalling showcase
  *
  * @since Showcase (1.0)
  * @uses do_action() Calls 'dps_uninstall' hook
@@ -144,7 +144,7 @@ function dps_setup_current_user() {
 	// If the current user is being setup before the "init" action has fired,
 	// strange (and difficult to debug) role/capability issues will occur.
 	if ( ! did_action( 'after_setup_theme' ) ) {
-		_doing_it_wrong( __FUNCTION__, __( 'The current user is being initialized without using $wp->init().', 'barebones' ), '2.3' );
+		_doing_it_wrong( __FUNCTION__, __( 'The current user is being initialized without using $wp->init().', 'dps' ), '2.3' );
 	}
 
 	do_action( 'dps_setup_current_user' );
@@ -183,7 +183,7 @@ function dps_register_post_statuses() {
 }
 
 /**
- * Register the built in barebones taxonomies
+ * Register the built in showcase taxonomies
  *
  * @since Showcase (1.0)
  * @uses do_action() Calls 'dps_register_taxonomies'
@@ -193,7 +193,7 @@ function dps_register_taxonomies() {
 }
 
 /**
- * Register the default barebones views
+ * Register the default showcase views
  *
  * @since Showcase (1.0)
  * @uses do_action() Calls 'dps_register_views'
@@ -203,7 +203,7 @@ function dps_register_views() {
 }
 
 /**
- * Register the default barebones shortcodes
+ * Register the default showcase shortcodes
  *
  * @since Showcase (1.0)
  * @uses do_action() Calls 'dps_register_shortcodes'
@@ -213,7 +213,7 @@ function dps_register_shortcodes() {
 }
 
 /**
- * Enqueue barebones specific CSS and JS
+ * Enqueue showcase specific CSS and JS
  *
  * @since Showcase (1.0)
  * @uses do_action() Calls 'dps_enqueue_scripts'
@@ -223,7 +223,7 @@ function dps_enqueue_scripts() {
 }
 
 /**
- * Add the barebones-specific rewrite tags
+ * Add the showcase-specific rewrite tags
  *
  * @since Showcase (1.0)
  * @uses do_action() Calls 'dps_add_rewrite_tags'
@@ -233,7 +233,7 @@ function dps_add_rewrite_tags() {
 }
 
 /**
- * Add the barebones-specific login forum action
+ * Add the showcase-specific login forum action
  *
  * @since Showcase (1.0)
  * @uses do_action() Calls 'dps_login_form_login'
@@ -283,7 +283,7 @@ function dps_ready() {
 /** Theme Permissions *********************************************************/
 
 /**
- * The main action used for redirecting barebones theme actions that are not
+ * The main action used for redirecting showcase theme actions that are not
  * permitted by the current_user
  *
  * @since Showcase (1.0)
@@ -389,7 +389,7 @@ function dps_request( $query_vars = array() ) {
 }
 
 /**
- * The main filter used for theme compatibility and displaying custom barebones
+ * The main filter used for theme compatibility and displaying custom showcase
  * theme files.
  *
  * @since Showcase (1.0)
@@ -402,7 +402,7 @@ function dps_template_include( $template = '' ) {
 }
 
 /**
- * Generate barebones-specific rewrite rules
+ * Generate showcase-specific rewrite rules
  *
  * @since Showcase (1.0)
  * @param WP_Rewrite $wp_rewrite
@@ -413,7 +413,7 @@ function dps_generate_rewrite_rules( $wp_rewrite ) {
 }
 
 /**
- * Filter the allowed themes list for barebones specific themes
+ * Filter the allowed themes list for showcase specific themes
  *
  * @since Showcase (1.0)
  * @uses apply_filters() Calls 'dps_allowed_themes' with the allowed themes list

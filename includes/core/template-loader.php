@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 /**
  * Possibly intercept the template being loaded
  *
- * Listens to the 'template_include' filter and waits for any barebones specific
+ * Listens to the 'template_include' filter and waits for any showcase specific
  * template condition to be met. If one is met and the template file exists,
  * it will be used; otherwise 
  *
@@ -108,14 +108,14 @@ function dps_template_include_theme_supports( $template = '' ) {
 	elseif ( dps_is_topic_tag()        && ( $new_template = dps_get_topic_tag_template()        ) ) :
 	endif;
 
-	// barebones template file exists
+	// showcase template file exists
 	if ( !empty( $new_template ) ) {
 
-		// Override the WordPress template with a barebones one
+		// Override the WordPress template with a showcase one
 		$template = $new_template;
 
 		// @see: dps_template_include_theme_compat()
-		barebones()->theme_compat->barebones_template = true;
+		showcase()->theme_compat->showcase_template = true;
 	}
 
 	return apply_filters( 'dps_template_include_theme_supports', $template );
@@ -124,7 +124,7 @@ function dps_template_include_theme_supports( $template = '' ) {
 /** Custom Functions **********************************************************/
 
 /**
- * Attempt to load a custom barebones functions file, similar to each themes
+ * Attempt to load a custom showcase functions file, similar to each themes
  * functions.php file.
  *
  * @since Showcase (1.0)
@@ -135,12 +135,12 @@ function dps_template_include_theme_supports( $template = '' ) {
 function dps_load_theme_functions() {
 	global $pagenow;
 
-	// If barebones is being deactivated, do not load any more files
+	// If showcase is being deactivated, do not load any more files
 	if ( dps_is_deactivation() )
 		return;
 
 	if ( ! defined( 'WP_INSTALLING' ) || ( !empty( $pagenow ) && ( 'wp-activate.php' !== $pagenow ) ) ) {
-		dps_locate_template( 'barebones-functions.php', true );
+		dps_locate_template( 'showcase-functions.php', true );
 	}
 }
 
@@ -486,7 +486,7 @@ function dps_get_topic_tag_edit_template() {
 }
 
 /**
- * Get the templates to use as the endpoint for barebones template parts
+ * Get the templates to use as the endpoint for showcase template parts
  *
  * @since Showcase (1.0)
  *
@@ -497,8 +497,8 @@ function dps_get_topic_tag_edit_template() {
  */
 function dps_get_theme_compat_templates() {
 	$templates = array(
-		'plugin-barebones.php',
-		'barebones.php',
+		'plugin-showcase.php',
+		'showcase.php',
 		'forums.php',
 		'forum.php',
 		'generic.php',
@@ -506,5 +506,5 @@ function dps_get_theme_compat_templates() {
 		'single.php',
 		'index.php'
 	);
-	return dps_get_query_template( 'barebones', $templates );
+	return dps_get_query_template( 'showcase', $templates );
 }

@@ -321,7 +321,7 @@ function dps_get_wp_roles() {
 /** Forum Roles ***************************************************************/
 
 /**
- * Add the barebones roles to the $wp_roles global.
+ * Add the showcase roles to the $wp_roles global.
  *
  * We do this to avoid adding these values to the database.
  *
@@ -375,10 +375,10 @@ function dps_filter_user_roles_option() {
  *
  * @since Showcase (1.0)
  *
- * @internal Used by barebones to reinitialize dynamic roles on blog switch
+ * @internal Used by showcase to reinitialize dynamic roles on blog switch
  *
  * @param array $roles
- * @return array Combined array of database roles and dynamic barebones roles
+ * @return array Combined array of database roles and dynamic showcase roles
  */
 function _dps_reinit_dynamic_roles( $roles = array() ) {
 	foreach( dps_get_dynamic_roles() as $role_id => $details ) {
@@ -409,31 +409,31 @@ function dps_get_dynamic_roles() {
 
 		// Keymaster
 		dps_get_keymaster_role() => array(
-			'name'         => __( 'Keymaster', 'barebones' ),
+			'name'         => __( 'Keymaster', 'dps' ),
 			'capabilities' => dps_get_caps_for_role( dps_get_keymaster_role() )
 		),
 
 		// Moderator
 		dps_get_moderator_role() => array(
-			'name'         => __( 'Moderator', 'barebones' ),
+			'name'         => __( 'Moderator', 'dps' ),
 			'capabilities' => dps_get_caps_for_role( dps_get_moderator_role() )
 		),
 
 		// Participant
 		dps_get_participant_role() => array(
-			'name'         => __( 'Participant', 'barebones' ),
+			'name'         => __( 'Participant', 'dps' ),
 			'capabilities' => dps_get_caps_for_role( dps_get_participant_role() )
 		),
 
 		// Spectator
 		dps_get_spectator_role() => array(
-			'name'         => __( 'Spectator', 'barebones' ),
+			'name'         => __( 'Spectator', 'dps' ),
 			'capabilities' => dps_get_caps_for_role( dps_get_spectator_role() )
 		),
 
 		// Blocked
 		dps_get_blocked_role() => array(
-			'name'         => __( 'Blocked', 'barebones' ),
+			'name'         => __( 'Blocked', 'dps' ),
 			'capabilities' => dps_get_caps_for_role( dps_get_blocked_role() )
 		)
 	) );
@@ -455,7 +455,7 @@ function dps_get_dynamic_role_name( $role_id = '' ) {
 }
 
 /**
- * Removes the barebones roles from the editable roles array
+ * Removes the showcase roles from the editable roles array
  *
  * This used to use array_diff_assoc() but it randomly broke before 2.2 release.
  * Need to research what happened, and if there's a way to speed this up.
@@ -467,7 +467,7 @@ function dps_get_dynamic_role_name( $role_id = '' ) {
  */
 function dps_filter_blog_editable_roles( $all_roles = array() ) {
 
-	// Loop through barebones roles
+	// Loop through showcase roles
 	foreach ( array_keys( dps_get_dynamic_roles() ) as $dps_role ) {
 
 		// Loop through WordPress roles
@@ -484,7 +484,7 @@ function dps_filter_blog_editable_roles( $all_roles = array() ) {
 }
 
 /**
- * The keymaster role for barebones users
+ * The keymaster role for showcase users
  *
  * @since Showcase (1.0)
  *
@@ -496,7 +496,7 @@ function dps_get_keymaster_role() {
 }
 
 /**
- * The moderator role for barebones users
+ * The moderator role for showcase users
  *
  * @since Showcase (1.0)
  *
@@ -546,21 +546,21 @@ function dps_get_blocked_role() {
 /** Deprecated ****************************************************************/
 
 /**
- * Adds barebones-specific user roles.
+ * Adds showcase-specific user roles.
  *
  * @since Showcase (1.0)
  * @deprecated since version 2.2
  */
 function dps_add_roles() {
-	_doing_it_wrong( 'dps_add_roles', __( 'Editable forum roles no longer exist.', 'barebones' ), '2.2' );
+	_doing_it_wrong( 'dps_add_roles', __( 'Editable forum roles no longer exist.', 'dps' ), '2.2' );
 }
 
 /**
- * Removes barebones-specific user roles.
+ * Removes showcase-specific user roles.
  *
  * @since Showcase (1.0)
  * @deprecated since version 2.2
  */
 function dps_remove_roles() {
-	_doing_it_wrong( 'dps_remove_roles', __( 'Editable forum roles no longer exist.', 'barebones' ), '2.2' );
+	_doing_it_wrong( 'dps_remove_roles', __( 'Editable forum roles no longer exist.', 'dps' ), '2.2' );
 }

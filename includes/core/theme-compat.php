@@ -14,9 +14,9 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
  * What follows is an attempt at intercepting the natural page load process
- * to replace the_content() with the appropriate barebones content.
+ * to replace the_content() with the appropriate showcase content.
  *
- * To do this, barebones does several direct manipulations of global variables
+ * To do this, showcase does several direct manipulations of global variables
  * and forces them to do what they are not supposed to be doing.
  *
  * Don't try anything you're about to witness here, at home. Ever.
@@ -93,7 +93,7 @@ class BB_Theme_Compat {
  * @param BB_Theme_Compat $theme
  */
 function dps_setup_theme_compat( $theme = '' ) {
-	$bbp = barebones();
+	$bbp = showcase();
 
 	// Make sure theme package is available, set to default if not
 	if ( ! isset( $bbp->theme_compat->packages[$theme] ) || ! is_a( $bbp->theme_compat->packages[$theme], 'BB_Theme_Compat' ) ) {
@@ -105,73 +105,73 @@ function dps_setup_theme_compat( $theme = '' ) {
 }
 
 /**
- * Gets the name of the barebones compatable theme used, in the event the
- * currently active WordPress theme does not explicitly support barebones.
+ * Gets the name of the showcase compatable theme used, in the event the
+ * currently active WordPress theme does not explicitly support showcase.
  * This can be filtered or set manually. Tricky theme authors can override the
- * default and include their own barebones compatibility layers for their themes.
+ * default and include their own showcase compatibility layers for their themes.
  *
  * @since Showcase (1.0)
  * @uses apply_filters()
  * @return string
  */
 function dps_get_theme_compat_id() {
-	return apply_filters( 'dps_get_theme_compat_id', barebones()->theme_compat->theme->id );
+	return apply_filters( 'dps_get_theme_compat_id', showcase()->theme_compat->theme->id );
 }
 
 /**
- * Gets the name of the barebones compatable theme used, in the event the
- * currently active WordPress theme does not explicitly support barebones.
+ * Gets the name of the showcase compatable theme used, in the event the
+ * currently active WordPress theme does not explicitly support showcase.
  * This can be filtered or set manually. Tricky theme authors can override the
- * default and include their own barebones compatibility layers for their themes.
+ * default and include their own showcase compatibility layers for their themes.
  *
  * @since Showcase (1.0)
  * @uses apply_filters()
  * @return string
  */
 function dps_get_theme_compat_name() {
-	return apply_filters( 'dps_get_theme_compat_name', barebones()->theme_compat->theme->name );
+	return apply_filters( 'dps_get_theme_compat_name', showcase()->theme_compat->theme->name );
 }
 
 /**
- * Gets the version of the barebones compatable theme used, in the event the
- * currently active WordPress theme does not explicitly support barebones.
+ * Gets the version of the showcase compatable theme used, in the event the
+ * currently active WordPress theme does not explicitly support showcase.
  * This can be filtered or set manually. Tricky theme authors can override the
- * default and include their own barebones compatibility layers for their themes.
+ * default and include their own showcase compatibility layers for their themes.
  *
  * @since Showcase (1.0)
  * @uses apply_filters()
  * @return string
  */
 function dps_get_theme_compat_version() {
-	return apply_filters( 'dps_get_theme_compat_version', barebones()->theme_compat->theme->version );
+	return apply_filters( 'dps_get_theme_compat_version', showcase()->theme_compat->theme->version );
 }
 
 /**
- * Gets the barebones compatable theme used in the event the currently active
- * WordPress theme does not explicitly support barebones. This can be filtered,
+ * Gets the showcase compatable theme used in the event the currently active
+ * WordPress theme does not explicitly support showcase. This can be filtered,
  * or set manually. Tricky theme authors can override the default and include
- * their own barebones compatibility layers for their themes.
+ * their own showcase compatibility layers for their themes.
  *
  * @since Showcase (1.0)
  * @uses apply_filters()
  * @return string
  */
 function dps_get_theme_compat_dir() {
-	return apply_filters( 'dps_get_theme_compat_dir', barebones()->theme_compat->theme->dir );
+	return apply_filters( 'dps_get_theme_compat_dir', showcase()->theme_compat->theme->dir );
 }
 
 /**
- * Gets the barebones compatable theme used in the event the currently active
- * WordPress theme does not explicitly support barebones. This can be filtered,
+ * Gets the showcase compatable theme used in the event the currently active
+ * WordPress theme does not explicitly support showcase. This can be filtered,
  * or set manually. Tricky theme authors can override the default and include
- * their own barebones compatibility layers for their themes.
+ * their own showcase compatibility layers for their themes.
  *
  * @since Showcase (1.0)
  * @uses apply_filters()
  * @return string
  */
 function dps_get_theme_compat_url() {
-	return apply_filters( 'dps_get_theme_compat_url', barebones()->theme_compat->theme->url );
+	return apply_filters( 'dps_get_theme_compat_url', showcase()->theme_compat->theme->url );
 }
 
 /**
@@ -181,7 +181,7 @@ function dps_get_theme_compat_url() {
  * @return bool
  */
 function dps_is_theme_compat_active() {
-	$bbp = barebones();
+	$bbp = showcase();
 
 	if ( empty( $bbp->theme_compat->active ) )
 		return false;
@@ -197,9 +197,9 @@ function dps_is_theme_compat_active() {
  * @return bool
  */
 function dps_set_theme_compat_active( $set = true ) {
-	barebones()->theme_compat->active = $set;
+	showcase()->theme_compat->active = $set;
 
-	return (bool) barebones()->theme_compat->active;
+	return (bool) showcase()->theme_compat->active;
 }
 
 /**
@@ -211,9 +211,9 @@ function dps_set_theme_compat_active( $set = true ) {
  * @since Showcase (1.0)
  */
 function dps_set_theme_compat_templates( $templates = array() ) {
-	barebones()->theme_compat->templates = $templates;
+	showcase()->theme_compat->templates = $templates;
 
-	return barebones()->theme_compat->templates;
+	return showcase()->theme_compat->templates;
 }
 
 /**
@@ -225,35 +225,35 @@ function dps_set_theme_compat_templates( $templates = array() ) {
  * @since Showcase (1.0)
  */
 function dps_set_theme_compat_template( $template = '' ) {
-	barebones()->theme_compat->template = $template;
+	showcase()->theme_compat->template = $template;
 
-	return barebones()->theme_compat->template;
+	return showcase()->theme_compat->template;
 }
 
 /**
  * Set the theme compat original_template global
  *
  * Stash the original template file for the current query. Useful for checking
- * if barebones was able to find a more appropriate template.
+ * if showcase was able to find a more appropriate template.
  *
  * @since Showcase (1.0)
  */
 function dps_set_theme_compat_original_template( $template = '' ) {
-	barebones()->theme_compat->original_template = $template;
+	showcase()->theme_compat->original_template = $template;
 
-	return barebones()->theme_compat->original_template;
+	return showcase()->theme_compat->original_template;
 }
 
 /**
  * Set the theme compat original_template global
  *
  * Stash the original template file for the current query. Useful for checking
- * if barebones was able to find a more appropriate template.
+ * if showcase was able to find a more appropriate template.
  *
  * @since Showcase (1.0)
  */
 function dps_is_theme_compat_original_template( $template = '' ) {
-	$bbp = barebones();
+	$bbp = showcase();
 
 	if ( empty( $bbp->theme_compat->original_template ) )
 		return false;
@@ -262,7 +262,7 @@ function dps_is_theme_compat_original_template( $template = '' ) {
 }
 
 /**
- * Register a new barebones theme package to the active theme packages array
+ * Register a new showcase theme package to the active theme packages array
  *
  * @since Showcase (1.0)
  * @param array $theme
@@ -277,8 +277,8 @@ function dps_register_theme_package( $theme = array(), $override = true ) {
 	if ( ! is_a( $theme, 'BB_Theme_Compat' ) )
 		return;
 
-	// Load up barebones
-	$bbp = barebones();
+	// Load up showcase
+	$bbp = showcase();
 
 	// Only override if the flag is set and not previously registered
 	if ( empty( $bbp->theme_compat->packages[$theme->id] ) || ( true === $override ) ) {
@@ -424,7 +424,7 @@ function dps_theme_compat_reset_post( $args = array() ) {
 }
 
 /**
- * Reset main query vars and filter 'the_content' to output a barebones
+ * Reset main query vars and filter 'the_content' to output a showcase
  * template part as needed.
  *
  * @since Showcase (1.0)
@@ -557,7 +557,7 @@ function dps_template_include_theme_compat( $template = '' ) {
 		// Reset post
 		dps_theme_compat_reset_post( array(
 			'ID'             => 0,
-			'post_title'     => __( 'Replies', 'barebones' ),
+			'post_title'     => __( 'Replies', 'dps' ),
 			'post_author'    => 0,
 			'post_date'      => 0,
 			'post_content'   => '',
@@ -628,16 +628,16 @@ function dps_template_include_theme_compat( $template = '' ) {
 			'post_date'      => 0,
 			'post_content'   => '',
 			'post_type'      => '',
-			'post_title'     => sprintf( __( 'Topic Tag: %s', 'barebones' ), '<span>' . dps_get_topic_tag_name() . '</span>' ),
+			'post_title'     => sprintf( __( 'Topic Tag: %s', 'dps' ), '<span>' . dps_get_topic_tag_name() . '</span>' ),
 			'post_status'    => dps_get_public_status_id(),
 			'comment_status' => 'closed'
 		) );
 	}
 
 	/**
-	 * Bail if the template already matches a barebones template. This includes
+	 * Bail if the template already matches a showcase template. This includes
 	 * archive-* and single-* WordPress post_type matches (allowing
-	 * themes to use the expected format) as well as all barebones-specific
+	 * themes to use the expected format) as well as all showcase-specific
 	 * template files for users, topics, forums, etc...
 	 *
 	 * We do this after the above checks to prevent incorrect 404 body classes
@@ -645,11 +645,11 @@ function dps_template_include_theme_compat( $template = '' ) {
 	 *
 	 * @see http://bbpress.trac.wordpress.org/ticket/1478/
 	 */
-	if ( !empty( barebones()->theme_compat->barebones_template ) )
+	if ( !empty( showcase()->theme_compat->showcase_template ) )
 		return $template;
 
 	/**
-	 * If we are relying on barebones's built in theme compatibility to load
+	 * If we are relying on showcase's built in theme compatibility to load
 	 * the proper content, we need to intercept the_content, replace the
 	 * output, and display ours instead.
 	 *
@@ -662,8 +662,8 @@ function dps_template_include_theme_compat( $template = '' ) {
 	 * should be coded without superfluous mark-up and logic (prev/next
 	 * navigation, comments, date/time, etc...)
 	 * 
-	 * Hook into the 'dps_get_barebones_template' to override the array of
-	 * possible templates, or 'dps_barebones_template' to override the result.
+	 * Hook into the 'dps_get_showcase_template' to override the array of
+	 * possible templates, or 'dps_showcase_template' to override the result.
 	 */
 	if ( dps_is_theme_compat_active() ) {
 
@@ -682,7 +682,7 @@ function dps_template_include_theme_compat( $template = '' ) {
 
 /**
  * Replaces the_content() if the post_type being displayed is one that would
- * normally be handled by barebones, but proper single page templates do not
+ * normally be handled by showcase, but proper single page templates do not
  * exist in the currently active theme.
  *
  * Note that we do *not* currently use is_main_query() here. This is because so
@@ -699,7 +699,7 @@ function dps_replace_the_content( $content = '' ) {
 	if ( ! in_the_loop() )
 		return $content;
 
-	$bbp = barebones();
+	$bbp = showcase();
 
 	// Define local variable(s)
 	$new_content = '';
@@ -965,7 +965,7 @@ function dps_redirect_canonical( $redirect_url ) {
 function dps_remove_all_filters( $tag, $priority = false ) {
 	global $wp_filter, $merged_filters;
 
-	$bbp = barebones();
+	$bbp = showcase();
 
 	// Filters exist
 	if ( isset( $wp_filter[$tag] ) ) {
@@ -1017,7 +1017,7 @@ function dps_remove_all_filters( $tag, $priority = false ) {
 function dps_restore_all_filters( $tag, $priority = false ) {
 	global $wp_filter, $merged_filters;
 
-	$bbp = barebones();
+	$bbp = showcase();
 
 	// Filters exist
 	if ( isset( $bbp->filters->wp_filter[$tag] ) ) {
@@ -1056,7 +1056,7 @@ function dps_restore_all_filters( $tag, $priority = false ) {
 }
 
 /**
- * Force comments_status to 'closed' for barebones post types
+ * Force comments_status to 'closed' for showcase post types
  *
  * @since Showcase (1.0)
  * @param bool $open True if open, false if closed
@@ -1071,7 +1071,7 @@ function dps_force_comment_status( $open, $post_id = 0 ) {
 	// Default return value is what is passed in $open
 	$retval = $open;
 
-	// Only force for barebones post types
+	// Only force for showcase post types
 	switch ( $post_type ) {
 		case dps_get_forum_post_type() :
 		case dps_get_topic_post_type() :

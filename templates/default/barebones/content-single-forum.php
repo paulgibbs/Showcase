@@ -9,7 +9,7 @@
 
 ?>
 
-<div id="barebones-forums">
+<div id="showcase-forums">
 
 	<?php dps_breadcrumb(); ?>
 

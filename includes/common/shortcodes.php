@@ -97,7 +97,7 @@ class BB_Shortcodes {
 	}
 
 	/**
-	 * Register the barebones shortcodes
+	 * Register the showcase shortcodes
 	 *
 	 * @since Showcase (1.0)
 	 *
@@ -116,7 +116,7 @@ class BB_Shortcodes {
 	 * @since Showcase (1.0)
 	 */
 	private function unset_globals() {
-		$bbp = barebones();
+		$bbp = showcase();
 
 		// Unset global queries
 		$bbp->forum_query  = new stdClass;
@@ -237,7 +237,7 @@ class BB_Shortcodes {
 			return $content;
 
 		// Set passed attribute to $forum_id for clarity
-		$forum_id = barebones()->current_forum_id = $attr['id'];
+		$forum_id = showcase()->current_forum_id = $attr['id'];
 
 		// Bail if ID passed is not a forum
 		if ( !dps_is_forum( $forum_id ) )
@@ -334,7 +334,7 @@ class BB_Shortcodes {
 		$this->unset_globals();
 
 		// Set passed attribute to $forum_id for clarity
-		$topic_id = barebones()->current_topic_id = $attr['id'];
+		$topic_id = showcase()->current_topic_id = $attr['id'];
 		$forum_id = dps_get_topic_forum_id( $topic_id );
 
 		// Bail if ID passed is not a topic
@@ -344,7 +344,7 @@ class BB_Shortcodes {
 		// Reset the queries if not in theme compat
 		if ( !dps_is_theme_compat_active() ) {
 
-			$bbp = barebones();
+			$bbp = showcase();
 
 			// Reset necessary forum_query attributes for topics loop to function
 			$bbp->forum_query->query_vars['post_type'] = dps_get_forum_post_type();
@@ -416,7 +416,7 @@ class BB_Shortcodes {
 		$this->unset_globals();
 
 		// Set passed attribute to $reply_id for clarity
-		$reply_id = barebones()->current_reply_id = $attr['id'];
+		$reply_id = showcase()->current_reply_id = $attr['id'];
 		$forum_id = dps_get_reply_forum_id( $reply_id );
 
 		// Bail if ID passed is not a reply
@@ -426,7 +426,7 @@ class BB_Shortcodes {
 		// Reset the queries if not in theme compat
 		if ( !dps_is_theme_compat_active() ) {
 
-			$bbp = barebones();
+			$bbp = showcase();
 
 			// Reset necessary forum_query attributes for replys loop to function
 			$bbp->forum_query->query_vars['post_type'] = dps_get_forum_post_type();
@@ -534,7 +534,7 @@ class BB_Shortcodes {
 		$this->start( 'dps_topic_tag' );
 
 		// Set passed attribute to $ag_id for clarity
-		barebones()->current_topic_tag_id = $tag_id = $attr['id'];
+		showcase()->current_topic_tag_id = $tag_id = $attr['id'];
 
 		// Output template
 		dps_get_template_part( 'content', 'archive-topic' );
@@ -818,7 +818,7 @@ class BB_Shortcodes {
 		$args['tax_query'] = array( array(
 			'taxonomy' => dps_get_topic_tag_tax_id(),
 			'field'    => 'id',
-			'terms'    => barebones()->current_topic_tag_id
+			'terms'    => showcase()->current_topic_tag_id
 		) );
 
 		return $args;

@@ -12,7 +12,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 if ( !class_exists( 'BB_Forums_Admin' ) ) :
 /**
- * Loads barebones forums admin area
+ * Loads showcase forums admin area
  *
  * @package Showcase
  * @subpackage Administration
@@ -30,7 +30,7 @@ class BB_Forums_Admin {
 	/** Functions *************************************************************/
 
 	/**
-	 * The main barebones forums admin loader
+	 * The main showcase forums admin loader
 	 *
 	 * @since Showcase (1.0)
 	 *
@@ -105,7 +105,7 @@ class BB_Forums_Admin {
 	/** Contextual Help *******************************************************/
 
 	/**
-	 * Contextual help for barebones forum edit page
+	 * Contextual help for showcase forum edit page
 	 *
 	 * @since Showcase (1.0)
 	 * @uses get_current_screen()
@@ -117,56 +117,56 @@ class BB_Forums_Admin {
 		// Overview
 		get_current_screen()->add_help_tab( array(
 			'id'		=> 'overview',
-			'title'		=> __( 'Overview', 'barebones' ),
+			'title'		=> __( 'Overview', 'dps' ),
 			'content'	=>
-				'<p>' . __( 'This screen displays the individual forums on your site. You can customize the display of this screen to suit your workflow.', 'barebones' ) . '</p>'
+				'<p>' . __( 'This screen displays the individual forums on your site. You can customize the display of this screen to suit your workflow.', 'dps' ) . '</p>'
 		) );
 
 		// Screen Content
 		get_current_screen()->add_help_tab( array(
 			'id'		=> 'screen-content',
-			'title'		=> __( 'Screen Content', 'barebones' ),
+			'title'		=> __( 'Screen Content', 'dps' ),
 			'content'	=>
-				'<p>' . __( 'You can customize the display of this screen&#8217;s contents in a number of ways:', 'barebones' ) . '</p>' .
+				'<p>' . __( 'You can customize the display of this screen&#8217;s contents in a number of ways:', 'dps' ) . '</p>' .
 				'<ul>' .
-					'<li>' . __( 'You can hide/display columns based on your needs and decide how many forums to list per screen using the Screen Options tab.',                                                                                                                                'barebones' ) . '</li>' .
-					'<li>' . __( 'You can filter the list of forums by forum status using the text links in the upper left to show All, Published, or Trashed forums. The default view is to show all forums.',                                                                                 'barebones' ) . '</li>' .
-					'<li>' . __( 'You can refine the list to show only forums from a specific month by using the dropdown menus above the forums list. Click the Filter button after making your selection. You also can refine the list by clicking on the forum creator in the forums list.', 'barebones' ) . '</li>' .
+					'<li>' . __( 'You can hide/display columns based on your needs and decide how many forums to list per screen using the Screen Options tab.',                                                                                                                                'showcase' ) . '</li>' .
+					'<li>' . __( 'You can filter the list of forums by forum status using the text links in the upper left to show All, Published, or Trashed forums. The default view is to show all forums.',                                                                                 'showcase' ) . '</li>' .
+					'<li>' . __( 'You can refine the list to show only forums from a specific month by using the dropdown menus above the forums list. Click the Filter button after making your selection. You also can refine the list by clicking on the forum creator in the forums list.', 'dps' ) . '</li>' .
 				'</ul>'
 		) );
 
 		// Available Actions
 		get_current_screen()->add_help_tab( array(
 			'id'		=> 'action-links',
-			'title'		=> __( 'Available Actions', 'barebones' ),
+			'title'		=> __( 'Available Actions', 'dps' ),
 			'content'	=>
-				'<p>' . __( 'Hovering over a row in the forums list will display action links that allow you to manage your forum. You can perform the following actions:', 'barebones' ) . '</p>' .
+				'<p>' . __( 'Hovering over a row in the forums list will display action links that allow you to manage your forum. You can perform the following actions:', 'dps' ) . '</p>' .
 				'<ul>' .
-					'<li>' . __( '<strong>Edit</strong> takes you to the editing screen for that forum. You can also reach that screen by clicking on the forum title.',                                                                              'barebones' ) . '</li>' .
-					'<li>' . __( '<strong>Trash</strong> removes your forum from this list and places it in the trash, from which you can permanently delete it.',                                                                                    'barebones' ) . '</li>' .
-					'<li>' . __( '<strong>View</strong> will show you what your draft forum will look like if you publish it. View will take you to your live site to view the forum. Which link is available depends on your forum&#8217;s status.', 'barebones' ) . '</li>' .
+					'<li>' . __( '<strong>Edit</strong> takes you to the editing screen for that forum. You can also reach that screen by clicking on the forum title.',                                                                              'showcase' ) . '</li>' .
+					'<li>' . __( '<strong>Trash</strong> removes your forum from this list and places it in the trash, from which you can permanently delete it.',                                                                                    'showcase' ) . '</li>' .
+					'<li>' . __( '<strong>View</strong> will show you what your draft forum will look like if you publish it. View will take you to your live site to view the forum. Which link is available depends on your forum&#8217;s status.', 'dps' ) . '</li>' .
 				'</ul>'
 		) );
 
 		// Bulk Actions
 		get_current_screen()->add_help_tab( array(
 			'id'		=> 'bulk-actions',
-			'title'		=> __( 'Bulk Actions', 'barebones' ),
+			'title'		=> __( 'Bulk Actions', 'dps' ),
 			'content'	=>
-				'<p>' . __( 'You can also edit or move multiple forums to the trash at once. Select the forums you want to act on using the checkboxes, then select the action you want to take from the Bulk Actions menu and click Apply.',           'barebones' ) . '</p>' .
-				'<p>' . __( 'When using Bulk Edit, you can change the metadata (categories, author, etc.) for all selected forums at once. To remove a forum from the grouping, just click the x next to its name in the Bulk Edit area that appears.', 'barebones' ) . '</p>'
+				'<p>' . __( 'You can also edit or move multiple forums to the trash at once. Select the forums you want to act on using the checkboxes, then select the action you want to take from the Bulk Actions menu and click Apply.',           'showcase' ) . '</p>' .
+				'<p>' . __( 'When using Bulk Edit, you can change the metadata (categories, author, etc.) for all selected forums at once. To remove a forum from the grouping, just click the x next to its name in the Bulk Edit area that appears.', 'dps' ) . '</p>'
 		) );
 
 		// Help Sidebar
 		get_current_screen()->set_help_sidebar(
-			'<p><strong>' . __( 'For more information:', 'barebones' ) . '</strong></p>' .
-			'<p>' . __( '<a href="http://codex.example.org" target="_blank">barebones Documentation</a>',    'barebones' ) . '</p>' .
-			'<p>' . __( '<a href="http://example.org/forums/" target="_blank">barebones Support Forums</a>', 'barebones' ) . '</p>'
+			'<p><strong>' . __( 'For more information:', 'dps' ) . '</strong></p>' .
+			'<p>' . __( '<a href="http://codex.example.org" target="_blank">showcase Documentation</a>',    'showcase' ) . '</p>' .
+			'<p>' . __( '<a href="http://example.org/forums/" target="_blank">showcase Support Forums</a>', 'dps' ) . '</p>'
 		);
 	}
 
 	/**
-	 * Contextual help for barebones forum edit page
+	 * Contextual help for showcase forum edit page
 	 *
 	 * @since Showcase (1.0)
 	 * @uses get_current_screen()
@@ -175,64 +175,64 @@ class BB_Forums_Admin {
 
 		if ( $this->bail() ) return;
 
-		$customize_display = '<p>' . __( 'The title field and the big forum editing Area are fixed in place, but you can reposition all the other boxes using drag and drop, and can minimize or expand them by clicking the title bar of each box. Use the Screen Options tab to unhide more boxes (Excerpt, Send Trackbacks, Custom Fields, Discussion, Slug, Author) or to choose a 1- or 2-column layout for this screen.', 'barebones' ) . '</p>';
+		$customize_display = '<p>' . __( 'The title field and the big forum editing Area are fixed in place, but you can reposition all the other boxes using drag and drop, and can minimize or expand them by clicking the title bar of each box. Use the Screen Options tab to unhide more boxes (Excerpt, Send Trackbacks, Custom Fields, Discussion, Slug, Author) or to choose a 1- or 2-column layout for this screen.', 'dps' ) . '</p>';
 
 		get_current_screen()->add_help_tab( array(
 			'id'      => 'customize-display',
-			'title'   => __( 'Customizing This Display', 'barebones' ),
+			'title'   => __( 'Customizing This Display', 'dps' ),
 			'content' => $customize_display,
 		) );
 
 		get_current_screen()->add_help_tab( array(
 			'id'      => 'title-forum-editor',
-			'title'   => __( 'Title and Forum Editor', 'barebones' ),
+			'title'   => __( 'Title and Forum Editor', 'dps' ),
 			'content' =>
-				'<p>' . __( '<strong>Title</strong> - Enter a title for your forum. After you enter a title, you&#8217;ll see the permalink below, which you can edit.', 'barebones' ) . '</p>' .
-				'<p>' . __( '<strong>Forum Editor</strong> - Enter the text for your forum. There are two modes of editing: Visual and HTML. Choose the mode by clicking on the appropriate tab. Visual mode gives you a WYSIWYG editor. Click the last icon in the row to get a second row of controls. The HTML mode allows you to enter raw HTML along with your forum text. You can insert media files by clicking the icons above the forum editor and following the directions. You can go to the distraction-free writing screen via the Fullscreen icon in Visual mode (second to last in the top row) or the Fullscreen button in HTML mode (last in the row). Once there, you can make buttons visible by hovering over the top area. Exit Fullscreen back to the regular forum editor.', 'barebones' ) . '</p>'
+				'<p>' . __( '<strong>Title</strong> - Enter a title for your forum. After you enter a title, you&#8217;ll see the permalink below, which you can edit.', 'dps' ) . '</p>' .
+				'<p>' . __( '<strong>Forum Editor</strong> - Enter the text for your forum. There are two modes of editing: Visual and HTML. Choose the mode by clicking on the appropriate tab. Visual mode gives you a WYSIWYG editor. Click the last icon in the row to get a second row of controls. The HTML mode allows you to enter raw HTML along with your forum text. You can insert media files by clicking the icons above the forum editor and following the directions. You can go to the distraction-free writing screen via the Fullscreen icon in Visual mode (second to last in the top row) or the Fullscreen button in HTML mode (last in the row). Once there, you can make buttons visible by hovering over the top area. Exit Fullscreen back to the regular forum editor.', 'dps' ) . '</p>'
 		) );
 
-		$publish_box = '<p>' . __( '<strong>Publish</strong> - You can set the terms of publishing your forum in the Publish box. For Status, Visibility, and Publish (immediately), click on the Edit link to reveal more options. Visibility includes options for password-protecting a forum or making it stay at the top of your blog indefinitely (sticky). Publish (immediately) allows you to set a future or past date and time, so you can schedule a forum to be published in the future or backdate a forum.', 'barebones' ) . '</p>';
+		$publish_box = '<p>' . __( '<strong>Publish</strong> - You can set the terms of publishing your forum in the Publish box. For Status, Visibility, and Publish (immediately), click on the Edit link to reveal more options. Visibility includes options for password-protecting a forum or making it stay at the top of your blog indefinitely (sticky). Publish (immediately) allows you to set a future or past date and time, so you can schedule a forum to be published in the future or backdate a forum.', 'dps' ) . '</p>';
 
 		if ( current_theme_supports( 'forum-formats' ) && forum_type_supports( 'forum', 'forum-formats' ) ) {
-			$publish_box .= '<p>' . __( '<strong>forum Format</strong> - This designates how your theme will display a specific forum. For example, you could have a <em>standard</em> blog forum with a title and paragraphs, or a short <em>aside</em> that omits the title and contains a short text blurb. Please refer to the Codex for <a href="http://codex.wordpress.org/Post_Formats#Supported_Formats">descriptions of each forum format</a>. Your theme could enable all or some of 10 possible formats.', 'barebones' ) . '</p>';
+			$publish_box .= '<p>' . __( '<strong>forum Format</strong> - This designates how your theme will display a specific forum. For example, you could have a <em>standard</em> blog forum with a title and paragraphs, or a short <em>aside</em> that omits the title and contains a short text blurb. Please refer to the Codex for <a href="http://codex.wordpress.org/Post_Formats#Supported_Formats">descriptions of each forum format</a>. Your theme could enable all or some of 10 possible formats.', 'dps' ) . '</p>';
 		}
 
 		if ( current_theme_supports( 'forum-thumbnails' ) && forum_type_supports( 'forum', 'thumbnail' ) ) {
-			$publish_box .= '<p>' . __( '<strong>Featured Image</strong> - This allows you to associate an image with your forum without inserting it. This is usually useful only if your theme makes use of the featured image as a forum thumbnail on the home page, a custom header, etc.', 'barebones' ) . '</p>';
+			$publish_box .= '<p>' . __( '<strong>Featured Image</strong> - This allows you to associate an image with your forum without inserting it. This is usually useful only if your theme makes use of the featured image as a forum thumbnail on the home page, a custom header, etc.', 'dps' ) . '</p>';
 		}
 
 		get_current_screen()->add_help_tab( array(
 			'id'      => 'forum-attributes',
-			'title'   => __( 'Forum Attributes', 'barebones' ),
+			'title'   => __( 'Forum Attributes', 'dps' ),
 			'content' =>
-				'<p>' . __( 'Select the attributes that your forum should have:', 'barebones' ) . '</p>' .
+				'<p>' . __( 'Select the attributes that your forum should have:', 'dps' ) . '</p>' .
 				'<ul>' .
-					'<li>' . __( '<strong>Type</strong> indicates if the forum is a category or forum. Categories generally contain other forums.',                                                                                'barebones' ) . '</li>' .
-					'<li>' . __( '<strong>Status</strong> allows you to close a forum to new topics and forums.',                                                                                                                  'barebones' ) . '</li>' .
-					'<li>' . __( '<strong>Visibility</strong> lets you pick the scope of each forum and what users are allowed to access it.',                                                                                     'barebones' ) . '</li>' .
-					'<li>' . __( '<strong>Parent</strong> dropdown determines the parent forum. Select the forum or category from the dropdown, or leave the default (No Parent) to create the forum at the root of your forums.', 'barebones' ) . '</li>' .
-					'<li>' . __( '<strong>Order</strong> allows you to order your forums numerically.',                                                                                                                            'barebones' ) . '</li>' .
+					'<li>' . __( '<strong>Type</strong> indicates if the forum is a category or forum. Categories generally contain other forums.',                                                                                'showcase' ) . '</li>' .
+					'<li>' . __( '<strong>Status</strong> allows you to close a forum to new topics and forums.',                                                                                                                  'showcase' ) . '</li>' .
+					'<li>' . __( '<strong>Visibility</strong> lets you pick the scope of each forum and what users are allowed to access it.',                                                                                     'showcase' ) . '</li>' .
+					'<li>' . __( '<strong>Parent</strong> dropdown determines the parent forum. Select the forum or category from the dropdown, or leave the default (No Parent) to create the forum at the root of your forums.', 'dps' ) . '</li>' .
+					'<li>' . __( '<strong>Order</strong> allows you to order your forums numerically.',                                                                                                                            'showcase' ) . '</li>' .
 				'</ul>'
 		) );
 
 		get_current_screen()->add_help_tab( array(
 			'id'      => 'publish-box',
-			'title'   => __( 'Publish Box', 'barebones' ),
+			'title'   => __( 'Publish Box', 'dps' ),
 			'content' => $publish_box,
 		) );
 
 		get_current_screen()->add_help_tab( array(
 			'id'      => 'discussion-settings',
-			'title'   => __( 'Discussion Settings', 'barebones' ),
+			'title'   => __( 'Discussion Settings', 'dps' ),
 			'content' =>
-				'<p>' . __( '<strong>Send Trackbacks</strong> - Trackbacks are a way to notify legacy blog systems that you&#8217;ve linked to them. Enter the URL(s) you want to send trackbacks. If you link to other WordPress sites they&#8217;ll be notified automatically using pingbacks, and this field is unnecessary.', 'barebones' ) . '</p>' .
-				'<p>' . __( '<strong>Discussion</strong> - You can turn comments and pings on or off, and if there are comments on the forum, you can see them here and moderate them.', 'barebones' ) . '</p>'
+				'<p>' . __( '<strong>Send Trackbacks</strong> - Trackbacks are a way to notify legacy blog systems that you&#8217;ve linked to them. Enter the URL(s) you want to send trackbacks. If you link to other WordPress sites they&#8217;ll be notified automatically using pingbacks, and this field is unnecessary.', 'dps' ) . '</p>' .
+				'<p>' . __( '<strong>Discussion</strong> - You can turn comments and pings on or off, and if there are comments on the forum, you can see them here and moderate them.', 'dps' ) . '</p>'
 		) );
 
 		get_current_screen()->set_help_sidebar(
-			'<p><strong>' . __( 'For more information:', 'barebones' ) . '</strong></p>' .
-			'<p>' . __( '<a href="http://codex.example.org" target="_blank">barebones Documentation</a>',    'barebones' ) . '</p>' .
-			'<p>' . __( '<a href="http://example.org/forums/" target="_blank">barebones Support Forums</a>', 'barebones' ) . '</p>'
+			'<p><strong>' . __( 'For more information:', 'dps' ) . '</strong></p>' .
+			'<p>' . __( '<a href="http://codex.example.org" target="_blank">showcase Documentation</a>',    'showcase' ) . '</p>' .
+			'<p>' . __( '<a href="http://example.org/forums/" target="_blank">showcase Support Forums</a>', 'dps' ) . '</p>'
 		);
 	}
 
@@ -251,7 +251,7 @@ class BB_Forums_Admin {
 
 		add_meta_box (
 			'dps_forum_attributes',
-			__( 'Forum Attributes', 'barebones' ),
+			__( 'Forum Attributes', 'dps' ),
 			'dps_forum_metabox',
 			$this->post_type,
 			'side',
@@ -409,7 +409,7 @@ class BB_Forums_Admin {
 	 * @param array $columns The columns
 	 * @uses apply_filters() Calls 'dps_admin_forums_column_headers' with
 	 *                        the columns
-	 * @return array $columns barebones forum columns
+	 * @return array $columns showcase forum columns
 	 */
 	public function column_headers( $columns ) {
 
@@ -417,12 +417,12 @@ class BB_Forums_Admin {
 
 		$columns = array (
 			'cb'                    => '<input type="checkbox" />',
-			'title'                 => __( 'Forum',     'barebones' ),
-			'dps_forum_topic_count' => __( 'Topics',    'barebones' ),
-			'dps_forum_reply_count' => __( 'Replies',   'barebones' ),
-			'author'                => __( 'Creator',   'barebones' ),
-			'dps_forum_created'     => __( 'Created' ,  'barebones' ),
-			'dps_forum_freshness'   => __( 'Freshness', 'barebones' )
+			'title'                 => __( 'Forum',     'showcase' ),
+			'dps_forum_topic_count' => __( 'Topics',    'showcase' ),
+			'dps_forum_reply_count' => __( 'Replies',   'showcase' ),
+			'author'                => __( 'Creator',   'showcase' ),
+			'dps_forum_created'     => __( 'Created' ,  'showcase' ),
+			'dps_forum_freshness'   => __( 'Freshness', 'dps' )
 		);
 
 		return apply_filters( 'dps_admin_forums_column_headers', $columns );
@@ -459,7 +459,7 @@ class BB_Forums_Admin {
 				break;
 
 			case 'dps_forum_created':
-				printf( __( '%1$s <br /> %2$s', 'barebones' ),
+				printf( __( '%1$s <br /> %2$s', 'dps' ),
 					get_the_date(),
 					esc_attr( get_the_time() )
 				);
@@ -471,7 +471,7 @@ class BB_Forums_Admin {
 				if ( !empty( $last_active ) )
 					echo $last_active;
 				else
-					_e( 'No Topics', 'barebones' );
+					_e( 'No Topics', 'dps' );
 
 				break;
 
@@ -537,41 +537,41 @@ class BB_Forums_Admin {
 			0 =>  '', // Left empty on purpose
 
 			// Updated
-			1 =>  sprintf( __( 'Forum updated. <a href="%s">View forum</a>', 'barebones' ), $forum_url ),
+			1 =>  sprintf( __( 'Forum updated. <a href="%s">View forum</a>', 'dps' ), $forum_url ),
 
 			// Custom field updated
-			2 => __( 'Custom field updated.', 'barebones' ),
+			2 => __( 'Custom field updated.', 'dps' ),
 
 			// Custom field deleted
-			3 => __( 'Custom field deleted.', 'barebones' ),
+			3 => __( 'Custom field deleted.', 'dps' ),
 
 			// Forum updated
-			4 => __( 'Forum updated.', 'barebones' ),
+			4 => __( 'Forum updated.', 'dps' ),
 
 			// Restored from revision
 			// translators: %s: date and time of the revision
 			5 => isset( $_GET['revision'] )
-					? sprintf( __( 'Forum restored to revision from %s', 'barebones' ), wp_post_revision_title( (int) $_GET['revision'], false ) )
+					? sprintf( __( 'Forum restored to revision from %s', 'dps' ), wp_post_revision_title( (int) $_GET['revision'], false ) )
 					: false,
 
 			// Forum created
-			6 => sprintf( __( 'Forum created. <a href="%s">View forum</a>', 'barebones' ), $forum_url ),
+			6 => sprintf( __( 'Forum created. <a href="%s">View forum</a>', 'dps' ), $forum_url ),
 
 			// Forum saved
-			7 => __( 'Forum saved.', 'barebones' ),
+			7 => __( 'Forum saved.', 'dps' ),
 
 			// Forum submitted
-			8 => sprintf( __( 'Forum submitted. <a target="_blank" href="%s">Preview forum</a>', 'barebones' ), esc_url( add_query_arg( 'preview', 'true', $forum_url ) ) ),
+			8 => sprintf( __( 'Forum submitted. <a target="_blank" href="%s">Preview forum</a>', 'dps' ), esc_url( add_query_arg( 'preview', 'true', $forum_url ) ) ),
 
 			// Forum scheduled
-			9 => sprintf( __( 'Forum scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview forum</a>', 'barebones' ),
+			9 => sprintf( __( 'Forum scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview forum</a>', 'dps' ),
 					// translators: Publish box date format, see http://php.net/date
-					date_i18n( __( 'M j, Y @ G:i', 'barebones' ),
+					date_i18n( __( 'M j, Y @ G:i', 'dps' ),
 					strtotime( $post_date ) ),
 					$forum_url ),
 
 			// Forum draft updated
-			10 => sprintf( __( 'Forum draft updated. <a target="_blank" href="%s">Preview forum</a>', 'barebones' ), esc_url( add_query_arg( 'preview', 'true', $forum_url ) ) ),
+			10 => sprintf( __( 'Forum draft updated. <a target="_blank" href="%s">Preview forum</a>', 'dps' ), esc_url( add_query_arg( 'preview', 'true', $forum_url ) ) ),
 		);
 
 		return $messages;
@@ -580,7 +580,7 @@ class BB_Forums_Admin {
 endif; // class_exists check
 
 /**
- * Setup barebones Forums Admin
+ * Setup showcase Forums Admin
  *
  * This is currently here to make hooking and unhooking of the admin UI easy.
  * It could use dependency injection in the future, but for now this is easier.
@@ -590,5 +590,5 @@ endif; // class_exists check
  * @uses BB_Forums_Admin
  */
 function dps_admin_forums() {
-	barebones()->admin->forums = new BB_Forums_Admin();
+	showcase()->admin->forums = new BB_Forums_Admin();
 }

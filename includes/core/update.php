@@ -16,7 +16,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * @since Showcase (1.0)
  *
  * @uses get_option()
- * @uses dps_get_db_version() To get barebones's database version
+ * @uses dps_get_db_version() To get showcase's database version
  * @return bool True if update, False if not
  */
 function dps_is_install() {
@@ -24,12 +24,12 @@ function dps_is_install() {
 }
 
 /**
- * Compare the barebones version to the DB version to determine if updating
+ * Compare the showcase version to the DB version to determine if updating
  *
  * @since Showcase (1.0)
  *
  * @uses get_option()
- * @uses dps_get_db_version() To get barebones's database version
+ * @uses dps_get_db_version() To get showcase's database version
  * @return bool True if update, False if not
  */
 function dps_is_update() {
@@ -40,17 +40,17 @@ function dps_is_update() {
 }
 
 /**
- * Determine if barebones is being activated
+ * Determine if showcase is being activated
  *
- * Note that this function currently is not used in barebones core and is here
- * for third party plugins to use to check for barebones activation.
+ * Note that this function currently is not used in showcase core and is here
+ * for third party plugins to use to check for showcase activation.
  *
  * @since Showcase (1.0)
  *
- * @return bool True if activating barebones, false if not
+ * @return bool True if activating showcase, false if not
  */
 function dps_is_activation( $basename = '' ) {
-	$bbp    = barebones();
+	$bbp    = showcase();
 	$action = false;
 
 	if ( ! empty( $_REQUEST['action'] ) && ( '-1' != $_REQUEST['action'] ) ) {
@@ -81,18 +81,18 @@ function dps_is_activation( $basename = '' ) {
 		return false;
 	}
 
-	// Is barebones being activated?
+	// Is showcase being activated?
 	return in_array( $basename, $plugins );
 }
 
 /**
- * Determine if barebones is being deactivated
+ * Determine if showcase is being deactivated
  *
  * @since Showcase (1.0)
- * @return bool True if deactivating barebones, false if not
+ * @return bool True if deactivating showcase, false if not
  */
 function dps_is_deactivation( $basename = '' ) {
-	$bbp    = barebones();
+	$bbp    = showcase();
 	$action = false;
 	
 	if ( ! empty( $_REQUEST['action'] ) && ( '-1' != $_REQUEST['action'] ) ) {
@@ -123,7 +123,7 @@ function dps_is_deactivation( $basename = '' ) {
 		return false;
 	}
 
-	// Is barebones being deactivated?
+	// Is showcase being deactivated?
 	return in_array( $basename, $plugins );
 }
 
@@ -132,14 +132,14 @@ function dps_is_deactivation( $basename = '' ) {
  *
  * @since Showcase (1.0)
  * @uses update_option()
- * @uses dps_get_db_version() To get barebones's database version
+ * @uses dps_get_db_version() To get showcase's database version
  */
 function dps_version_bump() {
 	update_option( '_dps_db_version', dps_get_db_version() );
 }
 
 /**
- * Setup the barebones updater
+ * Setup the showcase updater
  *
  * @since Showcase (1.0)
  *
@@ -169,12 +169,12 @@ function dps_create_initial_content( $args = array() ) {
 	$r = dps_parse_args( $args, array(
 		'forum_parent'  => 0,
 		'forum_status'  => 'publish',
-		'forum_title'   => __( 'General',                                  'barebones' ),
-		'forum_content' => __( 'General chit-chat',                        'barebones' ),
-		'topic_title'   => __( 'Hello World!',                             'barebones' ),
-		'topic_content' => __( 'I am the first topic in your new forums.', 'barebones' ),
-		'reply_title'   => __( 'Re: Hello World!',                         'barebones' ),
-		'reply_content' => __( 'Oh, and this is what a reply looks like.', 'barebones' ),
+		'forum_title'   => __( 'General',                                  'showcase' ),
+		'forum_content' => __( 'General chit-chat',                        'showcase' ),
+		'topic_title'   => __( 'Hello World!',                             'showcase' ),
+		'topic_content' => __( 'I am the first topic in your new forums.', 'dps' ),
+		'reply_title'   => __( 'Re: Hello World!',                         'showcase' ),
+		'reply_content' => __( 'Oh, and this is what a reply looks like.', 'dps' ),
 	), 'create_initial_content' );
 
 	// Create the initial forum
@@ -220,7 +220,7 @@ function dps_create_initial_content( $args = array() ) {
  * runs whatever other code is needed.
  *
  * This is most-often used when the data schema changes, but should also be used
- * to correct issues with barebones meta-data silently on software update.
+ * to correct issues with showcase meta-data silently on software update.
  *
  * @since Showcase (1.0)
  */
@@ -281,11 +281,11 @@ function dps_version_updater() {
 }
 
 /**
- * Redirect user to barebones's What's New page on activation
+ * Redirect user to showcase's What's New page on activation
  *
  * @since Showcase (1.0)
  *
- * @internal Used internally to redirect barebones to the about page on activation
+ * @internal Used internally to redirect showcase to the about page on activation
  *
  * @uses is_network_admin() To bail if being network activated
  * @uses set_transient() To drop the activation transient for 30 seconds

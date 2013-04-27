@@ -114,7 +114,7 @@ function dps_is_site_public( $site_id = 0 ) {
 }
 
 /**
- * Check if current page is a barebones forum
+ * Check if current page is a showcase forum
  *
  * @since Showcase (1.0)
  *
@@ -210,7 +210,7 @@ function dps_is_forum_edit() {
 }
 
 /**
- * Check if current page is a barebones topic
+ * Check if current page is a showcase topic
  *
  * @since Showcase (1.0)
  *
@@ -367,7 +367,7 @@ function dps_is_topic_tag() {
 	$retval = false;
 
 	// Check tax and query vars
-	if ( is_tax( dps_get_topic_tag_tax_id() ) || !empty( barebones()->topic_query->is_tax ) || get_query_var( 'dps_topic_tag' ) )
+	if ( is_tax( dps_get_topic_tag_tax_id() ) || !empty( showcase()->topic_query->is_tax ) || get_query_var( 'dps_topic_tag' ) )
 		$retval = true;
 
 	return (bool) apply_filters( 'dps_is_topic_tag', $retval );
@@ -403,7 +403,7 @@ function dps_is_topic_tag_edit() {
 }
 
 /**
- * Check if the current post type is one of barebones's
+ * Check if the current post type is one of showcase's
  *
  * @since Showcase (1.0)
  *
@@ -420,7 +420,7 @@ function dps_is_custom_post_type( $the_post = false ) {
 	// Assume false
 	$retval = false;
 
-	// Viewing one of the barebones post types
+	// Viewing one of the showcase post types
 	if ( in_array( get_post_type( $the_post ), array(
 		dps_get_forum_post_type(),
 		dps_get_topic_post_type(),
@@ -432,7 +432,7 @@ function dps_is_custom_post_type( $the_post = false ) {
 }
 
 /**
- * Check if current page is a barebones reply
+ * Check if current page is a showcase reply
  *
  * @since Showcase (1.0)
  *
@@ -525,7 +525,7 @@ function dps_is_single_reply() {
 }
 
 /**
- * Check if current page is a barebones user's favorites page (profile page)
+ * Check if current page is a showcase user's favorites page (profile page)
  *
  * @since Showcase (1.0)
  *
@@ -545,7 +545,7 @@ function dps_is_favorites() {
 }
 
 /**
- * Check if current page is a barebones user's subscriptions page (profile page)
+ * Check if current page is a showcase user's subscriptions page (profile page)
  *
  * @since Showcase (1.0)
  *
@@ -565,7 +565,7 @@ function dps_is_subscriptions() {
 }
 
 /**
- * Check if current page shows the topics created by a barebones user (profile
+ * Check if current page shows the topics created by a showcase user (profile
  * page)
  *
  * @since Showcase (1.0)
@@ -586,7 +586,7 @@ function dps_is_topics_created() {
 }
 
 /**
- * Check if current page shows the topics created by a barebones user (profile
+ * Check if current page shows the topics created by a showcase user (profile
  * page)
  *
  * @since Showcase (1.0)
@@ -961,19 +961,19 @@ function dps_body_class( $wp_classes, $custom_classes = false ) {
 
 	/** Clean up **************************************************************/
 
-	// Add barebones class if we are within a barebones page
+	// Add showcase class if we are within a showcase page
 	if ( !empty( $dps_classes ) ) {
-		$dps_classes[] = 'barebones';
+		$dps_classes[] = 'showcase';
 	}
 
-	// Merge WP classes with barebones classes and remove any duplicates
+	// Merge WP classes with showcase classes and remove any duplicates
 	$classes = array_unique( array_merge( (array) $dps_classes, (array) $wp_classes ) );
 
 	return apply_filters( 'dps_get_the_body_class', $classes, $dps_classes, $wp_classes, $custom_classes );
 }
 
 /**
- * Use the above is_() functions to return if in any barebones page
+ * Use the above is_() functions to return if in any showcase page
  *
  * @since Showcase (1.0)
  *
@@ -992,9 +992,9 @@ function dps_body_class( $wp_classes, $custom_classes = false ) {
  * @uses dps_is_subscriptions()
  * @uses dps_is_favorites()
  * @uses dps_is_topics_created()
- * @return bool In a barebones page
+ * @return bool In a showcase page
  */
-function is_barebones() {
+function is_showcase() {
 
 	// Defalt to false
 	$retval = false;
@@ -1075,7 +1075,7 @@ function is_barebones() {
 
 	/** Done ******************************************************************/
 
-	return (bool) apply_filters( 'is_barebones', $retval );
+	return (bool) apply_filters( 'is_showcase', $retval );
 }
 
 /** Forms *********************************************************************/
@@ -1235,7 +1235,7 @@ function dps_tab_index( $auto_increment = true ) {
 	 * @return int $bbp->tab_index The global tab index
 	 */
 	function dps_get_tab_index( $auto_increment = true ) {
-		$bbp = barebones();
+		$bbp = showcase();
 
 		if ( true === $auto_increment )
 			++$bbp->tab_index;
@@ -1281,10 +1281,10 @@ function dps_dropdown( $args = '' ) {
 	 *  - select_id: ID of the select box. Defaults to 'dps_forum_id'
 	 *  - tab: Tabindex value. False or integer
 	 *  - options_only: Show only <options>? No <select>?
-	 *  - show_none: False or something like __( '(No Forum)', 'barebones' ),
+	 *  - show_none: False or something like __( '(No Forum)', 'dps' ),
 	 *                will have value=""
 	 *  - none_found: False or something like
-	 *                 __( 'No forums to post to!', 'barebones' )
+	 *                 __( 'No forums to post to!', 'dps' )
 	 *  - disable_categories: Disable forum categories and closed forums?
 	 *                         Defaults to true. Only for forums and when
 	 *                         the category option is displayed.
@@ -1372,7 +1372,7 @@ function dps_dropdown( $args = '' ) {
 		$select_id = $name;
 		$tab       = (int) $r['tab'];
 		$retval    = '';
-		$disabled  = disabled( isset( barebones()->options[$r['disabled']] ), true, false );
+		$disabled  = disabled( isset( showcase()->options[$r['disabled']] ), true, false );
 		$post_arr  = array(
 			'post_type'          => $r['post_type'],
 			'post_status'        => $r['post_status'],
@@ -1412,17 +1412,17 @@ function dps_dropdown( $args = '' ) {
 
 				// Topics
 				case dps_get_topic_post_type() :
-					$retval = __( 'No topics available', 'barebones' );
+					$retval = __( 'No topics available', 'dps' );
 					break;
 
 				// Forums
 				case dps_get_forum_post_type() :
-					$retval = __( 'No forums available', 'barebones' );
+					$retval = __( 'No forums available', 'dps' );
 					break;
 
 				// Any other
 				default :
-					$retval = __( 'None available', 'barebones' );
+					$retval = __( 'None available', 'dps' );
 					break;
 			}
 		}
@@ -1550,7 +1550,7 @@ function dps_reply_form_fields() {
 
 	else : ?>
 
-		<input type="hidden" name="dps_reply_title" id="dps_reply_title" value="<?php printf( __( 'Reply To: %s', 'barebones' ), dps_get_topic_title() ); ?>" />
+		<input type="hidden" name="dps_reply_title" id="dps_reply_title" value="<?php printf( __( 'Reply To: %s', 'dps' ), dps_get_topic_title() ); ?>" />
 		<input type="hidden" name="dps_topic_id"    id="dps_topic_id"    value="<?php dps_topic_id(); ?>" />
 		<input type="hidden" name="action"          id="dps_post_action" value="bbp-new-reply" />
 
@@ -1854,7 +1854,7 @@ function dps_view_id( $view = '' ) {
 	 * @return bool|string ID on success, false on failure
 	 */
 	function dps_get_view_id( $view = '' ) {
-		$bbp = barebones();
+		$bbp = showcase();
 
 		$view = !empty( $view ) ? sanitize_title( $view ) : get_query_var( 'dps_view' );
 
@@ -1889,7 +1889,7 @@ function dps_view_title( $view = '' ) {
 	 * @return bool|string Title on success, false on failure
 	 */
 	function dps_get_view_title( $view = '' ) {
-		$bbp = barebones();
+		$bbp = showcase();
 
 		$view = dps_get_view_id( $view );
 		if ( empty( $view ) )
@@ -2069,7 +2069,7 @@ function dps_breadcrumb( $args = array() ) {
 
 			// Default to 'Home'
 			} else {
-				$pre_front_text = __( 'Home', 'barebones' );
+				$pre_front_text = __( 'Home', 'dps' );
 			}
 		}
 
@@ -2139,15 +2139,15 @@ function dps_breadcrumb( $args = array() ) {
 
 			// If capable, include a link to edit the tag
 			if ( current_user_can( 'manage_topic_tags' ) ) {
-				$tag_data[] = '<a href="' . dps_get_topic_tag_edit_link() . '" class="bbp-edit-topic-tag-link">' . __( '(Edit)', 'barebones' ) . '</a>';
+				$tag_data[] = '<a href="' . dps_get_topic_tag_edit_link() . '" class="bbp-edit-topic-tag-link">' . __( '(Edit)', 'dps' ) . '</a>';
 			}
 
 			// Implode the results of the tag data
-			$pre_current_text = sprintf( __( 'Topic Tag: %s', 'barebones' ), implode( ' ', $tag_data ) );
+			$pre_current_text = sprintf( __( 'Topic Tag: %s', 'dps' ), implode( ' ', $tag_data ) );
 
 		// Edit Topic Tag
 		} elseif ( dps_is_topic_tag_edit() ) {
-			$pre_current_text = __( 'Edit', 'barebones' );
+			$pre_current_text = __( 'Edit', 'dps' );
 
 		// Single
 		} else {
@@ -2164,7 +2164,7 @@ function dps_breadcrumb( $args = array() ) {
 			'after'           => '</p></div>',
 
 			// Separator
-			'sep'             => is_rtl() ? __( '&lsaquo;', 'barebones' ) : __( '&rsaquo;', 'barebones' ),
+			'sep'             => is_rtl() ? __( '&lsaquo;', 'dps' ) : __( '&rsaquo;', 'dps' ),
 			'pad_sep'         => 1,
 			'sep_before'      => '<span class="bbp-breadcrumb-sep">',
 			'sep_after'       => '</span>',
@@ -2257,11 +2257,11 @@ function dps_breadcrumb( $args = array() ) {
 
 		// Edit topic tag
 		} elseif ( dps_is_topic_tag_edit() ) {
-			$crumbs[] = '<a href="' . get_term_link( dps_get_topic_tag_id(), dps_get_topic_tag_tax_id() ) . '" class="bbp-breadcrumb-topic-tag">' . sprintf( __( 'Topic Tag: %s', 'barebones' ), dps_get_topic_tag_name() ) . '</a>';
+			$crumbs[] = '<a href="' . get_term_link( dps_get_topic_tag_id(), dps_get_topic_tag_tax_id() ) . '" class="bbp-breadcrumb-topic-tag">' . sprintf( __( 'Topic Tag: %s', 'dps' ), dps_get_topic_tag_name() ) . '</a>';
 
 		// Search
 		} elseif ( dps_is_search() && dps_get_search_terms() ) {
-			$crumbs[] = '<a href="' . home_url( dps_get_search_slug() ) . '" class="bbp-breadcrumb-search">' . __( 'Search', 'barebones' ) . '</a>';
+			$crumbs[] = '<a href="' . home_url( dps_get_search_slug() ) . '" class="bbp-breadcrumb-search">' . __( 'Search', 'dps' ) . '</a>';
 		}
 
 		/** Current ***********************************************************/
@@ -2365,8 +2365,8 @@ function dps_template_notices() {
 	// Define local variable(s)
 	$errors = $messages = array();
 
-	// Get barebones
-	$bbp = barebones();
+	// Get showcase
+	$bbp = showcase();
 
 	// Loop through notices
 	foreach ( $bbp->errors->get_error_codes() as $code ) {
@@ -2432,13 +2432,13 @@ function dps_logout_link( $redirect_to = '' ) {
 	 * @return string The logout link
 	 */
 	function dps_get_logout_link( $redirect_to = '' ) {
-		return apply_filters( 'dps_get_logout_link', '<a href="' . wp_logout_url( $redirect_to ) . '" class="button logout-link">' . __( 'Log Out', 'barebones' ) . '</a>', $redirect_to );
+		return apply_filters( 'dps_get_logout_link', '<a href="' . wp_logout_url( $redirect_to ) . '" class="button logout-link">' . __( 'Log Out', 'dps' ) . '</a>', $redirect_to );
 	}
 
 /** Title *********************************************************************/
 
 /**
- * Custom page title for barebones pages
+ * Custom page title for showcase pages
  *
  * @since Showcase (1.0)
  *
@@ -2485,11 +2485,11 @@ function dps_title( $title = '', $sep = '&raquo;', $seplocation = '' ) {
 
 	// Forum page
 	} elseif ( dps_is_single_forum() ) {
-		$title = sprintf( __( 'Forum: %s', 'barebones' ), dps_get_forum_title() );
+		$title = sprintf( __( 'Forum: %s', 'dps' ), dps_get_forum_title() );
 
 	// Topic page
 	} elseif ( dps_is_single_topic() ) {
-		$title = sprintf( __( 'Topic: %s', 'barebones' ), dps_get_topic_title() );
+		$title = sprintf( __( 'Topic: %s', 'dps' ), dps_get_topic_title() );
 
 	// Replies
 	} elseif ( dps_is_single_reply() ) {
@@ -2498,7 +2498,7 @@ function dps_title( $title = '', $sep = '&raquo;', $seplocation = '' ) {
 	// Topic tag page (or edit)
 	} elseif ( dps_is_topic_tag() || dps_is_topic_tag_edit() || get_query_var( 'dps_topic_tag' ) ) {
 		$term  = get_queried_object();
-		$title = sprintf( __( 'Topic Tag: %s', 'barebones' ), $term->name );
+		$title = sprintf( __( 'Topic Tag: %s', 'dps' ), $term->name );
 
 	/** Users *****************************************************************/
 
@@ -2507,12 +2507,12 @@ function dps_title( $title = '', $sep = '&raquo;', $seplocation = '' ) {
 
 		// Current users profile
 		if ( dps_is_user_home() ) {
-			$title = __( 'Your Profile', 'barebones' );
+			$title = __( 'Your Profile', 'dps' );
 
 		// Other users profile
 		} else {
 			$userdata = get_userdata( dps_get_user_id() );
-			$title    = sprintf( __( '%s\'s Profile', 'barebones' ), $userdata->display_name );
+			$title    = sprintf( __( '%s\'s Profile', 'dps' ), $userdata->display_name );
 		}
 
 	// Profile edit page
@@ -2520,19 +2520,19 @@ function dps_title( $title = '', $sep = '&raquo;', $seplocation = '' ) {
 
 		// Current users profile
 		if ( dps_is_user_home_edit() ) {
-			$title = __( 'Edit Your Profile', 'barebones' );
+			$title = __( 'Edit Your Profile', 'dps' );
 
 		// Other users profile
 		} else {
 			$userdata = get_userdata( dps_get_user_id() );
-			$title    = sprintf( __( 'Edit %s\'s Profile', 'barebones' ), $userdata->display_name );
+			$title    = sprintf( __( 'Edit %s\'s Profile', 'dps' ), $userdata->display_name );
 		}
 
 	/** Views *****************************************************************/
 
 	// Views
 	} elseif ( dps_is_single_view() ) {
-		$title = sprintf( __( 'View: %s', 'barebones' ), dps_get_view_title() );
+		$title = sprintf( __( 'View: %s', 'dps' ), dps_get_view_title() );
 
 	/** Search ****************************************************************/
 

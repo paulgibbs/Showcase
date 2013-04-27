@@ -6,13 +6,13 @@
  * @package Showcase
  * @subpackage Core
  *
- * This file contains the filters that are used through-out barebones. They are
+ * This file contains the filters that are used through-out showcase. They are
  * consolidated here to make searching for them easier, and to help developers
  * understand at a glance the order in which things occur.
  *
  * There are a few common places that additional filters can currently be found
  *
- *  - barebones: In {@link Showcase::setup_actions()} in barebones.php
+ *  - showcase: In {@link Showcase::setup_actions()} in showcase.php
  *  - Admin: More in {@link BB_Admin::setup_actions()} in admin.php
  *
  * @see /core/actions.php
@@ -22,20 +22,20 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
- * Attach barebones to WordPress
+ * Attach showcase to WordPress
  *
  * Showcase uses its own internal actions to help aid in third-party plugin
  * development, and to limit the amount of potential future code changes when
  * updates to WordPress core occur.
  *
  * These actions exist to create the concept of 'plugin dependencies'. They
- * provide a safe way for plugins to execute code *only* when barebones is
+ * provide a safe way for plugins to execute code *only* when showcase is
  * installed and activated, without needing to do complicated guesswork.
  *
  * For more information on how this works, see the 'Plugin Dependency' section
  * near the bottom of this file.
  *
- *           v--WordPress Actions       v--barebones Sub-actions
+ *           v--WordPress Actions       v--showcase Sub-actions
  */
 add_filter( 'request',                 'dps_request',            10    );
 add_filter( 'template_include',        'dps_template_include',   10    );
@@ -51,7 +51,7 @@ add_filter( 'plugin_locale',           'dps_plugin_locale',      10, 2 );
 // Fix post author id for anonymous posts (set it back to 0) when the post status is changed
 add_filter( 'wp_insert_post_data', 'dps_fix_post_author', 30, 2 );
 
-// Force comments_status on barebones post types
+// Force comments_status on showcase post types
 add_filter( 'comments_open', 'dps_force_comment_status' );
 
 // Add post_parent__in to posts_where
@@ -72,14 +72,14 @@ add_filter( 'dps_request', 'dps_request_feed_trap' );
 /**
  * Template Compatibility
  *
- * If you want to completely bypass this and manage your own custom barebones
+ * If you want to completely bypass this and manage your own custom showcase
  * template hierarchy, start here by removing this filter, then look at how
  * dps_template_include() works and do something similar. :)
  */
 add_filter( 'dps_template_include',   'dps_template_include_theme_supports', 2, 1 );
 add_filter( 'dps_template_include',   'dps_template_include_theme_compat',   4, 2 );
 
-// Filter barebones template locations
+// Filter showcase template locations
 add_filter( 'dps_get_template_stack', 'dps_add_template_stack_locations'          );
 
 // Links
@@ -242,7 +242,7 @@ add_filter( 'dps_map_meta_caps', 'dps_map_topic_tag_meta_caps', 10, 4 ); // Topi
  * @return type
  */
 function _dps_filter_locale( $locale = '' ) {
-	return apply_filters( 'barebones_locale', $locale );
+	return apply_filters( 'showcase_locale', $locale );
 }
 add_filter( 'dps_plugin_locale', '_dps_filter_locale', 10, 1 );
 

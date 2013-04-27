@@ -12,7 +12,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 if ( !class_exists( 'BB_Users_Admin' ) ) :
 /**
- * Loads barebones users admin area
+ * Loads showcase users admin area
  *
  * @package Showcase
  * @subpackage Administration
@@ -21,7 +21,7 @@ if ( !class_exists( 'BB_Users_Admin' ) ) :
 class BB_Users_Admin {
 
 	/**
-	 * The barebones users admin loader
+	 * The showcase users admin loader
 	 *
 	 * @since Showcase (1.0)
 	 *
@@ -79,12 +79,12 @@ class BB_Users_Admin {
 		if ( ! dps_is_user_keymaster() )
 			unset( $dynamic_roles[ dps_get_keymaster_role() ] ); ?>
 
-		<h3><?php _e( 'Forums', 'barebones' ); ?></h3>
+		<h3><?php _e( 'Forums', 'dps' ); ?></h3>
 
 		<table class="form-table">
 			<tbody>
 				<tr>
-					<th><label for="bbp-forums-role"><?php _e( 'Forum Role', 'barebones' ); ?></label></th>
+					<th><label for="bbp-forums-role"><?php _e( 'Forum Role', 'dps' ); ?></label></th>
 					<td>
 
 						<?php $user_role = dps_get_user_role( $profileuser->ID ); ?>
@@ -93,11 +93,11 @@ class BB_Users_Admin {
 
 							<?php if ( ! empty( $user_role ) ) : ?>
 
-								<option value=""><?php _e( '&mdash; No role for these forums &mdash;', 'barebones' ); ?></option>
+								<option value=""><?php _e( '&mdash; No role for these forums &mdash;', 'dps' ); ?></option>
 
 							<?php else : ?>
 
-								<option value="" selected="selected"><?php _e( '&mdash; No role for these forums &mdash;', 'barebones' ); ?></option>
+								<option value="" selected="selected"><?php _e( '&mdash; No role for these forums &mdash;', 'dps' ); ?></option>
 
 							<?php endif; ?>
 
@@ -135,13 +135,13 @@ class BB_Users_Admin {
 		if ( ! dps_is_user_keymaster() )
 			unset( $dynamic_roles[ dps_get_keymaster_role() ] ); ?>
 
-		<label class="screen-reader-text" for="bbp-new-role"><?php _e( 'Change forum role to&hellip;', 'barebones' ) ?></label>
+		<label class="screen-reader-text" for="bbp-new-role"><?php _e( 'Change forum role to&hellip;', 'dps' ) ?></label>
 		<select name="bbp-new-role" id="bbp-new-role" style="display:inline-block; float:none;">
-			<option value=''><?php _e( 'Change forum role to&hellip;', 'barebones' ) ?></option>
+			<option value=''><?php _e( 'Change forum role to&hellip;', 'dps' ) ?></option>
 			<?php foreach ( $dynamic_roles as $role => $details ) : ?>
 				<option value="<?php echo esc_attr( $role ); ?>"><?php echo translate_user_role( $details['name'] ); ?></option>
 			<?php endforeach; ?>
-		</select><?php submit_button( __( 'Change', 'barebones' ), 'secondary', 'bbp-change-role', false );
+		</select><?php submit_button( __( 'Change', 'dps' ), 'secondary', 'bbp-change-role', false );
 	}
 
 	/**
@@ -164,7 +164,7 @@ class BB_Users_Admin {
 		if ( empty( $_REQUEST['users'] ) )
 			return;
 
-		// Bail if this isn't a barebones action
+		// Bail if this isn't a showcase action
 		if ( empty( $_REQUEST['bbp-new-role'] ) || empty( $_REQUEST['bbp-change-role'] ) )
 			return;
 
@@ -209,8 +209,8 @@ class BB_Users_Admin {
 	 * @return array $columns
 	 */
 	public static function user_role_column( $columns = array() ) {
-		$columns['role']          = __( 'Site Role',  'barebones' );
-		$columns['dps_user_role'] = __( 'Forum Role', 'barebones' );
+		$columns['role']          = __( 'Site Role',  'showcase' );
+		$columns['dps_user_role'] = __( 'Forum Role', 'dps' );
 
 		return $columns;
 	}
@@ -224,11 +224,11 @@ class BB_Users_Admin {
 	 * @param string $column_name
 	 * @param int $user_id
 	 *
-	 * @return string Displayable barebones user role
+	 * @return string Displayable showcase user role
 	 */
 	public static function user_role_row( $retval = '', $column_name = '', $user_id = 0 ) {
 
-		// Only looking for barebones's user role column
+		// Only looking for showcase's user role column
 		if ( 'dps_user_role' == $column_name ) {
 
 			// Get the users role

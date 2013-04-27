@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Do not put custom themes here. They will be deleted on barebones updates.
+ * Do not put custom themes here. They will be deleted on showcase updates.
  *
- * Keep custom barebones themes in /wp-content/themes/
+ * Keep custom showcase themes in /wp-content/themes/
  */

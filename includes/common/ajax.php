@@ -14,7 +14,7 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
- * Output the URL to use for theme-side barebones AJAX requests
+ * Output the URL to use for theme-side showcase AJAX requests
  *
  * @since Showcase (1.0)
  *
@@ -24,7 +24,7 @@ function dps_ajax_url() {
 	echo dps_get_ajax_url();
 }
 	/**
-	 * Return the URL to use for theme-side barebones AJAX requests
+	 * Return the URL to use for theme-side showcase AJAX requests
 	 *
 	 * @since Showcase (1.0)
 	 *
@@ -41,7 +41,7 @@ function dps_ajax_url() {
 	}
 
 /**
- * Is this a barebones AJAX request?
+ * Is this a showcase AJAX request?
  *
  * @since Showcase (1.0)
  *
@@ -52,12 +52,12 @@ function dps_is_ajax() {
 }
 
 /**
- * Hooked to the 'dps_template_redirect' action, this is barebones's custom
+ * Hooked to the 'dps_template_redirect' action, this is showcase's custom
  * theme-side ajax handler.
  *
  * @since Showcase (1.0)
  *
- * @return If not a barebones ajax request
+ * @return If not a showcase ajax request
  */
 function dps_do_ajax() {
 
@@ -74,7 +74,7 @@ function dps_do_ajax() {
 	// Disable content sniffing in browsers that support it
 	send_nosniff_header();
 
-	// Perform custom barebones ajax
+	// Perform custom showcase ajax
 	do_action( 'dps_ajax_' . $_REQUEST['action'] );
 
 	// All done

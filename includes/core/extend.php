@@ -3,7 +3,7 @@
 /**
  * Showcase Extentions
  *
- * There's a world of really cool plugins out there, and barebones comes with
+ * There's a world of really cool plugins out there, and showcase comes with
  * support for some of the most popular ones.
  *
  * @package Showcase
@@ -14,11 +14,11 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 /**
- * Loads Akismet inside the barebones global class
+ * Loads Akismet inside the showcase global class
  *
  * @since Showcase (1.0)
  *
- * @return If barebones is not active
+ * @return If showcase is not active
  */
 function dps_setup_akismet() {
 
@@ -29,10 +29,10 @@ function dps_setup_akismet() {
 	if ( !dps_is_akismet_active() ) return;
 
 	// Include the Akismet Component
-	require( barebones()->includes_dir . 'extend/akismet.php' );
+	require( showcase()->includes_dir . 'extend/akismet.php' );
 
-	// Instantiate Akismet for barebones
-	barebones()->extend->akismet = new BB_Akismet();
+	// Instantiate Akismet for showcase
+	showcase()->extend->akismet = new BB_Akismet();
 }
 
 /**
@@ -62,8 +62,8 @@ function dps_setup_buddypress() {
 		return;
 
 	// Include the BuddyPress Component
-	require( barebones()->includes_dir . 'extend/buddypress/loader.php' );
+	require( showcase()->includes_dir . 'extend/buddypress/loader.php' );
 
-	// Instantiate BuddyPress for barebones
-	barebones()->extend->buddypress = new BB_Forums_Component();
+	// Instantiate BuddyPress for showcase
+	showcase()->extend->buddypress = new BB_Forums_Component();
 }

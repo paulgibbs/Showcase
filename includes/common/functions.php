@@ -16,7 +16,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 /** Formatting ****************************************************************/
 
 /**
- * A barebones specific method of formatting numeric values
+ * A showcase specific method of formatting numeric values
  *
  * @since Showcase (1.0)
  *
@@ -36,7 +36,7 @@ function dps_number_format( $number = 0, $decimals = false, $dec_point = '.', $t
 }
 
 /**
- * A barebones specific method of formatting numeric values
+ * A showcase specific method of formatting numeric values
  *
  * @since Showcase (1.0)
  *
@@ -107,19 +107,19 @@ function dps_time_since( $older_date, $newer_date = false ) {
 	function dps_get_time_since( $older_date, $newer_date = false ) {
 
 		// Setup the strings
-		$unknown_text   = apply_filters( 'dps_core_time_since_unknown_text',   __( 'sometime',  'barebones' ) );
-		$right_now_text = apply_filters( 'dps_core_time_since_right_now_text', __( 'right now', 'barebones' ) );
-		$ago_text       = apply_filters( 'dps_core_time_since_ago_text',       __( '%s ago',    'barebones' ) );
+		$unknown_text   = apply_filters( 'dps_core_time_since_unknown_text',   __( 'sometime',  'showcase' ) );
+		$right_now_text = apply_filters( 'dps_core_time_since_right_now_text', __( 'right now', 'dps' ) );
+		$ago_text       = apply_filters( 'dps_core_time_since_ago_text',       __( '%s ago',    'showcase' ) );
 
 		// array of time period chunks
 		$chunks = array(
-			array( 60 * 60 * 24 * 365 , __( 'year',   'barebones' ), __( 'years',   'barebones' ) ),
-			array( 60 * 60 * 24 * 30 ,  __( 'month',  'barebones' ), __( 'months',  'barebones' ) ),
-			array( 60 * 60 * 24 * 7,    __( 'week',   'barebones' ), __( 'weeks',   'barebones' ) ),
-			array( 60 * 60 * 24 ,       __( 'day',    'barebones' ), __( 'days',    'barebones' ) ),
-			array( 60 * 60 ,            __( 'hour',   'barebones' ), __( 'hours',   'barebones' ) ),
-			array( 60 ,                 __( 'minute', 'barebones' ), __( 'minutes', 'barebones' ) ),
-			array( 1,                   __( 'second', 'barebones' ), __( 'seconds', 'barebones' ) )
+			array( 60 * 60 * 24 * 365 , __( 'year',   'showcase' ), __( 'years',   'showcase' ) ),
+			array( 60 * 60 * 24 * 30 ,  __( 'month',  'showcase' ), __( 'months',  'showcase' ) ),
+			array( 60 * 60 * 24 * 7,    __( 'week',   'showcase' ), __( 'weeks',   'showcase' ) ),
+			array( 60 * 60 * 24 ,       __( 'day',    'showcase' ), __( 'days',    'showcase' ) ),
+			array( 60 * 60 ,            __( 'hour',   'showcase' ), __( 'hours',   'showcase' ) ),
+			array( 60 ,                 __( 'minute', 'dps' ), __( 'minutes', 'dps' ) ),
+			array( 1,                   __( 'second', 'dps' ), __( 'seconds', 'dps' ) )
 		);
 
 		if ( !empty( $older_date ) && !is_numeric( $older_date ) ) {
@@ -174,7 +174,7 @@ function dps_time_since( $older_date, $newer_date = false ) {
 
 					// Add to output var
 					if ( 0 != $count2 ) {
-						$output .= ( 1 == $count2 ) ? _x( ',', 'Separator in time since', 'barebones' ) . ' 1 '. $name2 : _x( ',', 'Separator in time since', 'barebones' ) . ' ' . $count2 . ' ' . $chunks[$i + 1][2];
+						$output .= ( 1 == $count2 ) ? _x( ',', 'Separator in time since', 'dps' ) . ' 1 '. $name2 : _x( ',', 'Separator in time since', 'dps' ) . ' ' . $count2 . ' ' . $chunks[$i + 1][2];
 					}
 				}
 
@@ -231,7 +231,7 @@ function dps_format_revision_reason( $reason = '' ) {
 /**
  * Return the unescaped redirect_to request value
  *
- * @barebones (r4655)
+ * @showcase (r4655)
  *
  * @return string The URL to redirect to, if set
  */
@@ -507,9 +507,9 @@ function dps_get_statistics( $args = '' ) {
 			$topic_count_hidden = $topics['private'] + $topics['spammed'] + $topics['trashed'];
 
 			// Generate the hidden topic count's title attribute
-			$topic_titles[] = !empty( $topics['private'] ) ? sprintf( __( 'Private: %s', 'barebones' ), number_format_i18n( $topics['private'] ) ) : '';
-			$topic_titles[] = !empty( $topics['spammed'] ) ? sprintf( __( 'Spammed: %s', 'barebones' ), number_format_i18n( $topics['spammed'] ) ) : '';
-			$topic_titles[] = !empty( $topics['trashed'] ) ? sprintf( __( 'Trashed: %s', 'barebones' ), number_format_i18n( $topics['trashed'] ) ) : '';
+			$topic_titles[] = !empty( $topics['private'] ) ? sprintf( __( 'Private: %s', 'dps' ), number_format_i18n( $topics['private'] ) ) : '';
+			$topic_titles[] = !empty( $topics['spammed'] ) ? sprintf( __( 'Spammed: %s', 'dps' ), number_format_i18n( $topics['spammed'] ) ) : '';
+			$topic_titles[] = !empty( $topics['trashed'] ) ? sprintf( __( 'Trashed: %s', 'dps' ), number_format_i18n( $topics['trashed'] ) ) : '';
 
 			// Compile the hidden topic title
 			$hidden_topic_title = implode( ' | ', array_filter( $topic_titles ) );
@@ -539,9 +539,9 @@ function dps_get_statistics( $args = '' ) {
 			$reply_count_hidden = $replies['private'] + $replies['spammed'] + $replies['trashed'];
 
 			// Generate the hidden topic count's title attribute
-			$reply_titles[] = !empty( $replies['private'] ) ? sprintf( __( 'Private: %s', 'barebones' ), number_format_i18n( $replies['private'] ) ) : '';
-			$reply_titles[] = !empty( $replies['spammed'] ) ? sprintf( __( 'Spammed: %s', 'barebones' ), number_format_i18n( $replies['spammed'] ) ) : '';
-			$reply_titles[] = !empty( $replies['trashed'] ) ? sprintf( __( 'Trashed: %s', 'barebones' ), number_format_i18n( $replies['trashed'] ) ) : '';
+			$reply_titles[] = !empty( $replies['private'] ) ? sprintf( __( 'Private: %s', 'dps' ), number_format_i18n( $replies['private'] ) ) : '';
+			$reply_titles[] = !empty( $replies['spammed'] ) ? sprintf( __( 'Spammed: %s', 'dps' ), number_format_i18n( $replies['spammed'] ) ) : '';
+			$reply_titles[] = !empty( $replies['trashed'] ) ? sprintf( __( 'Trashed: %s', 'dps' ), number_format_i18n( $replies['trashed'] ) ) : '';
 
 			// Compile the hidden replies title
 			$hidden_reply_title = implode( ' | ', array_filter( $reply_titles ) );
@@ -593,7 +593,7 @@ function dps_get_statistics( $args = '' ) {
  * Note that dps_pre_anonymous_filters() is responsible for sanitizing each
  * of the filtered core anonymous values here.
  *
- * If there are any errors, those are directly added to {@link barebones:errors}
+ * If there are any errors, those are directly added to {@link showcase:errors}
  *
  * @since Showcase (1.0)
  *
@@ -619,11 +619,11 @@ function dps_filter_anonymous_post_data( $args = '' ) {
 	// Filter variables and add errors if necessary
 	$r['dps_anonymous_name'] = apply_filters( 'dps_pre_anonymous_post_author_name',  $r['dps_anonymous_name']  );
 	if ( empty( $r['dps_anonymous_name'] ) )
-		dps_add_error( 'dps_anonymous_name',  __( '<strong>ERROR</strong>: Invalid author name submitted!',   'barebones' ) );
+		dps_add_error( 'dps_anonymous_name',  __( '<strong>ERROR</strong>: Invalid author name submitted!',   'showcase' ) );
 
 	$r['dps_anonymous_email'] = apply_filters( 'dps_pre_anonymous_post_author_email', $r['dps_anonymous_email'] );
 	if ( empty( $r['dps_anonymous_email'] ) )
-		dps_add_error( 'dps_anonymous_email', __( '<strong>ERROR</strong>: Invalid email address submitted!', 'barebones' ) );
+		dps_add_error( 'dps_anonymous_email', __( '<strong>ERROR</strong>: Invalid email address submitted!', 'dps' ) );
 
 	// Website is optional
 	$r['dps_anonymous_website'] = apply_filters( 'dps_pre_anonymous_post_author_website', $r['dps_anonymous_website'] );
@@ -1074,7 +1074,7 @@ Post Link: %3$s
 
 You are receiving this email because you subscribed to a forum topic.
 
-Login and visit the topic to unsubscribe from these emails.', 'barebones' ),
+Login and visit the topic to unsubscribe from these emails.', 'dps' ),
 
 			$reply_author_name,
 			$reply_content,
@@ -1142,7 +1142,7 @@ function dps_logout_url( $url = '', $redirect_to = '' ) {
 /**
  * Merge user defined arguments into defaults array.
  *
- * This function is used throughout barebones to allow for either a string or array
+ * This function is used throughout showcase to allow for either a string or array
  * to be merged into another array. It is identical to wp_parse_args() except
  * it allows for arguments to be passively or aggressively filtered using the
  * optional $filter_key parameter.
@@ -1254,10 +1254,10 @@ function dps_get_public_child_last_id( $parent_id = 0, $post_type = 'post' ) {
 	$post_status = "'" . join( "', '", $post_status ) . "'";
 
 	// Check for cache and set if needed
-	$child_id = wp_cache_get( $cache_id, 'barebones_posts' );
+	$child_id = wp_cache_get( $cache_id, 'showcase_posts' );
 	if ( empty( $child_id ) ) {
 		$child_id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_parent = %d AND post_status IN ( {$post_status} ) AND post_type = '%s' ORDER BY ID DESC LIMIT 1;", $parent_id, $post_type ) );
-		wp_cache_set( $cache_id, $child_id, 'barebones_posts' );
+		wp_cache_set( $cache_id, $child_id, 'showcase_posts' );
 	}
 
 	// Filter and return
@@ -1297,10 +1297,10 @@ function dps_get_public_child_count( $parent_id = 0, $post_type = 'post' ) {
 	$post_status = "'" . join( "', '", $post_status ) . "'";
 
 	// Check for cache and set if needed
-	$child_count = wp_cache_get( $cache_id, 'barebones_posts' );
+	$child_count = wp_cache_get( $cache_id, 'showcase_posts' );
 	if ( empty( $child_count ) ) {
 		$child_count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(ID) FROM {$wpdb->posts} WHERE post_parent = %d AND post_status IN ( {$post_status} ) AND post_type = '%s';", $parent_id, $post_type ) );
-		wp_cache_set( $cache_id, $child_count, 'barebones_posts' );
+		wp_cache_set( $cache_id, $child_count, 'showcase_posts' );
 	}
 
 	// Filter and return
@@ -1340,10 +1340,10 @@ function dps_get_public_child_ids( $parent_id = 0, $post_type = 'post' ) {
 	$post_status = "'" . join( "', '", $post_status ) . "'";
 
 	// Check for cache and set if needed
-	$child_ids = wp_cache_get( $cache_id, 'barebones_posts' );
+	$child_ids = wp_cache_get( $cache_id, 'showcase_posts' );
 	if ( empty( $child_ids ) ) {
 		$child_ids = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_parent = %d AND post_status IN ( {$post_status} ) AND post_type = '%s' ORDER BY ID DESC;", $parent_id, $post_type ) );
-		wp_cache_set( $cache_id, $child_ids, 'barebones_posts' );
+		wp_cache_set( $cache_id, $child_ids, 'showcase_posts' );
 	}
 
 	// Filter and return
@@ -1401,10 +1401,10 @@ function dps_get_all_child_ids( $parent_id = 0, $post_type = 'post' ) {
 	$post_status = "'" . join( "', '", $post_status ) . "'";
 
 	// Check for cache and set if needed
-	$child_ids = wp_cache_get( $cache_id, 'barebones_posts' );
+	$child_ids = wp_cache_get( $cache_id, 'showcase_posts' );
 	if ( empty( $child_ids ) ) {
 		$child_ids = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_parent = %d AND post_status IN ( {$post_status} ) AND post_type = '%s' ORDER BY ID DESC;", $parent_id, $post_type ) );
-		wp_cache_set( $cache_id, $child_ids, 'barebones_posts' );
+		wp_cache_set( $cache_id, $child_ids, 'showcase_posts' );
 	}
 
 	// Filter and return
@@ -1479,7 +1479,7 @@ function dps_verify_nonce_request( $action = '', $query_arg = '_wpnonce' ) {
 /**
  * This function is hooked into the WordPress 'request' action and is
  * responsible for sniffing out the query vars and serving up RSS2 feeds if
- * the stars align and the user has requested a feed of any barebones type.
+ * the stars align and the user has requested a feed of any showcase type.
  *
  * @since Showcase (1.0)
  *
@@ -1511,7 +1511,7 @@ function dps_request_feed_trap( $query_vars = array() ) {
 			// Remove any empties
 			$select_query_vars = array_filter( $select_query_vars );
 
-			// What barebones post type are we looking for feeds on?
+			// What showcase post type are we looking for feeds on?
 			switch ( $query_vars['post_type'] ) {
 
 				// Forum
@@ -1717,7 +1717,7 @@ function dps_set_404() {
 	global $wp_query;
 
 	if ( ! isset( $wp_query ) ) {
-		_doing_it_wrong( __FUNCTION__, __( 'Conditional query tags do not work before the query is run. Before then, they always return false.', 'barebones' ), '3.1' );
+		_doing_it_wrong( __FUNCTION__, __( 'Conditional query tags do not work before the query is run. Before then, they always return false.', 'dps' ), '3.1' );
 		return false;
 	}
 

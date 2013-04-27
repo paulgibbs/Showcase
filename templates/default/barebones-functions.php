@@ -19,7 +19,7 @@ if ( !class_exists( 'BB_Default' ) ) :
  * Loads Showcase default theme functionality
  *
  * This is not a real theme by WordPress standards, and is instead used as the
- * fallback for any WordPress theme that does not have barebones templates in it.
+ * fallback for any WordPress theme that does not have showcase templates in it.
  *
  * To make your custom theme Showcase compatible and customize the templates, you
  * can copy these files into your theme without needing to merge anything
@@ -63,9 +63,9 @@ class BB_Default extends BB_Theme_Compat {
 	 * @access private
 	 */
 	private function setup_globals() {
-		$bbp           = barebones();
+		$bbp           = showcase();
 		$this->id      = 'default';
-		$this->name    = __( 'Showcase Default', 'barebones' );
+		$this->name    = __( 'Showcase Default', 'dps' );
 		$this->version = dps_get_version();
 		$this->dir     = trailingslashit( $bbp->themes_dir . 'default' );
 		$this->url     = trailingslashit( $bbp->themes_url . 'default' );
@@ -103,22 +103,22 @@ class BB_Default extends BB_Theme_Compat {
 	public function enqueue_styles() {
 
 		// LTR or RTL
-		$file = is_rtl() ? 'css/barebones-rtl.css' : 'css/barebones.css';
+		$file = is_rtl() ? 'css/showcase-rtl.css' : 'css/showcase.css';
 
 		// Check child theme
 		if ( file_exists( trailingslashit( get_stylesheet_directory() ) . $file ) ) {
 			$location = trailingslashit( get_stylesheet_directory_uri() );
-			$handle   = 'bb-child-barebones';
+			$handle   = 'bb-child-showcase';
 
 		// Check parent theme
 		} elseif ( file_exists( trailingslashit( get_template_directory() ) . $file ) ) {
 			$location = trailingslashit( get_template_directory_uri() );
-			$handle   = 'bb-parent-barebones';
+			$handle   = 'bb-parent-showcase';
 
 		// Showcase theme compatibility
 		} else {
 			$location = trailingslashit( $this->url );
-			$handle   = 'bb-default-barebones';
+			$handle   = 'bb-default-showcase';
 		}
 
 		// Enqueue the Showcase styling
@@ -135,7 +135,7 @@ class BB_Default extends BB_Theme_Compat {
 	 * @uses wp_enqueue_script() To enqueue the scripts
 	 */
 	public function enqueue_scripts() {
-		$file = 'js/barebones.js';
+		$file = 'js/showcase.js';
 
 		// Check child theme
 		if ( file_exists( trailingslashit( get_stylesheet_directory() ) . $file ) ) {

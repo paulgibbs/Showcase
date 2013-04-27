@@ -115,7 +115,7 @@ function dps_new_forum_handler( $action = '' ) {
 
 	// Nonce check
 	if ( ! dps_verify_nonce_request( 'bbp-new-forum' ) ) {
-		dps_add_error( 'dps_new_forum_nonce', __( '<strong>ERROR</strong>: Are you sure you wanted to do that?', 'barebones' ) );
+		dps_add_error( 'dps_new_forum_nonce', __( '<strong>ERROR</strong>: Are you sure you wanted to do that?', 'dps' ) );
 		return;
 	}
 
@@ -128,7 +128,7 @@ function dps_new_forum_handler( $action = '' ) {
 
 	// User cannot create forums
 	if ( !current_user_can( 'publish_forums' ) ) {
-		dps_add_error( 'dps_forum_permissions', __( '<strong>ERROR</strong>: You do not have permission to create new forums.', 'barebones' ) );
+		dps_add_error( 'dps_forum_permissions', __( '<strong>ERROR</strong>: You do not have permission to create new forums.', 'dps' ) );
 		return;
 	}
 
@@ -151,7 +151,7 @@ function dps_new_forum_handler( $action = '' ) {
 
 	// No forum title
 	if ( empty( $forum_title ) )
-		dps_add_error( 'dps_forum_title', __( '<strong>ERROR</strong>: Your forum needs a title.', 'barebones' ) );
+		dps_add_error( 'dps_forum_title', __( '<strong>ERROR</strong>: Your forum needs a title.', 'dps' ) );
 
 	/** Forum Content *********************************************************/
 
@@ -163,7 +163,7 @@ function dps_new_forum_handler( $action = '' ) {
 
 	// No forum content
 	if ( empty( $forum_content ) )
-		dps_add_error( 'dps_forum_content', __( '<strong>ERROR</strong>: Your forum description cannot be empty.', 'barebones' ) );
+		dps_add_error( 'dps_forum_content', __( '<strong>ERROR</strong>: Your forum description cannot be empty.', 'dps' ) );
 
 	/** Forum Parent **********************************************************/
 
@@ -176,46 +176,46 @@ function dps_new_forum_handler( $action = '' ) {
 
 	// No forum parent was passed (should never happen)
 	if ( empty( $forum_parent_id ) ) {
-		dps_add_error( 'dps_new_forum_missing_parent', __( '<strong>ERROR</strong>: Your forum must have a parent.', 'barebones' ) );
+		dps_add_error( 'dps_new_forum_missing_parent', __( '<strong>ERROR</strong>: Your forum must have a parent.', 'dps' ) );
 
 	// Forum exists
 	} elseif ( !empty( $forum_parent_id ) ) {
 
 		// Forum is a category
 		if ( dps_is_forum_category( $forum_parent_id ) ) {
-			dps_add_error( 'dps_new_forum_forum_category', __( '<strong>ERROR</strong>: This forum is a category. No forums can be created in this forum.', 'barebones' ) );
+			dps_add_error( 'dps_new_forum_forum_category', __( '<strong>ERROR</strong>: This forum is a category. No forums can be created in this forum.', 'dps' ) );
 		}
 
 		// Forum is closed and user cannot access
 		if ( dps_is_forum_closed( $forum_parent_id ) && !current_user_can( 'edit_forum', $forum_parent_id ) ) {
-			dps_add_error( 'dps_new_forum_forum_closed', __( '<strong>ERROR</strong>: This forum has been closed to new forums.', 'barebones' ) );
+			dps_add_error( 'dps_new_forum_forum_closed', __( '<strong>ERROR</strong>: This forum has been closed to new forums.', 'dps' ) );
 		}
 
 		// Forum is private and user cannot access
 		if ( dps_is_forum_private( $forum_parent_id ) && !current_user_can( 'read_private_forums' ) ) {
-			dps_add_error( 'dps_new_forum_forum_private', __( '<strong>ERROR</strong>: This forum is private and you do not have the capability to read or create new forums in it.', 'barebones' ) );
+			dps_add_error( 'dps_new_forum_forum_private', __( '<strong>ERROR</strong>: This forum is private and you do not have the capability to read or create new forums in it.', 'dps' ) );
 		}
 
 		// Forum is hidden and user cannot access
 		if ( dps_is_forum_hidden( $forum_parent_id ) && !current_user_can( 'read_hidden_forums' ) ) {
-			dps_add_error( 'dps_new_forum_forum_hidden', __( '<strong>ERROR</strong>: This forum is hidden and you do not have the capability to read or create new forums in it.', 'barebones' ) );
+			dps_add_error( 'dps_new_forum_forum_hidden', __( '<strong>ERROR</strong>: This forum is hidden and you do not have the capability to read or create new forums in it.', 'dps' ) );
 		}
 	}
 
 	/** Forum Flooding ********************************************************/
 
 	if ( !dps_check_for_flood( $anonymous_data, $forum_author ) )
-		dps_add_error( 'dps_forum_flood', __( '<strong>ERROR</strong>: Slow down; you move too fast.', 'barebones' ) );
+		dps_add_error( 'dps_forum_flood', __( '<strong>ERROR</strong>: Slow down; you move too fast.', 'dps' ) );
 
 	/** Forum Duplicate *******************************************************/
 
 	if ( !dps_check_for_duplicate( array( 'post_type' => dps_get_forum_post_type(), 'post_author' => $forum_author, 'post_content' => $forum_content, 'anonymous_data' => $anonymous_data ) ) )
-		dps_add_error( 'dps_forum_duplicate', __( '<strong>ERROR</strong>: This forum already exists.', 'barebones' ) );
+		dps_add_error( 'dps_forum_duplicate', __( '<strong>ERROR</strong>: This forum already exists.', 'dps' ) );
 
 	/** Forum Blacklist *******************************************************/
 
 	if ( !dps_check_for_blacklist( $anonymous_data, $forum_author, $forum_title, $forum_content ) )
-		dps_add_error( 'dps_forum_blacklist', __( '<strong>ERROR</strong>: Your forum cannot be created at this time.', 'barebones' ) );
+		dps_add_error( 'dps_forum_blacklist', __( '<strong>ERROR</strong>: Your forum cannot be created at this time.', 'dps' ) );
 
 	/** Forum Moderation ******************************************************/
 
@@ -328,7 +328,7 @@ function dps_new_forum_handler( $action = '' ) {
 	// Errors
 	} else {
 		$append_error = ( is_wp_error( $forum_id ) && $forum_id->get_error_message() ) ? $forum_id->get_error_message() . ' ' : '';
-		dps_add_error( 'dps_forum_error', __( '<strong>ERROR</strong>: The following problem(s) have been found with your forum:' . $append_error' 'barebones' ) );
+		dps_add_error( 'dps_forum_error', __( '<strong>ERROR</strong>: The following problem(s) have been found with your forum:' . $append_error' 'showcase' ) );
 	}
 }
 
@@ -336,7 +336,7 @@ function dps_new_forum_handler( $action = '' ) {
  * Handles the front end edit forum submission
  *
  * @param string $action The requested action to compare this function to
- * @uses barebones:errors::add() To log various error messages
+ * @uses showcase:errors::add() To log various error messages
  * @uses dps_get_forum() To get the forum
  * @uses dps_verify_nonce_request() To verify the nonce and check the request
  * @uses dps_is_forum_anonymous() To check if forum is by an anonymous user
@@ -380,7 +380,7 @@ function dps_edit_forum_handler( $action = '' ) {
 
 	// Forum id was not passed
 	if ( empty( $_POST['dps_forum_id'] ) ) {
-		dps_add_error( 'dps_edit_forum_id', __( '<strong>ERROR</strong>: Forum ID not found.', 'barebones' ) );
+		dps_add_error( 'dps_edit_forum_id', __( '<strong>ERROR</strong>: Forum ID not found.', 'dps' ) );
 		return;
 
 	// Forum id was passed
@@ -391,17 +391,17 @@ function dps_edit_forum_handler( $action = '' ) {
 
 	// Nonce check
 	if ( ! dps_verify_nonce_request( 'bbp-edit-forum_' . $forum_id ) ) {
-		dps_add_error( 'dps_edit_forum_nonce', __( '<strong>ERROR</strong>: Are you sure you wanted to do that?', 'barebones' ) );
+		dps_add_error( 'dps_edit_forum_nonce', __( '<strong>ERROR</strong>: Are you sure you wanted to do that?', 'dps' ) );
 		return;
 
 	// Forum does not exist
 	} elseif ( empty( $forum ) ) {
-		dps_add_error( 'dps_edit_forum_not_found', __( '<strong>ERROR</strong>: The forum you want to edit was not found.', 'barebones' ) );
+		dps_add_error( 'dps_edit_forum_not_found', __( '<strong>ERROR</strong>: The forum you want to edit was not found.', 'dps' ) );
 		return;
 
 	// User cannot edit this forum
 	} elseif ( !current_user_can( 'edit_forum', $forum_id ) ) {
-		dps_add_error( 'dps_edit_forum_permissions', __( '<strong>ERROR</strong>: You do not have permission to edit that forum.', 'barebones' ) );
+		dps_add_error( 'dps_edit_forum_permissions', __( '<strong>ERROR</strong>: You do not have permission to edit that forum.', 'dps' ) );
 		return;
 	}
 
@@ -426,17 +426,17 @@ function dps_edit_forum_handler( $action = '' ) {
 
 		// Forum is closed and user cannot access
 		if ( dps_is_forum_closed( $forum_parent_id ) && !current_user_can( 'edit_forum', $forum_parent_id ) ) {
-			dps_add_error( 'dps_edit_forum_forum_closed', __( '<strong>ERROR</strong>: This forum has been closed to new forums.', 'barebones' ) );
+			dps_add_error( 'dps_edit_forum_forum_closed', __( '<strong>ERROR</strong>: This forum has been closed to new forums.', 'dps' ) );
 		}
 
 		// Forum is private and user cannot access
 		if ( dps_is_forum_private( $forum_parent_id ) && !current_user_can( 'read_private_forums' ) ) {
-			dps_add_error( 'dps_edit_forum_forum_private', __( '<strong>ERROR</strong>: This forum is private and you do not have the capability to read or create new forums in it.', 'barebones' ) );
+			dps_add_error( 'dps_edit_forum_forum_private', __( '<strong>ERROR</strong>: This forum is private and you do not have the capability to read or create new forums in it.', 'dps' ) );
 		}
 
 		// Forum is hidden and user cannot access
 		if ( dps_is_forum_hidden( $forum_parent_id ) && !current_user_can( 'read_hidden_forums' ) ) {
-			dps_add_error( 'dps_edit_forum_forum_hidden', __( '<strong>ERROR</strong>: This forum is hidden and you do not have the capability to read or create new forums in it.', 'barebones' ) );
+			dps_add_error( 'dps_edit_forum_forum_hidden', __( '<strong>ERROR</strong>: This forum is hidden and you do not have the capability to read or create new forums in it.', 'dps' ) );
 		}
 	}
 
@@ -450,7 +450,7 @@ function dps_edit_forum_handler( $action = '' ) {
 
 	// No forum title
 	if ( empty( $forum_title ) )
-		dps_add_error( 'dps_edit_forum_title', __( '<strong>ERROR</strong>: Your forum needs a title.', 'barebones' ) );
+		dps_add_error( 'dps_edit_forum_title', __( '<strong>ERROR</strong>: Your forum needs a title.', 'dps' ) );
 
 	/** Forum Content *********************************************************/
 
@@ -462,12 +462,12 @@ function dps_edit_forum_handler( $action = '' ) {
 
 	// No forum content
 	if ( empty( $forum_content ) )
-		dps_add_error( 'dps_edit_forum_content', __( '<strong>ERROR</strong>: Your forum description cannot be empty.', 'barebones' ) );
+		dps_add_error( 'dps_edit_forum_content', __( '<strong>ERROR</strong>: Your forum description cannot be empty.', 'dps' ) );
 
 	/** Forum Blacklist *******************************************************/
 
 	if ( !dps_check_for_blacklist( $anonymous_data, dps_get_forum_author_id( $forum_id ), $forum_title, $forum_content ) )
-		dps_add_error( 'dps_forum_blacklist', __( '<strong>ERROR</strong>: Your forum cannot be edited at this time.', 'barebones' ) );
+		dps_add_error( 'dps_forum_blacklist', __( '<strong>ERROR</strong>: Your forum cannot be edited at this time.', 'dps' ) );
 
 	/** Forum Moderation ******************************************************/
 
@@ -575,7 +575,7 @@ function dps_edit_forum_handler( $action = '' ) {
 
 	} else {
 		$append_error = ( is_wp_error( $forum_id ) && $forum_id->get_error_message() ) ? $forum_id->get_error_message() . ' ' : '';
-		dps_add_error( 'dps_forum_error', __( '<strong>ERROR</strong>: The following problem(s) have been found with your forum:' . $append_error . 'Please try again.', 'barebones' ) );
+		dps_add_error( 'dps_forum_error', __( '<strong>ERROR</strong>: The following problem(s) have been found with your forum:' . $append_error . 'Please try again.', 'dps' ) );
 	}
 }
 
@@ -1794,7 +1794,7 @@ function dps_forum_query_last_reply_id( $forum_id, $topic_ids = 0 ) {
 	global $wpdb;
 
 	$cache_id = 'dps_get_forum_' . $forum_id . '_reply_id';
-	$reply_id = (int) wp_cache_get( $cache_id, 'barebones_posts' );
+	$reply_id = (int) wp_cache_get( $cache_id, 'showcase_posts' );
 
 	if ( empty( $reply_id ) ) {
 
@@ -1804,9 +1804,9 @@ function dps_forum_query_last_reply_id( $forum_id, $topic_ids = 0 ) {
 
 		if ( !empty( $topic_ids ) ) {
 			$reply_id = (int) $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_parent IN ( " . join( ',', $topic_ids ) . " ) AND post_status = '%s' AND post_type = '%s' ORDER BY ID DESC LIMIT 1;", dps_get_public_status_id(), dps_get_reply_post_type() ) );
-			wp_cache_set( $cache_id, $reply_id, 'barebones_posts' ); // May be (int) 0
+			wp_cache_set( $cache_id, $reply_id, 'showcase_posts' ); // May be (int) 0
 		} else {
-			wp_cache_set( $cache_id, '0', 'barebones_posts' );
+			wp_cache_set( $cache_id, '0', 'showcase_posts' );
 		}
 	}
 

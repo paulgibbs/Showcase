@@ -21,44 +21,44 @@ if ( !defined( 'ABSPATH' ) ) exit;
 function dps_admin_get_settings_sections() {
 	return (array) apply_filters( 'dps_admin_get_settings_sections', array(
 		'dps_settings_main' => array(
-			'title'    => __( 'Main Settings', 'barebones' ),
+			'title'    => __( 'Main Settings', 'dps' ),
 			'callback' => 'dps_admin_setting_callback_main_section',
-			'page'     => 'barebones',
+			'page'     => 'showcase',
 		),
 		'dps_settings_theme_compat' => array(
-			'title'    => __( 'Theme Packages', 'barebones' ),
+			'title'    => __( 'Theme Packages', 'dps' ),
 			'callback' => 'dps_admin_setting_callback_subtheme_section',
-			'page'     => 'barebones',
+			'page'     => 'showcase',
 		),
 		'dps_settings_per_page' => array(
-			'title'    => __( 'Per Page', 'barebones' ),
+			'title'    => __( 'Per Page', 'dps' ),
 			'callback' => 'dps_admin_setting_callback_per_page_section',
-			'page'     => 'barebones',
+			'page'     => 'showcase',
 		),
 		'dps_settings_per_rss_page' => array(
-			'title'    => __( 'Per RSS Page', 'barebones' ),
+			'title'    => __( 'Per RSS Page', 'dps' ),
 			'callback' => 'dps_admin_setting_callback_per_rss_page_section',
-			'page'     => 'barebones',
+			'page'     => 'showcase',
 		),
 		'dps_settings_root_slugs' => array(
-			'title'    => __( 'Archive Slugs', 'barebones' ),
+			'title'    => __( 'Archive Slugs', 'dps' ),
 			'callback' => 'dps_admin_setting_callback_root_slug_section',
-			'page'     => 'barebones',
+			'page'     => 'showcase',
 		),
 		'dps_settings_single_slugs' => array(
-			'title'    => __( 'Single Slugs', 'barebones' ),
+			'title'    => __( 'Single Slugs', 'dps' ),
 			'callback' => 'dps_admin_setting_callback_single_slug_section',
-			'page'     => 'barebones',
+			'page'     => 'showcase',
 		),
 		'dps_settings_buddypress' => array(
-			'title'    => __( 'BuddyPress', 'barebones' ),
+			'title'    => __( 'BuddyPress', 'dps' ),
 			'callback' => 'dps_admin_setting_callback_buddypress_section',
-			'page'     => 'barebones',
+			'page'     => 'showcase',
 		),
 		'dps_settings_akismet' => array(
-			'title'    => __( 'Akismet', 'barebones' ),
+			'title'    => __( 'Akismet', 'dps' ),
 			'callback' => 'dps_admin_setting_callback_akismet_section',
-			'page'     => 'barebones'
+			'page'     => 'showcase'
 		)
 	) );
 }
@@ -78,7 +78,7 @@ function dps_admin_get_settings_fields() {
 
 			// Edit lock setting
 			'_dps_edit_lock' => array(
-				'title'             => __( 'Disallow editing after', 'barebones' ),
+				'title'             => __( 'Disallow editing after', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_editlock',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -86,7 +86,7 @@ function dps_admin_get_settings_fields() {
 
 			// Throttle setting
 			'_dps_throttle_time' => array(
-				'title'             => __( 'Throttle posting every', 'barebones' ),
+				'title'             => __( 'Throttle posting every', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_throttle',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -94,7 +94,7 @@ function dps_admin_get_settings_fields() {
 
 			// Allow topic and reply revisions
 			'_dps_allow_revisions' => array(
-				'title'             => __( 'Revisions', 'barebones' ),
+				'title'             => __( 'Revisions', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_revisions',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -102,7 +102,7 @@ function dps_admin_get_settings_fields() {
 
 			// Allow favorites setting
 			'_dps_enable_favorites' => array(
-				'title'             => __( 'Favorites', 'barebones' ),
+				'title'             => __( 'Favorites', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_favorites',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -110,7 +110,7 @@ function dps_admin_get_settings_fields() {
 
 			// Allow subscriptions setting
 			'_dps_enable_subscriptions' => array(
-				'title'             => __( 'Subscriptions', 'barebones' ),
+				'title'             => __( 'Subscriptions', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_subscriptions',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -118,7 +118,7 @@ function dps_admin_get_settings_fields() {
 
 			// Allow topic tags
 			'_dps_allow_topic_tags' => array(
-				'title'             => __( 'Topic tags', 'barebones' ),
+				'title'             => __( 'Topic tags', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_topic_tags',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -126,7 +126,7 @@ function dps_admin_get_settings_fields() {
 
 			// Allow anonymous posting setting
 			'_dps_allow_anonymous' => array(
-				'title'             => __( 'Anonymous posting', 'barebones' ),
+				'title'             => __( 'Anonymous posting', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_anonymous',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -134,7 +134,7 @@ function dps_admin_get_settings_fields() {
 
 			// Allow global access (on multisite)
 			'_dps_default_role' => array(
-				'title'             => __( 'Default user role', 'barebones' ),
+				'title'             => __( 'Default user role', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_default_role',
 				'sanitize_callback' => 'sanitize_text_field',
 				'args'              => array()
@@ -142,7 +142,7 @@ function dps_admin_get_settings_fields() {
 
 			// Allow global access (on multisite)
 			'_dps_allow_global_access' => array(
-				'title'             => __( 'Auto role', 'barebones' ),
+				'title'             => __( 'Auto role', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_global_access',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -150,7 +150,7 @@ function dps_admin_get_settings_fields() {
 
 			// Allow fancy editor setting
 			'_dps_use_wp_editor' => array(
-				'title'             => __( 'Fancy editor', 'barebones' ),
+				'title'             => __( 'Fancy editor', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_use_wp_editor',
 				'args'              => array(),
 				'sanitize_callback' => 'intval'
@@ -158,7 +158,7 @@ function dps_admin_get_settings_fields() {
 
 			// Allow auto embedding setting
 			'_dps_use_autoembed' => array(
-				'title'             => __( 'Auto-embed links', 'barebones' ),
+				'title'             => __( 'Auto-embed links', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_use_autoembed',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -171,7 +171,7 @@ function dps_admin_get_settings_fields() {
 
 			// Replies per page setting
 			'_dps_theme_package_id' => array(
-				'title'             => __( 'Current Package', 'barebones' ),
+				'title'             => __( 'Current Package', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_subtheme_id',
 				'sanitize_callback' => 'esc_sql',
 				'args'              => array()
@@ -184,7 +184,7 @@ function dps_admin_get_settings_fields() {
 
 			// Replies per page setting
 			'_dps_topics_per_page' => array(
-				'title'             => __( 'Topics', 'barebones' ),
+				'title'             => __( 'Topics', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_topics_per_page',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -192,7 +192,7 @@ function dps_admin_get_settings_fields() {
 
 			// Replies per page setting
 			'_dps_replies_per_page' => array(
-				'title'             => __( 'Replies', 'barebones' ),
+				'title'             => __( 'Replies', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_replies_per_page',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -205,7 +205,7 @@ function dps_admin_get_settings_fields() {
 
 			// Replies per page setting
 			'_dps_topics_per_rss_page' => array(
-				'title'             => __( 'Topics', 'barebones' ),
+				'title'             => __( 'Topics', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_topics_per_rss_page',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -213,7 +213,7 @@ function dps_admin_get_settings_fields() {
 
 			// Replies per page setting
 			'_dps_replies_per_rss_page' => array(
-				'title'             => __( 'Replies', 'barebones' ),
+				'title'             => __( 'Replies', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_replies_per_rss_page',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -226,7 +226,7 @@ function dps_admin_get_settings_fields() {
 
 			// Root slug setting
 			'_dps_root_slug' => array(
-				'title'             => __( 'Forums base', 'barebones' ),
+				'title'             => __( 'Forums base', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_root_slug',
 				'sanitize_callback' => 'esc_sql',
 				'args'              => array()
@@ -234,7 +234,7 @@ function dps_admin_get_settings_fields() {
 
 			// Topic archive setting
 			'_dps_topic_archive_slug' => array(
-				'title'             => __( 'Topics base', 'barebones' ),
+				'title'             => __( 'Topics base', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_topic_archive_slug',
 				'sanitize_callback' => 'esc_sql',
 				'args'              => array()
@@ -247,7 +247,7 @@ function dps_admin_get_settings_fields() {
 
 			// Include root setting
 			'_dps_include_root' => array(
-				'title'             => __( 'Forum Prefix', 'barebones' ),
+				'title'             => __( 'Forum Prefix', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_include_root',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -255,7 +255,7 @@ function dps_admin_get_settings_fields() {
 
 			// Forum slug setting
 			'_dps_forum_slug' => array(
-				'title'             => __( 'Forum slug', 'barebones' ),
+				'title'             => __( 'Forum slug', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_forum_slug',
 				'sanitize_callback' => 'sanitize_title',
 				'args'              => array()
@@ -263,7 +263,7 @@ function dps_admin_get_settings_fields() {
 
 			// Topic slug setting
 			'_dps_topic_slug' => array(
-				'title'             => __( 'Topic slug', 'barebones' ),
+				'title'             => __( 'Topic slug', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_topic_slug',
 				'sanitize_callback' => 'sanitize_title',
 				'args'              => array()
@@ -271,7 +271,7 @@ function dps_admin_get_settings_fields() {
 
 			// Topic tag slug setting
 			'_dps_topic_tag_slug' => array(
-				'title'             => __( 'Topic tag slug', 'barebones' ),
+				'title'             => __( 'Topic tag slug', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_topic_tag_slug',
 				'sanitize_callback' => 'sanitize_title',
 				'args'              => array()
@@ -279,7 +279,7 @@ function dps_admin_get_settings_fields() {
 
 			// Reply slug setting
 			'_dps_reply_slug' => array(
-				'title'             => __( 'Reply slug', 'barebones' ),
+				'title'             => __( 'Reply slug', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_reply_slug',
 				'sanitize_callback' => 'sanitize_title',
 				'args'              => array()
@@ -287,7 +287,7 @@ function dps_admin_get_settings_fields() {
 
 			// User slug setting
 			'_dps_user_slug' => array(
-				'title'             => __( 'User slug', 'barebones' ),
+				'title'             => __( 'User slug', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_user_slug',
 				'sanitize_callback' => 'sanitize_title',
 				'args'              => array()
@@ -295,7 +295,7 @@ function dps_admin_get_settings_fields() {
 
 			// View slug setting
 			'_dps_view_slug' => array(
-				'title'             => __( 'Topic view slug', 'barebones' ),
+				'title'             => __( 'Topic view slug', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_view_slug',
 				'sanitize_callback' => 'sanitize_title',
 				'args'              => array()
@@ -303,7 +303,7 @@ function dps_admin_get_settings_fields() {
 
 			// Search slug setting
 			'_dps_search_slug' => array(
-				'title'             => __( 'Search slug', 'barebones' ),
+				'title'             => __( 'Search slug', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_search_slug',
 				'sanitize_callback' => 'sanitize_title',
 				'args'              => array()
@@ -316,7 +316,7 @@ function dps_admin_get_settings_fields() {
 
 			// Are group forums enabled?
 			'_dps_enable_group_forums' => array(
-				'title'             => __( 'Enable Group Forums', 'barebones' ),
+				'title'             => __( 'Enable Group Forums', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_group_forums',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -324,7 +324,7 @@ function dps_admin_get_settings_fields() {
 
 			// Group forums parent forum ID
 			'_dps_group_forums_root_id' => array(
-				'title'             => __( 'Group Forums Parent', 'barebones' ),
+				'title'             => __( 'Group Forums Parent', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_group_forums_root_id',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -337,7 +337,7 @@ function dps_admin_get_settings_fields() {
 
 			// Should we use Akismet
 			'_dps_enable_akismet' => array(
-				'title'             => __( 'Use Akismet', 'barebones' ),
+				'title'             => __( 'Use Akismet', 'dps' ),
 				'callback'          => 'dps_admin_setting_callback_akismet',
 				'sanitize_callback' => 'intval',
 				'args'              => array()
@@ -375,7 +375,7 @@ function dps_admin_get_settings_fields_for_section( $section_id = '' ) {
 function dps_admin_setting_callback_main_section() {
 ?>
 
-	<p><?php _e( 'Main forum settings for enabling features and setting time limits', 'barebones' ); ?></p>
+	<p><?php _e( 'Main forum settings for enabling features and setting time limits', 'dps' ); ?></p>
 
 <?php
 }
@@ -391,7 +391,7 @@ function dps_admin_setting_callback_editlock() {
 ?>
 
 	<input name="_dps_edit_lock" type="number" min="0" step="1" id="_dps_edit_lock" value="<?php dps_form_option( '_dps_edit_lock', '5' ); ?>" class="small-text"<?php dps_maybe_admin_setting_disabled( '_dps_edit_lock' ); ?> />
-	<label for="_dps_edit_lock"><?php _e( 'minutes', 'barebones' ); ?></label>
+	<label for="_dps_edit_lock"><?php _e( 'minutes', 'dps' ); ?></label>
 
 <?php
 }
@@ -407,7 +407,7 @@ function dps_admin_setting_callback_throttle() {
 ?>
 
 	<input name="_dps_throttle_time" type="number" min="0" step="1" id="_dps_throttle_time" value="<?php dps_form_option( '_dps_throttle_time', '10' ); ?>" class="small-text"<?php dps_maybe_admin_setting_disabled( '_dps_throttle_time' ); ?> />
-	<label for="_dps_throttle_time"><?php _e( 'seconds', 'barebones' ); ?></label>
+	<label for="_dps_throttle_time"><?php _e( 'seconds', 'dps' ); ?></label>
 
 <?php
 }
@@ -423,7 +423,7 @@ function dps_admin_setting_callback_favorites() {
 ?>
 
 	<input id="_dps_enable_favorites" name="_dps_enable_favorites" type="checkbox" id="_dps_enable_favorites" value="1" <?php checked( dps_is_favorites_active( true ) ); dps_maybe_admin_setting_disabled( '_dps_enable_favorites' ); ?> />
-	<label for="_dps_enable_favorites"><?php _e( 'Allow users to mark topics as favorites', 'barebones' ); ?></label>
+	<label for="_dps_enable_favorites"><?php _e( 'Allow users to mark topics as favorites', 'dps' ); ?></label>
 
 <?php
 }
@@ -439,7 +439,7 @@ function dps_admin_setting_callback_subscriptions() {
 ?>
 
 	<input id="_dps_enable_subscriptions" name="_dps_enable_subscriptions" type="checkbox" id="_dps_enable_subscriptions" value="1" <?php checked( dps_is_subscriptions_active( true ) ); dps_maybe_admin_setting_disabled( '_dps_enable_subscriptions' ); ?> />
-	<label for="_dps_enable_subscriptions"><?php _e( 'Allow users to subscribe to topics', 'barebones' ); ?></label>
+	<label for="_dps_enable_subscriptions"><?php _e( 'Allow users to subscribe to topics', 'dps' ); ?></label>
 
 <?php
 }
@@ -455,7 +455,7 @@ function dps_admin_setting_callback_topic_tags() {
 ?>
 
 	<input id="_dps_allow_topic_tags" name="_dps_allow_topic_tags" type="checkbox" id="_dps_allow_topic_tags" value="1" <?php checked( dps_allow_topic_tags( true ) ); dps_maybe_admin_setting_disabled( '_dps_allow_topic_tags' ); ?> />
-	<label for="_dps_allow_topic_tags"><?php _e( 'Allow topics to have tags', 'barebones' ); ?></label>
+	<label for="_dps_allow_topic_tags"><?php _e( 'Allow topics to have tags', 'dps' ); ?></label>
 
 <?php
 }
@@ -471,7 +471,7 @@ function dps_admin_setting_callback_revisions() {
 ?>
 
 	<input id="_dps_allow_revisions" name="_dps_allow_revisions" type="checkbox" id="_dps_allow_revisions" value="1" <?php checked( dps_allow_revisions( true ) ); dps_maybe_admin_setting_disabled( '_dps_allow_revisions' ); ?> />
-	<label for="_dps_allow_revisions"><?php _e( 'Allow topic and reply revision logging', 'barebones' ); ?></label>
+	<label for="_dps_allow_revisions"><?php _e( 'Allow topic and reply revision logging', 'dps' ); ?></label>
 
 <?php
 }
@@ -487,7 +487,7 @@ function dps_admin_setting_callback_anonymous() {
 ?>
 
 	<input id="_dps_allow_anonymous" name="_dps_allow_anonymous" type="checkbox" id="_dps_allow_anonymous" value="1" <?php checked( dps_allow_anonymous( false ) ); dps_maybe_admin_setting_disabled( '_dps_allow_anonymous' ); ?> />
-	<label for="_dps_allow_anonymous"><?php _e( 'Allow guest users without accounts to create topics and replies', 'barebones' ); ?></label>
+	<label for="_dps_allow_anonymous"><?php _e( 'Allow guest users without accounts to create topics and replies', 'dps' ); ?></label>
 
 <?php
 }
@@ -503,7 +503,7 @@ function dps_admin_setting_callback_global_access() {
 ?>
 
 	<input id="_dps_allow_global_access" name="_dps_allow_global_access" type="checkbox" id="_dps_allow_global_access" value="1" <?php checked( dps_allow_global_access( true ) ); dps_maybe_admin_setting_disabled( '_dps_allow_global_access' ); ?> />
-	<label for="_dps_allow_global_access"><?php _e( 'Automatically assign default role to new, registered users upon visiting the site.', 'barebones' ); ?></label>
+	<label for="_dps_allow_global_access"><?php _e( 'Automatically assign default role to new, registered users upon visiting the site.', 'dps' ); ?></label>
 
 <?php
 }
@@ -541,7 +541,7 @@ function dps_admin_setting_callback_use_wp_editor() {
 ?>
 
 	<input id="_dps_use_wp_editor" name="_dps_use_wp_editor" type="checkbox" id="_dps_use_wp_editor" value="1" <?php checked( dps_use_wp_editor( true ) ); dps_maybe_admin_setting_disabled( '_dps_use_wp_editor' ); ?> />
-	<label for="_dps_use_wp_editor"><?php _e( 'Use the fancy WordPress editor to create and edit topics and replies', 'barebones' ); ?></label>
+	<label for="_dps_use_wp_editor"><?php _e( 'Use the fancy WordPress editor to create and edit topics and replies', 'dps' ); ?></label>
 
 <?php
 }
@@ -554,7 +554,7 @@ function dps_admin_setting_callback_use_wp_editor() {
 function dps_admin_setting_callback_subtheme_section() {
 ?>
 
-	<p><?php _e( 'How your forum content is displayed within your existing theme.', 'barebones' ); ?></p>
+	<p><?php _e( 'How your forum content is displayed within your existing theme.', 'dps' ); ?></p>
 
 <?php
 }
@@ -577,18 +577,18 @@ function dps_admin_setting_callback_subtheme_id() {
 	// something else is wrong.
 	//
 	// @see Showcase::register_theme_packages()
-	foreach ( (array) barebones()->theme_compat->packages as $id => $theme ) {
-		$theme_options .= '<option value="' . esc_attr( $id ) . '"' . selected( $theme->id, $current_package, false ) . '>' . sprintf( __( '%1$s - %2$s', 'barebones' ), esc_html( $theme->name ), esc_html( str_replace( WP_CONTENT_DIR, '', $theme->dir ) ) )  . '</option>';
+	foreach ( (array) showcase()->theme_compat->packages as $id => $theme ) {
+		$theme_options .= '<option value="' . esc_attr( $id ) . '"' . selected( $theme->id, $current_package, false ) . '>' . sprintf( __( '%1$s - %2$s', 'dps' ), esc_html( $theme->name ), esc_html( str_replace( WP_CONTENT_DIR, '', $theme->dir ) ) )  . '</option>';
 	}
 
 	if ( !empty( $theme_options ) ) : ?>
 
 		<select name="_dps_theme_package_id" id="_dps_theme_package_id" <?php dps_maybe_admin_setting_disabled( '_dps_theme_package_id' ); ?>><?php echo $theme_options ?></select>
-		<label for="_dps_theme_package_id"><?php _e( 'will serve all barebones templates', 'barebones' ); ?></label>
+		<label for="_dps_theme_package_id"><?php _e( 'will serve all showcase templates', 'dps' ); ?></label>
 
 	<?php else : ?>
 
-		<p><?php _e( 'No template packages available.', 'barebones' ); ?></p>
+		<p><?php _e( 'No template packages available.', 'dps' ); ?></p>
 
 	<?php endif;
 }
@@ -604,7 +604,7 @@ function dps_admin_setting_callback_use_autoembed() {
 ?>
 
 	<input id="_dps_use_autoembed" name="_dps_use_autoembed" type="checkbox" id="_dps_use_autoembed" value="1" <?php checked( dps_use_autoembed( true ) ); dps_maybe_admin_setting_disabled( '_dps_use_autoembed' ); ?> />
-	<label for="_dps_use_autoembed"><?php _e( 'Embed media (YouTube, Twitter, Flickr, etc...) directly into topics and replies', 'barebones' ); ?></label>
+	<label for="_dps_use_autoembed"><?php _e( 'Embed media (YouTube, Twitter, Flickr, etc...) directly into topics and replies', 'dps' ); ?></label>
 
 <?php
 }
@@ -619,7 +619,7 @@ function dps_admin_setting_callback_use_autoembed() {
 function dps_admin_setting_callback_per_page_section() {
 ?>
 
-	<p><?php _e( 'How many topics and replies to show per page', 'barebones' ); ?></p>
+	<p><?php _e( 'How many topics and replies to show per page', 'dps' ); ?></p>
 
 <?php
 }
@@ -635,7 +635,7 @@ function dps_admin_setting_callback_topics_per_page() {
 ?>
 
 	<input name="_dps_topics_per_page" type="number" min="1" step="1" id="_dps_topics_per_page" value="<?php dps_form_option( '_dps_topics_per_page', '15' ); ?>" class="small-text"<?php dps_maybe_admin_setting_disabled( '_dps_topics_per_page' ); ?> />
-	<label for="_dps_topics_per_page"><?php _e( 'per page', 'barebones' ); ?></label>
+	<label for="_dps_topics_per_page"><?php _e( 'per page', 'dps' ); ?></label>
 
 <?php
 }
@@ -651,7 +651,7 @@ function dps_admin_setting_callback_replies_per_page() {
 ?>
 
 	<input name="_dps_replies_per_page" type="number" min="1" step="1" id="_dps_replies_per_page" value="<?php dps_form_option( '_dps_replies_per_page', '15' ); ?>" class="small-text"<?php dps_maybe_admin_setting_disabled( '_dps_replies_per_page' ); ?> />
-	<label for="_dps_replies_per_page"><?php _e( 'per page', 'barebones' ); ?></label>
+	<label for="_dps_replies_per_page"><?php _e( 'per page', 'dps' ); ?></label>
 
 <?php
 }
@@ -666,7 +666,7 @@ function dps_admin_setting_callback_replies_per_page() {
 function dps_admin_setting_callback_per_rss_page_section() {
 ?>
 
-	<p><?php _e( 'How many topics and replies to show per RSS page', 'barebones' ); ?></p>
+	<p><?php _e( 'How many topics and replies to show per RSS page', 'dps' ); ?></p>
 
 <?php
 }
@@ -682,7 +682,7 @@ function dps_admin_setting_callback_topics_per_rss_page() {
 ?>
 
 	<input name="_dps_topics_per_rss_page" type="number" min="1" step="1" id="_dps_topics_per_rss_page" value="<?php dps_form_option( '_dps_topics_per_rss_page', '25' ); ?>" class="small-text"<?php dps_maybe_admin_setting_disabled( '_dps_topics_per_rss_page' ); ?> />
-	<label for="_dps_topics_per_rss_page"><?php _e( 'per page', 'barebones' ); ?></label>
+	<label for="_dps_topics_per_rss_page"><?php _e( 'per page', 'dps' ); ?></label>
 
 <?php
 }
@@ -698,7 +698,7 @@ function dps_admin_setting_callback_replies_per_rss_page() {
 ?>
 
 	<input name="_dps_replies_per_rss_page" type="number" min="1" step="1" id="_dps_replies_per_rss_page" value="<?php dps_form_option( '_dps_replies_per_rss_page', '25' ); ?>" class="small-text"<?php dps_maybe_admin_setting_disabled( '_dps_replies_per_rss_page' ); ?> />
-	<label for="_dps_replies_per_rss_page"><?php _e( 'per page', 'barebones' ); ?></label>
+	<label for="_dps_replies_per_rss_page"><?php _e( 'per page', 'dps' ); ?></label>
 
 <?php
 }
@@ -716,7 +716,7 @@ function dps_admin_setting_callback_root_slug_section() {
 	if ( isset( $_GET['settings-updated'] ) && isset( $_GET['page'] ) )
 		flush_rewrite_rules(); ?>
 
-	<p><?php printf( __( 'Custom root slugs to prefix your forums and topics with. These can be partnered with WordPress pages to allow more flexibility.', 'barebones' ), get_admin_url( null, 'options-permalink.php' ) ); ?></p>
+	<p><?php printf( __( 'Custom root slugs to prefix your forums and topics with. These can be partnered with WordPress pages to allow more flexibility.', 'dps' ), get_admin_url( null, 'options-permalink.php' ) ); ?></p>
 
 <?php
 }
@@ -765,7 +765,7 @@ function dps_admin_setting_callback_topic_archive_slug() {
 function dps_admin_setting_callback_single_slug_section() {
 ?>
 
-	<p><?php printf( __( 'Custom slugs for single forums, topics, replies, tags, users, and views here. If you change these, existing permalinks will also change.', 'barebones' ), get_admin_url( null, 'options-permalink.php' ) ); ?></p>
+	<p><?php printf( __( 'Custom slugs for single forums, topics, replies, tags, users, and views here. If you change these, existing permalinks will also change.', 'dps' ), get_admin_url( null, 'options-permalink.php' ) ); ?></p>
 
 <?php
 }
@@ -781,7 +781,7 @@ function dps_admin_setting_callback_include_root() {
 ?>
 
 	<input id="_dps_include_root" name="_dps_include_root" type="checkbox" id="_dps_include_root" value="1" <?php checked( get_option( '_dps_include_root', true ) ); dps_maybe_admin_setting_disabled( '_dps_include_root' ); ?> />
-	<label for="_dps_include_root"><?php _e( 'Prefix your forum area with the Forum Base slug (Recommended)', 'barebones' ); ?></label>
+	<label for="_dps_include_root"><?php _e( 'Prefix your forum area with the Forum Base slug (Recommended)', 'dps' ); ?></label>
 
 <?php
 }
@@ -918,7 +918,7 @@ function dps_admin_setting_callback_search_slug() {
 function dps_admin_setting_callback_buddypress_section() {
 ?>
 
-	<p><?php _e( 'Forum settings for BuddyPress', 'barebones' ); ?></p>
+	<p><?php _e( 'Forum settings for BuddyPress', 'dps' ); ?></p>
 
 <?php
 }
@@ -934,7 +934,7 @@ function dps_admin_setting_callback_group_forums() {
 ?>
 
 	<input id="_dps_enable_group_forums" name="_dps_enable_group_forums" type="checkbox" id="_dps_enable_group_forums" value="1" <?php checked( dps_is_group_forums_active( true ) );  dps_maybe_admin_setting_disabled( '_dps_enable_group_forums' ); ?> />
-	<label for="_dps_enable_group_forums"><?php _e( 'Allow BuddyPress Groups to have their own forums', 'barebones' ); ?></label>
+	<label for="_dps_enable_group_forums"><?php _e( 'Allow BuddyPress Groups to have their own forums', 'dps' ); ?></label>
 
 <?php
 }
@@ -951,7 +951,7 @@ function dps_admin_setting_callback_group_forums_root_id() {
 	// Output the dropdown for all forums
 	dps_dropdown( array(
 		'selected'           => dps_get_group_forums_root_id(),
-		'show_none'          => __( '&mdash; Forum root &mdash;', 'barebones' ),
+		'show_none'          => __( '&mdash; Forum root &mdash;', 'dps' ),
 		'orderby'            => 'title',
 		'order'              => 'ASC',
 		'select_id'          => '_dps_group_forums_root_id',
@@ -959,8 +959,8 @@ function dps_admin_setting_callback_group_forums_root_id() {
 		'disabled'           => '_dps_group_forums_root_id'
 	) ); ?>
 
-	<label for="_dps_group_forums_root_id"><?php _e( 'is the parent for all group forums', 'barebones' ); ?></label>
-	<p class="description"><?php _e( 'Using the Forum Root is not recommended. Changing this does not move existing forums.', 'barebones' ); ?></p>
+	<label for="_dps_group_forums_root_id"><?php _e( 'is the parent for all group forums', 'dps' ); ?></label>
+	<p class="description"><?php _e( 'Using the Forum Root is not recommended. Changing this does not move existing forums.', 'dps' ); ?></p>
 
 <?php
 }
@@ -975,7 +975,7 @@ function dps_admin_setting_callback_group_forums_root_id() {
 function dps_admin_setting_callback_akismet_section() {
 ?>
 
-	<p><?php _e( 'Forum settings for Akismet', 'barebones' ); ?></p>
+	<p><?php _e( 'Forum settings for Akismet', 'dps' ); ?></p>
 
 <?php
 }
@@ -992,7 +992,7 @@ function dps_admin_setting_callback_akismet() {
 ?>
 
 	<input id="_dps_enable_akismet" name="_dps_enable_akismet" type="checkbox" id="_dps_enable_akismet" value="1" <?php checked( dps_is_akismet_active( true ) );  dps_maybe_admin_setting_disabled( '_dps_enable_akismet' ); ?> />
-	<label for="_dps_enable_akismet"><?php _e( 'Allow Akismet to actively prevent forum spam.', 'barebones' ); ?></label>
+	<label for="_dps_enable_akismet"><?php _e( 'Allow Akismet to actively prevent forum spam.', 'dps' ); ?></label>
 
 <?php
 }
@@ -1015,16 +1015,16 @@ function dps_admin_settings() {
 
 		<?php screen_icon(); ?>
 
-		<h2><?php _e( 'Forums Settings', 'barebones' ) ?></h2>
+		<h2><?php _e( 'Forums Settings', 'dps' ) ?></h2>
 
 		<form action="options.php" method="post">
 
-			<?php settings_fields( 'barebones' ); ?>
+			<?php settings_fields( 'showcase' ); ?>
 
-			<?php do_settings_sections( 'barebones' ); ?>
+			<?php do_settings_sections( 'showcase' ); ?>
 
 			<p class="submit">
-				<input type="submit" name="submit" class="button-primary" value="<?php esc_attr_e( 'Save Changes', 'barebones' ); ?>" />
+				<input type="submit" name="submit" class="button-primary" value="<?php esc_attr_e( 'Save Changes', 'dps' ); ?>" />
 			</p>
 		</form>
 	</div>
@@ -1043,7 +1043,7 @@ function dps_admin_settings() {
 function dps_converter_setting_callback_main_section() {
 ?>
 
-	<p><?php _e( 'Information about your previous forums database so that they can be converted. <strong>Backup your database before proceeding.</strong>', 'barebones' ); ?></p>
+	<p><?php _e( 'Information about your previous forums database so that they can be converted. <strong>Backup your database before proceeding.</strong>', 'dps' ); ?></p>
 
 <?php
 }
@@ -1056,7 +1056,7 @@ function dps_converter_setting_callback_main_section() {
 function dps_converter_setting_callback_platform() {
 
 	$platform_options = '';
-	$curdir           = opendir( barebones()->admin->admin_dir . 'converters/' );
+	$curdir           = opendir( showcase()->admin->admin_dir . 'converters/' );
 
 	// Bail if no directory was found (how did this happen?)
 	if ( empty( $curdir ) )
@@ -1073,7 +1073,7 @@ function dps_converter_setting_callback_platform() {
 	closedir( $curdir ); ?>
 
 	<select name="_dps_converter_platform" id="_dps_converter_platform" /><?php echo $platform_options ?></select>
-	<label for="_dps_converter_platform"><?php _e( 'is the previous forum software', 'barebones' ); ?></label>
+	<label for="_dps_converter_platform"><?php _e( 'is the previous forum software', 'dps' ); ?></label>
 
 <?php
 }
@@ -1087,7 +1087,7 @@ function dps_converter_setting_callback_dbserver() {
 ?>
 
 	<input name="_dps_converter_db_server" type="text" id="_dps_converter_db_server" value="<?php dps_form_option( '_dps_converter_db_server', 'localhost' ); ?>" class="medium-text" />
-	<label for="_dps_converter_db_server"><?php _e( 'IP or hostname', 'barebones' ); ?></label>
+	<label for="_dps_converter_db_server"><?php _e( 'IP or hostname', 'dps' ); ?></label>
 
 <?php
 }
@@ -1101,7 +1101,7 @@ function dps_converter_setting_callback_dbport() {
 ?>
 
 	<input name="_dps_converter_db_port" type="text" id="_dps_converter_db_port" value="<?php dps_form_option( '_dps_converter_db_port', '3306' ); ?>" class="small-text" />
-	<label for="_dps_converter_db_port"><?php _e( 'Use default 3306 if unsure', 'barebones' ); ?></label>
+	<label for="_dps_converter_db_port"><?php _e( 'Use default 3306 if unsure', 'dps' ); ?></label>
 
 <?php
 }
@@ -1115,7 +1115,7 @@ function dps_converter_setting_callback_dbuser() {
 ?>
 
 	<input name="_dps_converter_db_user" type="text" id="_dps_converter_db_user" value="<?php dps_form_option( '_dps_converter_db_user' ); ?>" class="medium-text" />
-	<label for="_dps_converter_db_user"><?php _e( 'User for your database connection', 'barebones' ); ?></label>
+	<label for="_dps_converter_db_user"><?php _e( 'User for your database connection', 'dps' ); ?></label>
 
 <?php
 }
@@ -1129,7 +1129,7 @@ function dps_converter_setting_callback_dbpass() {
 ?>
 
 	<input name="_dps_converter_db_pass" type="password" id="_dps_converter_db_pass" value="<?php dps_form_option( '_dps_converter_db_pass' ); ?>" class="medium-text" />
-	<label for="_dps_converter_db_pass"><?php _e( 'Password to access the database', 'barebones' ); ?></label>
+	<label for="_dps_converter_db_pass"><?php _e( 'Password to access the database', 'dps' ); ?></label>
 
 <?php
 }
@@ -1143,7 +1143,7 @@ function dps_converter_setting_callback_dbname() {
 ?>
 
 	<input name="_dps_converter_db_name" type="text" id="_dps_converter_db_name" value="<?php dps_form_option( '_dps_converter_db_name' ); ?>" class="medium-text" />
-	<label for="_dps_converter_db_name"><?php _e( 'Name of the database with your old forum data', 'barebones' ); ?></label>
+	<label for="_dps_converter_db_name"><?php _e( 'Name of the database with your old forum data', 'dps' ); ?></label>
 
 <?php
 }
@@ -1156,7 +1156,7 @@ function dps_converter_setting_callback_dbname() {
 function dps_converter_setting_callback_options_section() {
 ?>
 
-	<p><?php _e( 'Some optional parameters to help tune the conversion process.', 'barebones' ); ?></p>
+	<p><?php _e( 'Some optional parameters to help tune the conversion process.', 'dps' ); ?></p>
 
 <?php
 }
@@ -1170,7 +1170,7 @@ function dps_converter_setting_callback_dbprefix() {
 ?>
 
 	<input name="_dps_converter_db_prefix" type="text" id="_dps_converter_db_prefix" value="<?php dps_form_option( '_dps_converter_db_prefix' ); ?>" class="medium-text" />
-	<label for="_dps_converter_db_prefix"><?php _e( '(If converting from BuddyPress Forums, use "wp_dps_" or your custom prefix)', 'barebones' ); ?></label>
+	<label for="_dps_converter_db_prefix"><?php _e( '(If converting from BuddyPress Forums, use "wp_dps_" or your custom prefix)', 'dps' ); ?></label>
 
 <?php
 }
@@ -1184,8 +1184,8 @@ function dps_converter_setting_callback_rows() {
 ?>
 
 	<input name="_dps_converter_rows" type="text" id="_dps_converter_rows" value="<?php dps_form_option( '_dps_converter_rows', '100' ); ?>" class="small-text" />
-	<label for="_dps_converter_rows"><?php _e( 'rows to process at a time', 'barebones' ); ?></label>
-	<p class="description"><?php _e( 'Keep this low if you experience out-of-memory issues.', 'barebones' ); ?></p>
+	<label for="_dps_converter_rows"><?php _e( 'rows to process at a time', 'dps' ); ?></label>
+	<p class="description"><?php _e( 'Keep this low if you experience out-of-memory issues.', 'dps' ); ?></p>
 
 <?php
 }
@@ -1199,8 +1199,8 @@ function dps_converter_setting_callback_delay_time() {
 ?>
 
 	<input name="_dps_converter_delay_time" type="text" id="_dps_converter_delay_time" value="<?php dps_form_option( '_dps_converter_delay_time', '1' ); ?>" class="small-text" />
-	<label for="_dps_converter_delay_time"><?php _e( 'second(s) delay between each group of rows', 'barebones' ); ?></label>
-	<p class="description"><?php _e( 'Keep this high to prevent too-many-connection issues.', 'barebones' ); ?></p>
+	<label for="_dps_converter_delay_time"><?php _e( 'second(s) delay between each group of rows', 'dps' ); ?></label>
+	<p class="description"><?php _e( 'Keep this high to prevent too-many-connection issues.', 'dps' ); ?></p>
 
 <?php
 }
@@ -1214,8 +1214,8 @@ function dps_converter_setting_callback_restart() {
 ?>
 
 	<input id="_dps_converter_restart" name="_dps_converter_restart" type="checkbox" id="_dps_converter_restart" value="1" <?php checked( get_option( '_dps_converter_restart', false ) ); ?> />
-	<label for="_dps_converter_restart"><?php _e( 'Start a fresh conversion from the beginning', 'barebones' ); ?></label>
-	<p class="description"><?php _e( 'You should clean old conversion information before starting over.', 'barebones' ); ?></p>
+	<label for="_dps_converter_restart"><?php _e( 'Start a fresh conversion from the beginning', 'dps' ); ?></label>
+	<p class="description"><?php _e( 'You should clean old conversion information before starting over.', 'dps' ); ?></p>
 
 <?php
 }
@@ -1229,8 +1229,8 @@ function dps_converter_setting_callback_clean() {
 ?>
 
 	<input id="_dps_converter_clean" name="_dps_converter_clean" type="checkbox" id="_dps_converter_clean" value="1" <?php checked( get_option( '_dps_converter_clean', false ) ); ?> />
-	<label for="_dps_converter_clean"><?php _e( 'Purge all information from a previously attempted import', 'barebones' ); ?></label>
-	<p class="description"><?php _e( 'Use this if an import failed and you want to remove that incomplete data.', 'barebones' ); ?></p>
+	<label for="_dps_converter_clean"><?php _e( 'Purge all information from a previously attempted import', 'dps' ); ?></label>
+	<p class="description"><?php _e( 'Use this if an import failed and you want to remove that incomplete data.', 'dps' ); ?></p>
 
 <?php
 }
@@ -1244,8 +1244,8 @@ function dps_converter_setting_callback_convert_users() {
 ?>
 
 	<input id="_dps_converter_convert_users" name="_dps_converter_convert_users" type="checkbox" id="_dps_converter_convert_users" value="1" <?php checked( get_option( '_dps_converter_convert_users', false ) ); ?> />
-	<label for="_dps_converter_convert_users"><?php _e( 'Attempt to import user accounts from previous forums', 'barebones' ); ?></label>
-	<p class="description"><?php _e( 'Non-barebones passwords cannot be automatically converted. They will be converted as each user logs in.', 'barebones' ); ?></p>
+	<label for="_dps_converter_convert_users"><?php _e( 'Attempt to import user accounts from previous forums', 'dps' ); ?></label>
+	<p class="description"><?php _e( 'Non-showcase passwords cannot be automatically converted. They will be converted as each user logs in.', 'dps' ); ?></p>
 
 <?php
 }
@@ -1266,17 +1266,17 @@ function dps_converter_settings() {
 
 		<?php screen_icon( 'tools' ); ?>
 
-		<h2 class="nav-tab-wrapper"><?php dps_tools_admin_tabs( __( 'Import Forums', 'barebones' ) ); ?></h2>
+		<h2 class="nav-tab-wrapper"><?php dps_tools_admin_tabs( __( 'Import Forums', 'dps' ) ); ?></h2>
 
 		<form action="#" method="post" id="bbp-converter-settings">
 
-			<?php settings_fields( 'barebones_converter' ); ?>
+			<?php settings_fields( 'showcase_converter' ); ?>
 
-			<?php do_settings_sections( 'barebones_converter' ); ?>
+			<?php do_settings_sections( 'showcase_converter' ); ?>
 
 			<p class="submit">
-				<input type="button" name="submit" class="button-primary" id="bbp-converter-start" value="<?php esc_attr_e( 'Start', 'barebones' ); ?>" onclick="bbconverter_start()" />
-				<input type="button" name="submit" class="button-primary" id="bbp-converter-stop" value="<?php esc_attr_e( 'Stop', 'barebones' ); ?>" onclick="bbconverter_stop()" />
+				<input type="button" name="submit" class="button-primary" id="bbp-converter-start" value="<?php esc_attr_e( 'Start', 'dps' ); ?>" onclick="bbconverter_start()" />
+				<input type="button" name="submit" class="button-primary" id="bbp-converter-stop" value="<?php esc_attr_e( 'Stop', 'dps' ); ?>" onclick="bbconverter_stop()" />
 				<img id="bbp-converter-progress" src="">
 			</p>
 
@@ -1306,60 +1306,60 @@ function dps_admin_settings_help() {
 	// Overview
 	$current_screen->add_help_tab( array(
 		'id'      => 'overview',
-		'title'   => __( 'Overview', 'barebones' ),
-		'content' => '<p>' . __( 'This screen provides access to all of the Forums settings.',                          'barebones' ) . '</p>' .
-					 '<p>' . __( 'Please see the additional help tabs for more information on each indiviual section.', 'barebones' ) . '</p>'
+		'title'   => __( 'Overview', 'dps' ),
+		'content' => '<p>' . __( 'This screen provides access to all of the Forums settings.',                          'showcase' ) . '</p>' .
+					 '<p>' . __( 'Please see the additional help tabs for more information on each indiviual section.', 'dps' ) . '</p>'
 	) );
 
 	// Main Settings
 	$current_screen->add_help_tab( array(
 		'id'      => 'main_settings',
-		'title'   => __( 'Main Settings', 'barebones' ),
-		'content' => '<p>' . __( 'In the Main Settings you have a number of options:', 'barebones' ) . '</p>' .
+		'title'   => __( 'Main Settings', 'dps' ),
+		'content' => '<p>' . __( 'In the Main Settings you have a number of options:', 'dps' ) . '</p>' .
 					 '<p>' .
 						'<ul>' .
-							'<li>' . __( 'You can choose to lock a post after a certain number of minutes. "Locking post editing" will prevent the author from editing some amount of time after saving a post.',              'barebones' ) . '</li>' .
-							'<li>' . __( '"Throttle time" is the amount of time required between posts from a single author. The higher the throttle time, the longer a user will need to wait between posting to the forum.', 'barebones' ) . '</li>' .
-							'<li>' . __( 'Favorites are a way for users to save and later return to topics they favor. This is enabled by default.',                                                                           'barebones' ) . '</li>' .
-							'<li>' . __( 'Subscriptions allow users to subscribe for notifications to topics that interest them. This is enabled by default.',                                                                 'barebones' ) . '</li>' .
-							'<li>' . __( 'Topic-Tags allow users to filter topics between forums. This is enabled by default.',                                                                                                'barebones' ) . '</li>' .
-							'<li>' . __( '"Anonymous Posting" allows guest users who do not have accounts on your site to both create topics as well as replies.',                                                             'barebones' ) . '</li>' .
-							'<li>' . __( 'The Fancy Editor brings the luxury of the Visual editor and HTML editor from the traditional WordPress dashboard into your theme.',                                                  'barebones' ) . '</li>' .
-							'<li>' . __( 'Auto-embed will embed the media content from a URL directly into the replies. For example: links to Flickr and YouTube.',                                                            'barebones' ) . '</li>' .
+							'<li>' . __( 'You can choose to lock a post after a certain number of minutes. "Locking post editing" will prevent the author from editing some amount of time after saving a post.',              'showcase' ) . '</li>' .
+							'<li>' . __( '"Throttle time" is the amount of time required between posts from a single author. The higher the throttle time, the longer a user will need to wait between posting to the forum.', 'dps' ) . '</li>' .
+							'<li>' . __( 'Favorites are a way for users to save and later return to topics they favor. This is enabled by default.',                                                                           'showcase' ) . '</li>' .
+							'<li>' . __( 'Subscriptions allow users to subscribe for notifications to topics that interest them. This is enabled by default.',                                                                 'showcase' ) . '</li>' .
+							'<li>' . __( 'Topic-Tags allow users to filter topics between forums. This is enabled by default.',                                                                                                'showcase' ) . '</li>' .
+							'<li>' . __( '"Anonymous Posting" allows guest users who do not have accounts on your site to both create topics as well as replies.',                                                             'showcase' ) . '</li>' .
+							'<li>' . __( 'The Fancy Editor brings the luxury of the Visual editor and HTML editor from the traditional WordPress dashboard into your theme.',                                                  'showcase' ) . '</li>' .
+							'<li>' . __( 'Auto-embed will embed the media content from a URL directly into the replies. For example: links to Flickr and YouTube.',                                                            'showcase' ) . '</li>' .
 						'</ul>' .
 					'</p>' .
-					'<p>' . __( 'You must click the Save Changes button at the bottom of the screen for new settings to take effect.', 'barebones' ) . '</p>'
+					'<p>' . __( 'You must click the Save Changes button at the bottom of the screen for new settings to take effect.', 'dps' ) . '</p>'
 	) );
 
 	// Per Page
 	$current_screen->add_help_tab( array(
 		'id'      => 'per_page',
-		'title'   => __( 'Per Page', 'barebones' ),
-		'content' => '<p>' . __( 'Per Page settings allow you to control the number of topics and replies appear on each page.',                                                    'barebones' ) . '</p>' .
-					 '<p>' . __( 'This is comparable to the WordPress "Reading Settings" page, where you can set the number of posts that should show on blog pages and in feeds.', 'barebones' ) . '</p>' .
-					 '<p>' . __( 'These are broken up into two separate groups: one for what appears in your theme, another for RSS feeds.',                                        'barebones' ) . '</p>'
+		'title'   => __( 'Per Page', 'dps' ),
+		'content' => '<p>' . __( 'Per Page settings allow you to control the number of topics and replies appear on each page.',                                                    'showcase' ) . '</p>' .
+					 '<p>' . __( 'This is comparable to the WordPress "Reading Settings" page, where you can set the number of posts that should show on blog pages and in feeds.', 'dps' ) . '</p>' .
+					 '<p>' . __( 'These are broken up into two separate groups: one for what appears in your theme, another for RSS feeds.',                                        'showcase' ) . '</p>'
 	) );
 
 	// Slugs
 	$current_screen->add_help_tab( array(
 		'id'      => 'slus',
-		'title'   => __( 'Slugs', 'barebones' ),
-		'content' => '<p>' . __( 'The Slugs section allows you to control the permalink structure for your forums.',                                                                                                            'barebones' ) . '</p>' .
-					 '<p>' . __( '"Archive Slugs" are used as the "root" for your forums and topics. If you combine these values with existing page slugs, barebones will attempt to output the most correct title and content.', 'barebones' ) . '</p>' .
-					 '<p>' . __( '"Single Slugs" are used as a prefix when viewing an individual forum, topic, reply, user, or view.',                                                                                          'barebones' ) . '</p>' .
-					 '<p>' . __( 'In the event of a slug collision with WordPress or BuddyPress, a warning will appear next to the problem slug(s).', 'barebones' ) . '</p>'
+		'title'   => __( 'Slugs', 'dps' ),
+		'content' => '<p>' . __( 'The Slugs section allows you to control the permalink structure for your forums.',                                                                                                            'showcase' ) . '</p>' .
+					 '<p>' . __( '"Archive Slugs" are used as the "root" for your forums and topics. If you combine these values with existing page slugs, showcase will attempt to output the most correct title and content.', 'dps' ) . '</p>' .
+					 '<p>' . __( '"Single Slugs" are used as a prefix when viewing an individual forum, topic, reply, user, or view.',                                                                                          'showcase' ) . '</p>' .
+					 '<p>' . __( 'In the event of a slug collision with WordPress or BuddyPress, a warning will appear next to the problem slug(s).', 'dps' ) . '</p>'
 	) );
 
 	// Help Sidebar
 	$current_screen->set_help_sidebar(
-		'<p><strong>' . __( 'For more information:', 'barebones' ) . '</strong></p>' .
-		'<p>' . __( '<a href="http://codex.example.org" target="_blank">barebones Documentation</a>',    'barebones' ) . '</p>' .
-		'<p>' . __( '<a href="http://example.org/forums/" target="_blank">barebones Support Forums</a>', 'barebones' ) . '</p>'
+		'<p><strong>' . __( 'For more information:', 'dps' ) . '</strong></p>' .
+		'<p>' . __( '<a href="http://codex.example.org" target="_blank">showcase Documentation</a>',    'showcase' ) . '</p>' .
+		'<p>' . __( '<a href="http://example.org/forums/" target="_blank">showcase Support Forums</a>', 'dps' ) . '</p>'
 	);
 }
 
 /**
- * Disable a settings field if the value is forcibly set in barebones's global
+ * Disable a settings field if the value is forcibly set in showcase's global
  * options array.
  *
  * @since Showcase (1.0)
@@ -1367,7 +1367,7 @@ function dps_admin_settings_help() {
  * @param string $option_key
  */
 function dps_maybe_admin_setting_disabled( $option_key = '' ) {
-	disabled( isset( barebones()->options[$option_key] ) );
+	disabled( isset( showcase()->options[$option_key] ) );
 }
 
 /**
@@ -1420,7 +1420,7 @@ function dps_form_option( $option, $default = '' , $slug = false ) {
 	}
 
 /**
- * Used to check if a barebones slug conflicts with an existing known slug.
+ * Used to check if a showcase slug conflicts with an existing known slug.
  *
  * @since Showcase (1.0)
  *
@@ -1445,43 +1445,43 @@ function dps_form_slug_conflict_check( $slug, $default ) {
 			/** WordPress Core ****************************************************/
 
 			// Core Post Types
-			'post_base'       => array( 'name' => __( 'Posts',         'barebones' ), 'default' => 'post',          'context' => 'WordPress' ),
-			'page_base'       => array( 'name' => __( 'Pages',         'barebones' ), 'default' => 'page',          'context' => 'WordPress' ),
-			'revision_base'   => array( 'name' => __( 'Revisions',     'barebones' ), 'default' => 'revision',      'context' => 'WordPress' ),
-			'attachment_base' => array( 'name' => __( 'Attachments',   'barebones' ), 'default' => 'attachment',    'context' => 'WordPress' ),
-			'nav_menu_base'   => array( 'name' => __( 'Menus',         'barebones' ), 'default' => 'nav_menu_item', 'context' => 'WordPress' ),
+			'post_base'       => array( 'name' => __( 'Posts',         'showcase' ), 'default' => 'post',          'context' => 'WordPress' ),
+			'page_base'       => array( 'name' => __( 'Pages',         'showcase' ), 'default' => 'page',          'context' => 'WordPress' ),
+			'revision_base'   => array( 'name' => __( 'Revisions',     'showcase' ), 'default' => 'revision',      'context' => 'WordPress' ),
+			'attachment_base' => array( 'name' => __( 'Attachments',   'showcase' ), 'default' => 'attachment',    'context' => 'WordPress' ),
+			'nav_menu_base'   => array( 'name' => __( 'Menus',         'showcase' ), 'default' => 'nav_menu_item', 'context' => 'WordPress' ),
 
 			// Post Tags
-			'tag_base'        => array( 'name' => __( 'Tag base',      'barebones' ), 'default' => 'tag',           'context' => 'WordPress' ),
+			'tag_base'        => array( 'name' => __( 'Tag base',      'showcase' ), 'default' => 'tag',           'context' => 'WordPress' ),
 
 			// Post Categories
-			'category_base'   => array( 'name' => __( 'Category base', 'barebones' ), 'default' => 'category',      'context' => 'WordPress' ),
+			'category_base'   => array( 'name' => __( 'Category base', 'dps' ), 'default' => 'category',      'context' => 'WordPress' ),
 
 			/** Showcase Core ******************************************************/
 
 			// Forum archive slug
-			'_dps_root_slug'          => array( 'name' => __( 'Forums base', 'barebones' ), 'default' => 'forums', 'context' => 'barebones' ),
+			'_dps_root_slug'          => array( 'name' => __( 'Forums base', 'dps' ), 'default' => 'forums', 'context' => 'showcase' ),
 
 			// Topic archive slug
-			'_dps_topic_archive_slug' => array( 'name' => __( 'Topics base', 'barebones' ), 'default' => 'topics', 'context' => 'barebones' ),
+			'_dps_topic_archive_slug' => array( 'name' => __( 'Topics base', 'dps' ), 'default' => 'topics', 'context' => 'showcase' ),
 
 			// Forum slug
-			'_dps_forum_slug'         => array( 'name' => __( 'Forum slug',  'barebones' ), 'default' => 'forum',  'context' => 'barebones' ),
+			'_dps_forum_slug'         => array( 'name' => __( 'Forum slug',  'showcase' ), 'default' => 'forum',  'context' => 'showcase' ),
 
 			// Topic slug
-			'_dps_topic_slug'         => array( 'name' => __( 'Topic slug',  'barebones' ), 'default' => 'topic',  'context' => 'barebones' ),
+			'_dps_topic_slug'         => array( 'name' => __( 'Topic slug',  'showcase' ), 'default' => 'topic',  'context' => 'showcase' ),
 
 			// Reply slug
-			'_dps_reply_slug'         => array( 'name' => __( 'Reply slug',  'barebones' ), 'default' => 'reply',  'context' => 'barebones' ),
+			'_dps_reply_slug'         => array( 'name' => __( 'Reply slug',  'showcase' ), 'default' => 'reply',  'context' => 'showcase' ),
 
 			// User profile slug
-			'_dps_user_slug'          => array( 'name' => __( 'User base',   'barebones' ), 'default' => 'users',  'context' => 'barebones' ),
+			'_dps_user_slug'          => array( 'name' => __( 'User base',   'showcase' ), 'default' => 'users',  'context' => 'showcase' ),
 
 			// View slug
-			'_dps_view_slug'          => array( 'name' => __( 'View base',   'barebones' ), 'default' => 'view',   'context' => 'barebones' ),
+			'_dps_view_slug'          => array( 'name' => __( 'View base',   'showcase' ), 'default' => 'view',   'context' => 'showcase' ),
 
 			// Topic tag slug
-			'_dps_topic_tag_slug'     => array( 'name' => __( 'Topic tag slug', 'barebones' ), 'default' => 'topic-tag', 'context' => 'barebones' ),
+			'_dps_topic_tag_slug'     => array( 'name' => __( 'Topic tag slug', 'dps' ), 'default' => 'topic-tag', 'context' => 'showcase' ),
 		) );
 
 		/** BuddyPress Core *******************************************************/
@@ -1493,7 +1493,7 @@ function dps_form_slug_conflict_check( $slug, $default ) {
 			if ( !empty( $bp->pages ) ) {
 				foreach ( $bp->pages as $page => $page_data ) {
 					$page_base    = $page . '_base';
-					$page_title   = sprintf( __( '%s page', 'barebones' ), $page_data->title );
+					$page_title   = sprintf( __( '%s page', 'dps' ), $page_data->title );
 					$core_slugs[$page_base] = array( 'name' => $page_title, 'default' => $page_data->slug, 'context' => 'BuddyPress' );
 				}
 			}
@@ -1512,7 +1512,7 @@ function dps_form_slug_conflict_check( $slug, $default ) {
 		// Compare
 		if ( ( $slug != $key ) && ( $slug_check == $this_slug ) ) : ?>
 
-			<span class="attention"><?php printf( __( 'Possible %1$s conflict: <strong>%2$s</strong>', 'barebones' ), $value['context'], $value['name'] ); ?></span>
+			<span class="attention"><?php printf( __( 'Possible %1$s conflict: <strong>%2$s</strong>', 'dps' ), $value['context'], $value['name'] ); ?></span>
 
 		<?php endif;
 	}

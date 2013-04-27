@@ -25,7 +25,7 @@ function dps_get_default_options() {
 
 		/** DB Version ********************************************************/
 
-		'_dps_db_version'           => barebones()->db_version,
+		'_dps_db_version'           => showcase()->db_version,
 
 		/** Settings **********************************************************/
 
@@ -106,7 +106,7 @@ function dps_get_default_options() {
 /**
  * Add default options
  *
- * Hooked to dps_activate, it is only called once when barebones is activated.
+ * Hooked to dps_activate, it is only called once when showcase is activated.
  * This is non-destructive, so existing settings will not be overridden.
  *
  * @since Showcase (1.0)
@@ -127,7 +127,7 @@ function dps_add_options() {
 /**
  * Delete default options
  *
- * Hooked to dps_uninstall, it is only called once when barebones is uninstalled.
+ * Hooked to dps_uninstall, it is only called once when showcase is uninstalled.
  * This is destructive, so existing settings will be destroyed.
  *
  * @since Showcase (1.0)
@@ -146,7 +146,7 @@ function dps_delete_options() {
 }
 
 /**
- * Add filters to each barebones option and allow them to be overloaded from
+ * Add filters to each showcase option and allow them to be overloaded from
  * inside the $bbp->options array.
  *
  * @since Showcase (1.0)
@@ -156,7 +156,7 @@ function dps_delete_options() {
  */
 function dps_setup_option_filters() {
 
-	// Add filters to each barebones option
+	// Add filters to each showcase option
 	foreach ( array_keys( dps_get_default_options() ) as $key )
 		add_filter( 'pre_option_' . $key, 'dps_pre_get_option' );
 
@@ -178,8 +178,8 @@ function dps_pre_get_option( $value = '' ) {
 	$option = str_replace( 'pre_option_', '', current_filter() );
 
 	// Check the options global for preset value
-	if ( isset( barebones()->options[$option] ) )
-		$value = barebones()->options[$option];
+	if ( isset( showcase()->options[$option] ) )
+		$value = showcase()->options[$option];
 
 	// Always return a value, even if false
 	return $value;

@@ -29,19 +29,19 @@ function dps_admin_separator() {
 	// Loop through caps, and look for a reason to show the separator
 	foreach ( $caps as $cap ) {
 		if ( current_user_can( $cap ) ) {
-			barebones()->admin->show_separator = true;
+			showcase()->admin->show_separator = true;
 			break;
 		}
 	}
 
 	// Bail if no separator
-	if ( false === barebones()->admin->show_separator ) {
+	if ( false === showcase()->admin->show_separator ) {
 		return;
 	}
 
 	global $menu;
 
-	$menu[] = array( '', 'read', 'separator-barebones', '', 'wp-menu-separator barebones' );
+	$menu[] = array( '', 'read', 'separator-showcase', '', 'wp-menu-separator showcase' );
 }
 
 /**
@@ -53,7 +53,7 @@ function dps_admin_separator() {
  * @return mixed True if separator, false if not
  */
 function dps_admin_custom_menu_order( $menu_order = false ) {
-	if ( false === barebones()->admin->show_separator )
+	if ( false === showcase()->admin->show_separator )
 		return $menu_order;
 
 	return true;
@@ -70,8 +70,8 @@ function dps_admin_custom_menu_order( $menu_order = false ) {
  */
 function dps_admin_menu_order( $menu_order ) {
 
-	// Bail if user cannot see any top level barebones menus
-	if ( empty( $menu_order ) || ( false === barebones()->admin->show_separator ) )
+	// Bail if user cannot see any top level showcase menus
+	if ( empty( $menu_order ) || ( false === showcase()->admin->show_separator ) )
 		return $menu_order;
 
 	// Initialize our custom order array
@@ -80,7 +80,7 @@ function dps_admin_menu_order( $menu_order ) {
 	// Menu values
 	$second_sep   = 'separator2';
 	$custom_menus = array(
-		'separator-barebones',                               // Separator
+		'separator-showcase',                               // Separator
 		'edit.php?post_type=' . dps_get_forum_post_type(), // Forums
 		'edit.php?post_type=' . dps_get_topic_post_type(), // Topics
 		'edit.php?post_type=' . dps_get_reply_post_type()  // Replies
@@ -89,7 +89,7 @@ function dps_admin_menu_order( $menu_order ) {
 	// Loop through menu order and do some rearranging
 	foreach ( $menu_order as $item ) {
 
-		// Position barebones menus above appearance
+		// Position showcase menus above appearance
 		if ( $second_sep == $item ) {
 
 			// Add our custom menus
@@ -138,7 +138,7 @@ function dps_filter_sample_permalink( $post_link, $_post, $leavename = false, $s
 }
 
 /**
- * Uninstall all barebones options and capabilities from a specific site.
+ * Uninstall all showcase options and capabilities from a specific site.
  *
  * @since Showcase (1.0)
  * @param type $site_id
@@ -155,11 +155,11 @@ function dps_do_uninstall( $site_id = 0 ) {
 }
 
 /**
- * Redirect user to barebones's What's New page on activation
+ * Redirect user to showcase's What's New page on activation
  *
  * @since Showcase (1.0)
  *
- * @internal Used internally to redirect barebones to the about page on activation
+ * @internal Used internally to redirect showcase to the about page on activation
  *
  * @uses get_transient() To see if transient to redirect exists
  * @uses delete_transient() To delete the transient if it exists
@@ -183,13 +183,13 @@ function dps_do_activation_redirect() {
 	if ( is_network_admin() || isset( $_GET['activate-multi'] ) )
 		return;
 
-	// Redirect to barebones about page
+	// Redirect to showcase about page
 	wp_safe_redirect( add_query_arg( array( 'page' => 'bbp-about' ), admin_url( 'index.php' ) ) );
 }
 
 /**
  * This tells WP to highlight the Tools > Forums menu item,
- * regardless of which actual barebones Tools screen we are on.
+ * regardless of which actual showcase Tools screen we are on.
  *
  * The conditional prevents the override when the user is viewing settings or
  * any third-party plugins.
@@ -201,7 +201,7 @@ function dps_do_activation_redirect() {
 function dps_tools_modify_menu_highlight() {
 	global $plugin_page, $submenu_file;
 
-	// This tweaks the Tools subnav menu to only show one barebones menu item
+	// This tweaks the Tools subnav menu to only show one showcase menu item
 	if ( ! in_array( $plugin_page, array( 'bbp-settings' ) ) )
 		$submenu_file = 'bbp-repair';
 }
@@ -233,15 +233,15 @@ function dps_tools_admin_tabs( $active_tab = '' ) {
 		$tabs = apply_filters( 'dps_tools_admin_tabs', array(
 			'0' => array(
 				'href' => get_admin_url( '', add_query_arg( array( 'page' => 'bbp-repair'    ), 'tools.php' ) ),
-				'name' => __( 'Repair Forums', 'barebones' )
+				'name' => __( 'Repair Forums', 'dps' )
 			),
 			'1' => array(
 				'href' => get_admin_url( '', add_query_arg( array( 'page' => 'bbp-converter' ), 'tools.php' ) ),
-				'name' => __( 'Import Forums', 'barebones' )
+				'name' => __( 'Import Forums', 'dps' )
 			),
 			'2' => array(
 				'href' => get_admin_url( '', add_query_arg( array( 'page' => 'bbp-reset'     ), 'tools.php' ) ),
-				'name' => __( 'Reset Forums', 'barebones' )
+				'name' => __( 'Reset Forums', 'dps' )
 			)
 		) );
 

@@ -13,57 +13,57 @@ if ( !defined( 'ABSPATH' ) ) exit;
 /** Versions ******************************************************************/
 
 /**
- * Output the barebones version
+ * Output the showcase version
  *
  * @since Showcase (1.0)
- * @uses dps_get_version() To get the barebones version
+ * @uses dps_get_version() To get the showcase version
  */
 function dps_version() {
 	echo dps_get_version();
 }
 	/**
-	 * Return the barebones version
+	 * Return the showcase version
 	 *
 	 * @since Showcase (1.0)
-	 * @retrun string The barebones version
+	 * @retrun string The showcase version
 	 */
 	function dps_get_version() {
-		return barebones()->version;
+		return showcase()->version;
 	}
 
 /**
- * Output the barebones database version
+ * Output the showcase database version
  *
  * @since Showcase (1.0)
- * @uses dps_get_version() To get the barebones version
+ * @uses dps_get_version() To get the showcase version
  */
 function dps_db_version() {
 	echo dps_get_db_version();
 }
 	/**
-	 * Return the barebones database version
+	 * Return the showcase database version
 	 *
 	 * @since Showcase (1.0)
-	 * @retrun string The barebones version
+	 * @retrun string The showcase version
 	 */
 	function dps_get_db_version() {
-		return barebones()->db_version;
+		return showcase()->db_version;
 	}
 
 /**
- * Output the barebones database version directly from the database
+ * Output the showcase database version directly from the database
  *
  * @since Showcase (1.0)
- * @uses dps_get_version() To get the current barebones version
+ * @uses dps_get_version() To get the current showcase version
  */
 function dps_db_version_raw() {
 	echo dps_get_db_version_raw();
 }
 	/**
-	 * Return the barebones database version directly from the database
+	 * Return the showcase database version directly from the database
 	 *
 	 * @since Showcase (1.0)
-	 * @retrun string The current barebones version
+	 * @retrun string The current showcase version
 	 */
 	function dps_get_db_version_raw() {
 		return get_option( '_dps_db_version', '' );
@@ -134,11 +134,11 @@ function dps_update_reply_id( $post_id, $reply_id ) {
  * @return array Views
  */
 function dps_get_views() {
-	return barebones()->views;
+	return showcase()->views;
 }
 
 /**
- * Register a barebones view
+ * Register a showcase view
  *
  * @todo Implement feeds - See {@link http://trac.example.org/ticket/1422}
  *
@@ -159,7 +159,7 @@ function dps_register_view( $view, $title, $query_args = '', $feed = true, $capa
 	if ( ! empty( $capability ) && ! current_user_can( $capability ) )
 		return false;
 
-	$bbp   = barebones();
+	$bbp   = showcase();
 	$view  = sanitize_title( $view );
 	$title = esc_html( $title );
 
@@ -182,7 +182,7 @@ function dps_register_view( $view, $title, $query_args = '', $feed = true, $capa
 }
 
 /**
- * Deregister a barebones view
+ * Deregister a showcase view
  *
  * @since Showcase (1.0)
  *
@@ -191,7 +191,7 @@ function dps_register_view( $view, $title, $query_args = '', $feed = true, $capa
  * @return bool False if the view doesn't exist, true on success
  */
 function dps_deregister_view( $view ) {
-	$bbp  = barebones();
+	$bbp  = showcase();
 	$view = sanitize_title( $view );
 
 	if ( !isset( $bbp->views[$view] ) )
@@ -242,7 +242,7 @@ function dps_view_query( $view = '', $new_args = '' ) {
  */
 function dps_get_view_query_args( $view ) {
 	$view   = dps_get_view_id( $view );
-	$retval = !empty( $view ) ? barebones()->views[$view]['query'] : false;
+	$retval = !empty( $view ) ? showcase()->views[$view]['query'] : false;
 
 	return apply_filters( 'dps_get_view_query_args', $retval, $view );
 }
@@ -262,7 +262,7 @@ function dps_get_view_query_args( $view ) {
  * @param string $data Any additional data passed with the error message
  */
 function dps_add_error( $code = '', $message = '', $data = '' ) {
-	barebones()->errors->add( $code, $message, $data );
+	showcase()->errors->add( $code, $message, $data );
 }
 
 /**
@@ -276,9 +276,9 @@ function dps_add_error( $code = '', $message = '', $data = '' ) {
  * @usese WP_Error::get_error_codes()
  */
 function dps_has_errors() {
-	$has_errors = barebones()->errors->get_error_codes() ? true : false;
+	$has_errors = showcase()->errors->get_error_codes() ? true : false;
 
-	return apply_filters( 'dps_has_errors', $has_errors, barebones()->errors );
+	return apply_filters( 'dps_has_errors', $has_errors, showcase()->errors );
 }
 
 /** Mentions ******************************************************************/
@@ -344,7 +344,7 @@ function dps_mention_filter( $content = '' ) {
  * @return string
  */
 function dps_get_public_status_id() {
-	return barebones()->public_status_id;
+	return showcase()->public_status_id;
 }
 
 /**
@@ -355,7 +355,7 @@ function dps_get_public_status_id() {
  * @return string
  */
 function dps_get_pending_status_id() {
-	return barebones()->pending_status_id;
+	return showcase()->pending_status_id;
 }
 
 /**
@@ -366,7 +366,7 @@ function dps_get_pending_status_id() {
  * @return string
  */
 function dps_get_private_status_id() {
-	return barebones()->private_status_id;
+	return showcase()->private_status_id;
 }
 
 /**
@@ -377,7 +377,7 @@ function dps_get_private_status_id() {
  * @return string
  */
 function dps_get_hidden_status_id() {
-	return barebones()->hidden_status_id;
+	return showcase()->hidden_status_id;
 }
 
 /**
@@ -388,7 +388,7 @@ function dps_get_hidden_status_id() {
  * @return string
  */
 function dps_get_closed_status_id() {
-	return barebones()->closed_status_id;
+	return showcase()->closed_status_id;
 }
 
 /**
@@ -399,7 +399,7 @@ function dps_get_closed_status_id() {
  * @return string
  */
 function dps_get_spam_status_id() {
-	return barebones()->spam_status_id;
+	return showcase()->spam_status_id;
 }
 
 /**
@@ -410,7 +410,7 @@ function dps_get_spam_status_id() {
  * @return string
  */
 function dps_get_trash_status_id() {
-	return barebones()->trash_status_id;
+	return showcase()->trash_status_id;
 }
 
 /**
@@ -421,7 +421,7 @@ function dps_get_trash_status_id() {
  * @return string
  */
 function dps_get_orphan_status_id() {
-	return barebones()->orphan_status_id;
+	return showcase()->orphan_status_id;
 }
 
 /** Rewrite IDs ***************************************************************/
@@ -433,7 +433,7 @@ function dps_get_orphan_status_id() {
  * @return string
  */
 function dps_get_user_rewrite_id() {
-	return barebones()->user_id;
+	return showcase()->user_id;
 }
 
 /**
@@ -443,7 +443,7 @@ function dps_get_user_rewrite_id() {
  * @return string
  */
 function dps_get_edit_rewrite_id() {
-	return barebones()->edit_id;
+	return showcase()->edit_id;
 }
 
 /**
@@ -454,7 +454,7 @@ function dps_get_edit_rewrite_id() {
  * @return string
  */
 function dps_get_search_rewrite_id() {
-	return barebones()->search_id;
+	return showcase()->search_id;
 }
 
 /**
@@ -464,7 +464,7 @@ function dps_get_search_rewrite_id() {
  * @return string
  */
 function dps_get_user_topics_rewrite_id() {
-	return barebones()->tops_id;
+	return showcase()->tops_id;
 }
 
 /**
@@ -474,7 +474,7 @@ function dps_get_user_topics_rewrite_id() {
  * @return string
  */
 function dps_get_user_replies_rewrite_id() {
-	return barebones()->reps_id;
+	return showcase()->reps_id;
 }
 
 /**
@@ -484,7 +484,7 @@ function dps_get_user_replies_rewrite_id() {
  * @return string
  */
 function dps_get_user_favorites_rewrite_id() {
-	return barebones()->favs_id;
+	return showcase()->favs_id;
 }
 
 /**
@@ -494,7 +494,7 @@ function dps_get_user_favorites_rewrite_id() {
  * @return string
  */
 function dps_get_user_subscriptions_rewrite_id() {
-	return barebones()->subs_id;
+	return showcase()->subs_id;
 }
 
 /**
@@ -504,7 +504,7 @@ function dps_get_user_subscriptions_rewrite_id() {
  * @return string
  */
 function dps_get_view_rewrite_id() {
-	return barebones()->view_id;
+	return showcase()->view_id;
 }
 
 /**

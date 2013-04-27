@@ -12,7 +12,7 @@
  * Author:      You!
  * Author URI:  http://example.org
  * Version:     1.0
- * Text Domain: barebones
+ * Text Domain: showcase
  * Domain Path: ../../languages/plugins/
  */
 
@@ -78,7 +78,7 @@ final class Showcase {
 	 * @uses Showcase::setup_globals() Setup the globals needed
 	 * @uses Showcase::includes() Include the required files
 	 * @uses Showcase::setup_actions() Setup the hooks and actions
-	 * @see barebones()
+	 * @see showcase()
 	 * @return The one true Showcase
 	 */
 	public static function instance() {
@@ -99,7 +99,7 @@ final class Showcase {
 	 *
 	 * @since Showcase (1.0)
 	 * @see Showcase::instance()
-	 * @see barebones();
+	 * @see showcase();
 	 */
 	private function __construct() { /* Do nothing here */ }
 
@@ -108,14 +108,14 @@ final class Showcase {
 	 *
 	 * @since Showcase (1.0)
 	 */
-	public function __clone() { _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'barebones' ), '1.0' ); }
+	public function __clone() { _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'dps' ), '1.0' ); }
 
 	/**
 	 * A dummy magic method to prevent Showcase from being unserialized
 	 *
 	 * @since Showcase (1.0)
 	 */
-	public function __wakeup() { _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'barebones' ), '1.0' ); }
+	public function __wakeup() { _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'dps' ), '1.0' ); }
 
 	/**
 	 * Magic method for checking the existence of a certain custom field
@@ -217,7 +217,7 @@ final class Showcase {
 
 		/** Misc **************************************************************/
 
-		$this->domain         = 'barebones';    // Unique identifier for retrieving translated strings
+		$this->domain         = 'showcase';     // Unique identifier for retrieving translated strings
 		$this->extend         = new stdClass(); // Plugins add data here
 		$this->errors         = new WP_Error(); // Feedback
 	}
@@ -300,8 +300,8 @@ final class Showcase {
 			'register_post_statuses',   // Register post statuses
 			'register_taxonomies',      // Register taxonomies (topic-tag)
 			'register_shortcodes',      // Register shortcodes
-			'register_theme_packages',  // Register bundled theme packages (barebones)
-			'load_textdomain',          // Load textdomain (barebones)
+			'register_theme_packages',  // Register bundled theme packages (showcase)
+			'load_textdomain',          // Load textdomain (showcase)
 			'add_rewrite_tags',         // Add rewrite tags
 			'generate_rewrite_rules'    // Generate rewrite rules
 		);
@@ -327,7 +327,7 @@ final class Showcase {
 		// Register the default theme compatibility package
 		dps_register_theme_package( array(
 			'id'      => 'default',
-			'name'    => __( 'barebones default', 'barebones' ),
+			'name'    => __( 'showcase default', 'dps' ),
 			'version' => dps_get_version(),
 			'dir'     => trailingslashit( $this->themes_dir . 'default' ),
 			'url'     => trailingslashit( $this->themes_url . 'default' )
@@ -359,7 +359,7 @@ final class Showcase {
 	 *
 	 * @since Showcase (1.0)
 	 *
-	 * @uses apply_filters() Calls 'barebones_locale' with the {@link get_locale()} value
+	 * @uses apply_filters() Calls 'showcase_locale' with the {@link get_locale()} value
 	 * @uses load_textdomain() To load the textdomain
 	 * @return bool True on success, false on failure
 	 */
@@ -392,21 +392,21 @@ final class Showcase {
 
 		// Forum labels
 		$post_type['labels'] = array(
-			'name'               => __( 'Forums',                   'barebones' ),
-			'menu_name'          => __( 'Forums',                   'barebones' ),
-			'singular_name'      => __( 'Forum',                    'barebones' ),
-			'all_items'          => __( 'All Forums',               'barebones' ),
-			'add_new'            => __( 'New Forum',                'barebones' ),
-			'add_new_item'       => __( 'Create New Forum',         'barebones' ),
-			'edit'               => __( 'Edit',                     'barebones' ),
-			'edit_item'          => __( 'Edit Forum',               'barebones' ),
-			'new_item'           => __( 'New Forum',                'barebones' ),
-			'view'               => __( 'View Forum',               'barebones' ),
-			'view_item'          => __( 'View Forum',               'barebones' ),
-			'search_items'       => __( 'Search Forums',            'barebones' ),
-			'not_found'          => __( 'No forums found',          'barebones' ),
-			'not_found_in_trash' => __( 'No forums found in Trash', 'barebones' ),
-			'parent_item_colon'  => __( 'Parent Forum:',            'barebones' )
+			'name'               => __( 'Forums',                   'showcase' ),
+			'menu_name'          => __( 'Forums',                   'showcase' ),
+			'singular_name'      => __( 'Forum',                    'showcase' ),
+			'all_items'          => __( 'All Forums',               'showcase' ),
+			'add_new'            => __( 'New Forum',                'showcase' ),
+			'add_new_item'       => __( 'Create New Forum',         'showcase' ),
+			'edit'               => __( 'Edit',                     'showcase' ),
+			'edit_item'          => __( 'Edit Forum',               'showcase' ),
+			'new_item'           => __( 'New Forum',                'showcase' ),
+			'view'               => __( 'View Forum',               'showcase' ),
+			'view_item'          => __( 'View Forum',               'showcase' ),
+			'search_items'       => __( 'Search Forums',            'showcase' ),
+			'not_found'          => __( 'No forums found',          'showcase' ),
+			'not_found_in_trash' => __( 'No forums found in Trash', 'dps' ),
+			'parent_item_colon'  => __( 'Parent Forum:',            'showcase' )
 		);
 
 		// Forum rewrite
@@ -429,7 +429,7 @@ final class Showcase {
 				'labels'              => $post_type['labels'],
 				'rewrite'             => $post_type['rewrite'],
 				'supports'            => $post_type['supports'],
-				'description'         => __( 'Showcase Forums', 'barebones' ),
+				'description'         => __( 'Showcase Forums', 'dps' ),
 				'capabilities'        => dps_get_forum_caps(),
 				'capability_type'     => array( 'forum', 'forums' ),
 				'menu_position'       => 555555,
@@ -473,16 +473,16 @@ final class Showcase {
 
 		// Topic tag labels
 		$topic_tag['labels'] = array(
-			'name'          => __( 'Topic Tags',     'barebones' ),
-			'singular_name' => __( 'Topic Tag',      'barebones' ),
-			'search_items'  => __( 'Search Tags',    'barebones' ),
-			'popular_items' => __( 'Popular Tags',   'barebones' ),
-			'all_items'     => __( 'All Tags',       'barebones' ),
-			'edit_item'     => __( 'Edit Tag',       'barebones' ),
-			'update_item'   => __( 'Update Tag',     'barebones' ),
-			'add_new_item'  => __( 'Add New Tag',    'barebones' ),
-			'new_item_name' => __( 'New Tag Name',   'barebones' ),
-			'view_item'     => __( 'View Topic Tag', 'barebones' )
+			'name'          => __( 'Topic Tags',     'showcase' ),
+			'singular_name' => __( 'Topic Tag',      'showcase' ),
+			'search_items'  => __( 'Search Tags',    'showcase' ),
+			'popular_items' => __( 'Popular Tags',   'showcase' ),
+			'all_items'     => __( 'All Tags',       'showcase' ),
+			'edit_item'     => __( 'Edit Tag',       'showcase' ),
+			'update_item'   => __( 'Update Tag',     'showcase' ),
+			'add_new_item'  => __( 'Add New Tag',    'showcase' ),
+			'new_item_name' => __( 'New Tag Name',   'showcase' ),
+			'view_item'     => __( 'View Topic Tag', 'dps' )
 		);
 
 		// Topic tag rewrite
@@ -553,11 +553,11 @@ final class Showcase {
  * The main function responsible for returning the one true Showcase Instance to functions everywhere.
  *
  * Use this function like you would a global variable, except without needing to declare the global.
- * Example: <?php $bb = barebones(); ?>
+ * Example: <?php $bb = showcase(); ?>
  *
  * @return The one true Showcase Instance
  */
-function barebones() {
+function showcase() {
 	return Showcase::instance();
 }
 
@@ -567,11 +567,11 @@ function barebones() {
  * This gives all other plugins the chance to load before Showcase, to get their
  * actions, filters, and overrides setup without Showcase being in the way.
  */
-if ( defined( 'BAREBONES_LATE_LOAD' ) ) {
-	add_action( 'plugins_loaded', 'barebones', (int) BAREBONES_LATE_LOAD );
+if ( defined( 'SHOWCASE_LATE_LOAD' ) ) {
+	add_action( 'plugins_loaded', 'dps', (int) SHOWCASE_LATE_LOAD );
 
 } else {
-	barebones();
+	showcase();
 }
 
 endif; // class_exists check
