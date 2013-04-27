@@ -108,17 +108,17 @@ class BB_Default extends BB_Theme_Compat {
 		// Check child theme
 		if ( file_exists( trailingslashit( get_stylesheet_directory() ) . $file ) ) {
 			$location = trailingslashit( get_stylesheet_directory_uri() );
-			$handle   = 'bb-child-showcase';
+			$handle   = 'dps-child-showcase';
 
 		// Check parent theme
 		} elseif ( file_exists( trailingslashit( get_template_directory() ) . $file ) ) {
 			$location = trailingslashit( get_template_directory_uri() );
-			$handle   = 'bb-parent-showcase';
+			$handle   = 'dps-parent-showcase';
 
 		// Showcase theme compatibility
 		} else {
 			$location = trailingslashit( $this->url );
-			$handle   = 'bb-default-showcase';
+			$handle   = 'dps-default-showcase';
 		}
 
 		// Enqueue the Showcase styling
@@ -140,17 +140,17 @@ class BB_Default extends BB_Theme_Compat {
 		// Check child theme
 		if ( file_exists( trailingslashit( get_stylesheet_directory() ) . $file ) ) {
 			$location = trailingslashit( get_stylesheet_directory_uri() );
-			$handle   = 'bb-child-javascript';
+			$handle   = 'dps-child-javascript';
 
 		// Check parent theme
 		} elseif ( file_exists( trailingslashit( get_template_directory() ) . $file ) ) {
 			$location = trailingslashit( get_template_directory_uri() );
-			$handle   = 'bb-parent-javascript';
+			$handle   = 'dps-parent-javascript';
 
 		// Showcase theme compatibility
 		} else {
 			$location = trailingslashit( dps_get_theme_compat_url() );
-			$handle   = 'bb-default-javascript';
+			$handle   = 'dps-default-javascript';
 		}
 
 		// Enqueue the stylesheet

@@ -17,9 +17,9 @@
  */
 
 // Exit if accessed directly
-if ( !defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( !class_exists( 'Showcase' ) ) :
+if ( ! class_exists( 'Showcase' ) ) :
 /**
  * Main Showcase class
  *
@@ -160,17 +160,13 @@ final class Showcase {
 	 * filtered to allow for early overriding.
 	 *
 	 * @since Showcase (1.0)
-	 * @access private
-	 * @uses plugin_dir_path() To generate Showcase plugin path
-	 * @uses plugin_dir_url() To generate Showcase plugin url
-	 * @uses apply_filters() Calls various filters
 	 */
 	private function setup_globals() {
 
 		/** Versions **********************************************************/
 
 		$this->version    = '1.0-bleeding-1';
-		$this->db_version = '117';
+		$this->db_version = '1';
 
 
 		/** Paths *************************************************************/
@@ -189,24 +185,20 @@ final class Showcase {
 		$this->lang_dir     = apply_filters( 'dps_lang_dir',     trailingslashit( $this->plugin_dir . 'languages' ) );
 
 		// Templates
-		$this->themes_dir   = apply_filters( 'dps_themes_dir',   trailingslashit( $this->plugin_dir . 'templates' ) );
-		$this->themes_url   = apply_filters( 'dps_themes_url',   trailingslashit( $this->plugin_url . 'templates' ) );
+		$this->themes_dir = apply_filters( 'dps_themes_dir',   trailingslashit( $this->plugin_dir . 'templates' ) );
+		$this->themes_url = apply_filters( 'dps_themes_url',   trailingslashit( $this->plugin_url . 'templates' ) );
 
 
 		/** Identifiers *******************************************************/
 
 		// Post type identifiers
-		$this->forum_post_type   = apply_filters( 'dps_forum_post_type',  'forum'     );
-		$this->topic_tag_tax_id  = apply_filters( 'dps_topic_tag_tax_id', 'topic-tag' );
-
-		// Other identifiers
-		$this->edit_id           = apply_filters( 'dps_edit_id', 'edit' );
+		$this->showcase_post_type = apply_filters( 'dps_showcase_post_type', 'showcase' );
 
 
 		/** Queries ***********************************************************/
 
-		$this->current_forum_id  = 0; // Current forum id
-		$this->forum_query       = new stdClass(); // Main forum query
+		$this->current_showcase_id  = 0; // Current forum id
+		$this->showcase_query       = new stdClass(); // Main forum query
 
 
 		/** Theme Compat ******************************************************/
@@ -310,7 +302,7 @@ final class Showcase {
 		foreach( $actions as $class_action )
 			add_action( 'dps_' . $class_action, array( $this, $class_action ), 5 );
 
-		// All Showcase actions are setup (includes bb-core-hooks.php)
+		// All Showcase actions are setup (includes dps-core-hooks.php)
 		do_action_ref_array( 'dps_after_setup_actions', array( &$this ) );
 	}
 

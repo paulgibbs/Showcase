@@ -518,9 +518,9 @@ function dps_get_search_slug( $default = 'search' ) {
  *
  * @since Showcase (1.0)
  * @param $default string Optional. Default empty string
- * @uses get_option() To get the old bb-config.php location
- * @return string The location of the bb-config.php file, if any
+ * @uses get_option() To get the old dps-config.php location
+ * @return string The location of the dps-config.php file, if any
  */
 function dps_get_config_location( $default = '' ) {
-	return apply_filters( 'dps_get_config_location', get_option( 'bb-config-location', $default ) );
+	return apply_filters( 'dps_get_config_location', get_option( 'dps-config-location', $default ) );
 }
