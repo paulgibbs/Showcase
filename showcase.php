@@ -376,20 +376,20 @@ final class Showcase {
 
 		// Showcase labels
 		$post_type['labels'] = array(
-			'name'               => __( 'Showcase',                'dps' ),
-			'menu_name'          => __( 'Showcase',                'dps' ),
-			'singular_name'      => __( 'Showcase',                'dps' ),
-			'all_items'          => __( 'All Sites',               'dps' ),
-			'add_new'            => __( 'New Site',                'dps' ),
-			'add_new_item'       => __( 'Add New Site',            'dps' ),
-			'edit'               => __( 'Edit',                    'dps' ),
-			'edit_item'          => __( 'Edit Site',               'dps' ),
-			'new_item'           => __( 'New Site',                'dps' ),
-			'view'               => __( 'View Showcase',           'dps' ),
-			'view_item'          => __( 'View Sites',              'dps' ),
-			'search_items'       => __( 'Search Showcase',         'dps' ),
-			'not_found'          => __( 'No sites found',          'dps' ),
-			'not_found_in_trash' => __( 'No sites found in Trash', 'dps' ),
+			'name'               => __( 'Showcase',                         'dps' ),
+			'menu_name'          => __( 'Showcase',                         'dps' ),
+			'singular_name'      => __( 'Showcase',                         'dps' ),
+			'all_items'          => __( 'All Items',                        'dps' ),
+			'add_new'            => __( 'New Item',                         'dps' ),
+			'add_new_item'       => __( 'Add New Showcase Item',            'dps' ),
+			'edit'               => __( 'Edit',                             'dps' ),
+			'edit_item'          => __( 'Edit Showcase Item',               'dps' ),
+			'new_item'           => __( 'New Showcase Items',               'dps' ),
+			'view'               => __( 'View Showcase',                    'dps' ),
+			'view_item'          => __( 'View Showcase Item',               'dps' ),
+			'search_items'       => __( 'Search The Showcase',              'dps' ),
+			'not_found'          => __( 'No showcase items found',          'dps' ),
+			'not_found_in_trash' => __( 'No showcase items found in Trash', 'dps' ),
 		);
 
 		// Showcase rewrite
