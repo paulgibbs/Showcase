@@ -300,19 +300,19 @@ function dps_showcase_class( $showcase_id = 0, $classes = array() ) {
 	function dps_get_showcase_class( $showcase_id = 0, $classes = array() ) {
 		$showcase_id = dps_get_showcase_id( $showcase_id );
 		$count       = isset( $dps->showcase_query->current_post ) ? $dps->showcase_query->current_post : 1;
-		$classes     = (array) $classes;
 
-		// Get some classes
+		$classes   = (array) $classes;
 		$classes[] = 'loop-item-' . $count;
 		$classes[] = ( (int) $count % 2 ) ? 'even' : 'odd';
 
-		// Ditch the empties
-		$classes   = array_filter( $classes );
-		$classes   = get_post_class( $classes, $showcase_id );
+		// "Featured" category item used to style the output
+		if ( has_category( 'featured' ) )
+			$classes[] = 'featured';
 
 		// Filter the results
-		$classes   = apply_filters( 'dps_get_showcase_class', $classes, $showcase_id );
-		$retval    = 'class="' . join( ' ', $classes ) . '"';
+		$classes = get_post_class( $classes, $showcase_id );
+		$classes = apply_filters( 'dps_get_showcase_class', $classes, $showcase_id );
+		$retval  = 'class="' . join( ' ', $classes ) . '"';
 
 		return $retval;
 	}
