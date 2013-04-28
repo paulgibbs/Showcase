@@ -6,7 +6,7 @@
  * @package Showcase
  * @subpackage Admin
  *
- * This file contains the actions that are used through-out showcase Admin. They
+ * This file contains the actions that are used through-out the Showcase Admin. They
  * are consolidated here to make searching for them easier, and to help developers
  * understand at a glance the order in which things occur.
  *
@@ -35,42 +35,31 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * For more information on how this works, see the 'Plugin Dependency' section
  * near the bottom of this file.
- *
- *           v--WordPress Actions       v--showcase Sub-actions
  */
-add_action( 'admin_menu',              'dps_admin_menu'                    );
-add_action( 'admin_init',              'dps_admin_init'                    );
-add_action( 'admin_head',              'dps_admin_head'                    );
-add_action( 'admin_notices',           'dps_admin_notices'                 );
-add_action( 'wpmu_new_blog',           'dps_new_site',               10, 6 );
+add_action( 'admin_menu',    'dps_admin_menu'           );
+add_action( 'admin_init',    'dps_admin_init'           );
+add_action( 'admin_head',    'dps_admin_head'           );
+add_action( 'admin_notices', 'dps_admin_notices'        );
+add_action( 'wpmu_new_blog', 'dps_new_site',      10, 6 );
 
 // Hook on to admin_init
-add_action( 'dps_admin_init', 'dps_admin_forums'                );
-add_action( 'dps_admin_init', 'dps_setup_updater',          999 );
+add_action( 'dps_admin_init', 'dps_admin_forums'       );
+add_action( 'dps_admin_init', 'dps_setup_updater', 999 );
 
 // Initialize the admin area
 add_action( 'dps_init', 'dps_admin' );
 
-// Reset the menu order
-add_action( 'dps_admin_menu', 'dps_admin_separator' );
-
 // Activation
-add_action( 'dps_activation', 'dps_delete_rewrite_rules'    );
+add_action( 'dps_activation', 'dps_delete_rewrite_rules' );
 
 // Deactivation
-add_action( 'dps_deactivation', 'dps_remove_caps'          );
 add_action( 'dps_deactivation', 'dps_delete_rewrite_rules' );
-
-// Contextual Helpers
-add_action( 'load-settings_page_showcase', 'dps_admin_settings_help' );
 
 
 /**
- * When a new site is created in a multisite installation, run the activation
- * routine on that site
+ * When a new site is created in a multisite installation, run the activation routine on that site.
  *
  * @since Showcase (1.0)
- *
  * @param int $blog_id
  * @param int $user_id
  * @param string $domain
@@ -100,7 +89,6 @@ function dps_new_site( $blog_id, $user_id, $domain, $path, $site_id, $meta ) {
  * Piggy back admin_init action
  *
  * @since Showcase (1.0)
- * @uses do_action() Calls 'dps_admin_init'
  */
 function dps_admin_init() {
 	do_action( 'dps_admin_init' );
@@ -110,7 +98,6 @@ function dps_admin_init() {
  * Piggy back admin_menu action
  *
  * @since Showcase (1.0)
- * @uses do_action() Calls 'dps_admin_menu'
  */
 function dps_admin_menu() {
 	do_action( 'dps_admin_menu' );
@@ -120,7 +107,6 @@ function dps_admin_menu() {
  * Piggy back admin_head action
  *
  * @since Showcase (1.0)
- * @uses do_action() Calls 'dps_admin_head'
  */
 function dps_admin_head() {
 	do_action( 'dps_admin_head' );
@@ -130,7 +116,6 @@ function dps_admin_head() {
  * Piggy back admin_notices action
  *
  * @since Showcase (1.0)
- * @uses do_action() Calls 'dps_admin_notices'
  */
 function dps_admin_notices() {
 	do_action( 'dps_admin_notices' );
