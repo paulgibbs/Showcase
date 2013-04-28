@@ -111,7 +111,7 @@ class DPS_Shortcodes {
 	}
 
 	/**
-	 * Unset some globals in the $bbp object that hold query related info
+	 * Unset some globals in the showcase() object that hold query related info
 	 *
 	 * @since Showcase (1.0)
 	 */

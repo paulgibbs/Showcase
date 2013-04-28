@@ -537,7 +537,7 @@ function dps_replace_the_content( $content = '' ) {
 		return $content;
 
 	/**
-	 * Use shortcode API to display forums/topics/replies because they are
+	 * Use shortcode API to display showcase items because they are
 	 * already output buffered and ready to fit inside the_content.
 	 */
 
@@ -598,7 +598,7 @@ function dps_replace_the_content( $content = '' ) {
 /** Filters *******************************************************************/
 
 /**
- * Removes all filters from a WordPress filter, and stashes them in the $bbp
+ * Removes all filters from a WordPress filter, and stashes them in the showcase()
  * global in the event they need to be restored later.
  *
  * @since Showcase (1.0)
@@ -648,8 +648,7 @@ function dps_remove_all_filters( $tag, $priority = false ) {
 }
 
 /**
- * Restores filters from the $bbp global that were removed using
- * dps_remove_all_filters()
+ * Restores filters from the $bbp global that were removed using dps_remove_all_filters()
  *
  * @since Showcase (1.0)
  * @global WP_filter $wp_filter

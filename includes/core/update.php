@@ -50,7 +50,6 @@ function dps_is_update() {
  * @return bool True if activating showcase, false if not
  */
 function dps_is_activation( $basename = '' ) {
-	$bbp    = showcase();
 	$action = false;
 
 	if ( ! empty( $_REQUEST['action'] ) && ( '-1' != $_REQUEST['action'] ) ) {
@@ -72,8 +71,8 @@ function dps_is_activation( $basename = '' ) {
 	}
 
 	// Set basename if empty
-	if ( empty( $basename ) && !empty( $dps->basename ) ) {
-		$basename = $dps->basename;
+	if ( empty( $basename ) && ! empty( showcase()->basename ) ) {
+		$basename = showcase()->basename;
 	}
 
 	// Bail if no basename
@@ -92,7 +91,6 @@ function dps_is_activation( $basename = '' ) {
  * @return bool True if deactivating showcase, false if not
  */
 function dps_is_deactivation( $basename = '' ) {
-	$bbp    = showcase();
 	$action = false;
 	
 	if ( ! empty( $_REQUEST['action'] ) && ( '-1' != $_REQUEST['action'] ) ) {
@@ -114,8 +112,8 @@ function dps_is_deactivation( $basename = '' ) {
 	}
 
 	// Set basename if empty
-	if ( empty( $basename ) && !empty( $dps->basename ) ) {
-		$basename = $dps->basename;
+	if ( empty( $basename ) && !empty( showcase()->basename ) ) {
+		$basename = showcase()->basename;
 	}
 
 	// Bail if no basename
