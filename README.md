@@ -1,4 +1,6 @@
 Showcase
 ===
 
-Showcase is a kit that helps you build a powerful, modern WordPress plugin.
+Showcase helps you manage a list of featured websites on your WordPrese site; similar to http://wordpress.org/showcase/.
+
+Built with theme compatibility (think bbPress, BuddyPress, and Achievements) and using sub-action techniques, this is a good example of how to structure a modern WordPress plugin.

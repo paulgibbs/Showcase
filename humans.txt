@@ -10,4 +10,4 @@ bbPress, BuddyPress
 
 /* META */
 Updated: 2013/04/27
-See: http://github.com/paulgibbs/_bb/
+See: http://github.com/paulgibbs/showcase/
