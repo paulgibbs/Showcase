@@ -219,6 +219,61 @@ function dps_showcase_title( $showcase_id = 0 ) {
 	}
 
 /**
+ * Output the excerpt of the showcase item
+ *
+ * @param int $showcase_id Optional; showcase ID.
+ * @param int $length Optional; length of the excerpt. Defaults to 200 letters.
+ * @since Showcase (1.0)
+ */
+function dps_showcase_excerpt( $showcase_id = 0, $length = 200 ) {
+	echo dps_get_showcase_excerpt( $showcase_id, $length );
+}
+	/**
+	 * Return the excerpt of the showcase item
+	 *
+	 * @param int $showcase_id Optional; showcase ID.
+	 * @param int $length Optional; length of the excerpt. Defaults to 200 letters
+	 * @return string
+	 * @since Showcase (1.0)
+	 * @todo Handle multibyte characters when generating an excerpt
+	 * @todo Don't cut off part of a word; go to the nearest space
+	 */
+	function dps_get_showcase_excerpt( $showcase_id = 0, $length = 200 ) {
+		$showcase_id = dps_get_showcase_id( $showcase_id );
+		$excerpt     = get_post_field( 'post_excerpt', $showcase_id );
+		$length      = (int) $length;
+
+		// If you don't specify an excerpt, we'll use the post content as a source.
+		if ( empty( $excerpt ) )
+			$excerpt = dps_get_showcase_content( $showcase_id );
+
+		// Check the length of the excerpt
+		$excerpt = trim( strip_tags( $excerpt ) );
+
+		// Multibyte support
+		if ( function_exists( 'mb_strlen' ) )
+			$excerpt_length = mb_strlen( $excerpt );
+		else
+			$excerpt_length = strlen( $excerpt );
+
+		if ( ! empty( $length ) && ( $excerpt_length > $length ) ) {
+			// Trim the excerpt
+			$excerpt = substr( $excerpt, 0, $length - 1 );
+
+			// Build a "go here to read more" link
+			// translators: first param is post permalink, second param is the "more" text.
+			$more_link = sprintf( __( '&hellip; (<a href="%1$s">%2$s</a>)', 'dps' ),
+				esc_attr( dps_get_showcase_permalink( $showcase_id ) ),
+				_x( 'more', 'Excerpt - click here to see more of the post', 'dps' )
+			);
+			$more_link = apply_filters( 'dps_get_showcase_excerpt_more_link', $more_link, $showcase_id, $length );
+			$excerpt  .= $more_link;
+		}
+
+		return apply_filters( 'dps_get_showcase_excerpt', $excerpt, $showcase_id, $length );
+	}
+
+/**
  * Output the showcase archive title
  *
  * @since Showcase (1.0)
@@ -344,24 +399,32 @@ function dps_showcase_author_id( $showcase_id = 0 ) {
 /**
  * Output the mshot URL of the specified site
  *
- * @param string $site_url URl to fetch mshot for
+ * @param string $site_url Optional; URL to fetch mshot for.
  * @return string
  */
-function dps_showcase_mshot( $site_url ) {
+function dps_showcase_mshot( $site_url = '' ) {
 	echo esc_url( dps_get_showcase_mshot( $site_url ) );
 }
 	/**
 	 * Return the mshot URL of the specified site
 	 *
-	 * @param string $site_url URl to fetch mshot for
+	 * @param string $site_url Optional; URL to fetch mshot for.
 	 * @return string
 	 */
-	function dps_get_showcase_mshot( $site_url ) {
-		if ( empty( $site_url ) )
-			$site_url = 'http://buddypress.org';
+	function dps_get_showcase_mshot( $site_url = '') {
+
+		// If no URL specified, look in postmeta for a site URL
+		if ( empty( $site_url ) ) {
+			$site_url = get_post_custom_values( 'showcase_url' );
+
+			// get_post_custom_values() returns an array
+			if ( ! empty( $site_url ) && is_array( $site_url ) )
+				$site_url = array_shift( $site_url );
+			else
+				$site_url = 'http://buddypress.org';
+		}
 
 		$size = has_category( 'featured' ) ? 960 : 288;
 		$url  = sprintf( 'http://s.wordpress.com/mshots/v1/%s?w=%d', urlencode( esc_url_raw( $site_url ) ), $size );
-
 		return apply_filters( 'dps_get_showcase_mshot', $url, $site_url, $size );
 	}
