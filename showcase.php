@@ -400,6 +400,7 @@ final class Showcase {
 
 		// Showcase supports
 		$post_type['supports'] = array(
+			'custom-fields',
 			'editor',
 			'excerpt',
 			'revisions',
@@ -418,6 +419,7 @@ final class Showcase {
 				'query_var'           => true,
 				'rewrite'             => $post_type['rewrite'],
 				'supports'            => $post_type['supports'],
+				'taxonomies'          => array( 'category' ),
 			) )
 		);
 	}
