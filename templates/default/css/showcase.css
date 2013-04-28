@@ -1,0 +1,19 @@
+/**
+ * LTR CSS
+ *
+ * @package Showcase
+ * @subpackage Theme
+ */
+ 
+.showcase .content {
+	float: inherit;
+	width: auto;
+}
+
+#dps-showcase-list {
+	margin: 0;
+}
+
+#dps-showcase-list li {
+	list-style: none;
+}
