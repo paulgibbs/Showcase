@@ -256,8 +256,8 @@ final class Showcase {
 
 		// Quick admin check and load if needed
 		if ( is_admin() ) {
-			/*require( $this->includes_dir . 'admin/admin.php'   );
-			require( $this->includes_dir . 'admin/actions.php' );*/
+			require( $this->includes_dir . 'admin/admin.php'   );
+			require( $this->includes_dir . 'admin/actions.php' );
 		}
 	}
 
