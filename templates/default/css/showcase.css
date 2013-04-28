@@ -5,7 +5,7 @@
  * @subpackage Theme
  */
  
-.showcase .content {
+.showcase-archive .content {
 	float: inherit;
 	width: auto;
 }
@@ -14,6 +14,39 @@
 	margin: 0;
 }
 
-#dps-showcase-list li {
+#dps-showcase-list li.showcase {
+	display: inline-block;
+	float: left;
 	list-style: none;
+	margin-bottom: 24px;
+	width: 100%;
+}
+
+
+/* normal showcase items */
+
+.dps-showcase-image {
+	border: #ccc solid 1px;
+	display: inline-block;
+	max-width: 30%;
+}
+
+.dps-showcase-meta {
+	display: inline-block;
+	margin-right: 20px;
+	width: 19%;
+}
+
+.dps-showcase-content {
+	display: inline-block;
+	margin-left: 20px;
+	width: 39%;
+}
+
+
+/* featured items in the showcase */
+
+.disabled #dps-showcase-list li.category-featured .dps-showcase-image {
+	margin-left: 2%;
+	max-width: 96%;
 }

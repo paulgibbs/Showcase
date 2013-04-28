@@ -13,7 +13,20 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <li id="dps-showcase-<?php dps_showcase_id(); ?>" <?php dps_showcase_class(); ?>>
 
-	<img class="dps-showcase-image" src="<?php dps_showcase_mshot( get_post_custom_values( 'showcase_url' ) ); ?>">
-	<div class="dps-showcase-content"><?php dps_showcase_content(); ?></div>
+	<div class="dps-showcase-meta">
+		<p>Paul is cool</p>
+	</div>
+
+	<a href="<?php echo esc_url( dps_get_showcase_permalink() ); ?>" alt="<?php echo esc_attr( dps_get_showcase_title() ); ?>">
+		<img class="dps-showcase-image" src="<?php dps_showcase_mshot(); ?>">
+	</a>
+
+	<div class="dps-showcase-content">
+		<a href="<?php echo esc_url( dps_get_showcase_permalink() ); ?>" alt="<?php echo esc_attr( dps_get_showcase_title() ); ?>">
+			<h2><?php dps_showcase_title(); ?></h2>
+		</a>
+
+		<?php dps_showcase_excerpt(); ?>
+	</div>
 
 </li>
