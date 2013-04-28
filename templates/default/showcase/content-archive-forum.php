@@ -21,7 +21,7 @@
 
 	<?php do_action( 'dps_template_before_forums_index' ); ?>
 
-	<?php if ( dps_has_forums() ) : ?>
+	<?php if ( dps_has_showcase() ) : ?>
 
 		<?php dps_get_template_part( 'loop',     'forums'    ); ?>
 

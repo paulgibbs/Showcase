@@ -242,9 +242,7 @@ final class Showcase {
 		require( $this->includes_dir . 'common/shortcodes.php'     );
 
 		// Showcase
-		require( $this->includes_dir . 'showcase/capabilities.php'   );
-		require( $this->includes_dir . 'showcase/functions.php'      );
-		require( $this->includes_dir . 'showcase/template-tags.php'  );
+		require( $this->includes_dir . 'showcase/template-tags.php' );
 
 
 		/** Hooks *************************************************************/

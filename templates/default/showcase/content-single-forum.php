@@ -23,7 +23,7 @@
 
 		<?php dps_single_forum_description(); ?>
 
-		<?php if ( dps_has_forums() ) : ?>
+		<?php if ( dps_has_showcase() ) : ?>
 
 			<?php dps_get_template_part( 'loop', 'forums' ); ?>
 

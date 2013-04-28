@@ -199,7 +199,7 @@ class DPS_Shortcodes {
 	 *
 	 * @param array $attr
 	 * @param string $content
-	 * @uses dps_has_forums()
+	 * @uses dps_has_showcase()
 	 * @uses get_template_part()
 	 * @return string
 	 */
