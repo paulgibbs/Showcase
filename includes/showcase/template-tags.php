@@ -310,6 +310,7 @@ function dps_showcase_class( $showcase_id = 0, $classes = array() ) {
 			$classes[] = 'featured';
 
 		// Filter the results
+		$classes = array_filter( $classes );
 		$classes = get_post_class( $classes, $showcase_id );
 		$classes = apply_filters( 'dps_get_showcase_class', $classes, $showcase_id );
 		$retval  = 'class="' . join( ' ', $classes ) . '"';
@@ -342,9 +343,12 @@ function dps_showcase_author_id( $showcase_id = 0 ) {
 
 /**
  * Output the mshot URL of the specified site
+ *
  * @param string $site_url URl to fetch mshot for
+ * @return string
  */
 function dps_showcase_mshot( $site_url ) {
+	echo esc_url( dps_get_showcase_mshot( $site_url ) );
 }
 	/**
 	 * Return the mshot URL of the specified site
