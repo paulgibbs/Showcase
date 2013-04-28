@@ -339,3 +339,25 @@ function dps_showcase_author_id( $showcase_id = 0 ) {
 
 		return (int) apply_filters( 'dps_get_showcase_author_id', (int) $author_id, $showcase_id );
 	}
+
+/**
+ * Output the mshot URL of the specified site
+ * @param string $site_url URl to fetch mshot for
+ */
+function dps_showcase_mshot( $site_url ) {
+}
+	/**
+	 * Return the mshot URL of the specified site
+	 *
+	 * @param string $site_url URl to fetch mshot for
+	 * @return string
+	 */
+	function dps_get_showcase_mshot( $site_url ) {
+		if ( empty( $site_url ) )
+			$site_url = 'http://buddypress.org';
+
+		$size = has_category( 'featured' ) ? 960 : 288;
+		$url  = sprintf( 'http://s.wordpress.com/mshots/v1/%s?w=%d', urlencode( esc_url_raw( $site_url ) ), $size );
+
+		return apply_filters( 'dps_get_showcase_mshot', $url, $site_url, $size );
+	}
