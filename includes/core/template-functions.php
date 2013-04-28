@@ -36,6 +36,7 @@ function dps_get_template_part( $slug, $name = null ) {
 		$templates[] = $slug . '-' . $name . '.php';
 	$templates[] = $slug . '.php';
 
+
 	// Allow template parst to be filtered
 	$templates = apply_filters( 'dps_get_template_part', $templates, $slug, $name );
 
@@ -54,8 +55,7 @@ function dps_get_template_part( $slug, $name = null ) {
  *
  * @param string|array $template_names Template file(s) to search for, in order.
  * @param bool $load If true the template file will be loaded if it is found.
- * @param bool $require_once Whether to require_once or require. Default true.
- *                            Has no effect if $load is false.
+ * @param bool $require_once Whether to require_once or require. Default true. Has no effect if $load is false.
  * @return string The template filename if one is located.
  */
 function dps_locate_template( $template_names, $load = false, $require_once = true ) {
@@ -91,6 +91,7 @@ function dps_locate_template( $template_names, $load = false, $require_once = tr
 		}
 	}
 
+
 	/**
 	 * This action exists only to follow the standard showcase coding convention,
 	 * and should not be used to short-circuit any part of the template locator.
@@ -101,7 +102,7 @@ function dps_locate_template( $template_names, $load = false, $require_once = tr
 	do_action( 'dps_locate_template', $located, $template_name, $template_names, $template_locations, $load, $require_once );
 
 	// Maybe load the template if one was located
-	if ( ( true == $load ) && !empty( $located ) ) {
+	if ( ( true == $load ) && ! empty( $located ) ) {
 		load_template( $located, $require_once );
 	}
 

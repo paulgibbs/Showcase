@@ -49,7 +49,7 @@ function dps_footer() {
 function dps_is_showcase( $post_id = 0 ) {
 	$retval = false;
 
-	// Supplied ID is a forum
+	// Supplied ID is a showcase item
 	if ( ! empty( $post_id ) && ( dps_get_showcase_post_type() == get_post_type( $post_id ) ) )
 		$retval = true;
 
@@ -82,7 +82,7 @@ function dps_is_single_showcase() {
 	$retval = false;
 
 	// Single and a match
-	if ( is_singular( dps_get_showcase_post_type() ) || dps_is_query_name( 'dps_single_forum' ) )
+	if ( is_singular( dps_get_showcase_post_type() ) || dps_is_query_name( 'dps_single_showcase' ) )
 		$retval = true;
 
 	return (bool) apply_filters( 'dps_is_single_showcase', $retval );
@@ -287,7 +287,7 @@ function dps_title( $title = '', $sep = '&raquo;', $seplocation = '' ) {
 
 	// Showcase page
 	} elseif ( dps_is_single_showcase() ) {
-		$title = sprintf( __( 'Showcase: %s', 'dps' ), dps_get_forum_title() );
+		$title = sprintf( __( 'Showcase: %s', 'dps' ), dps_get_showcase_title() );
 	}
 
 	// Filter the raw title

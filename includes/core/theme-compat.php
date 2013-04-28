@@ -547,7 +547,7 @@ function dps_replace_the_content( $content = '' ) {
 	/** Showcase ************************************************************/
 
 	// Showcase archive
-	if ( dps_is_showcasem_archive() ) {
+	if ( dps_is_showcase_archive() ) {
 
 		// Page exists where this archive should be
 		$page = dps_get_page_by_path( dps_get_root_slug() );
@@ -577,7 +577,7 @@ function dps_replace_the_content( $content = '' ) {
 		}
 
 	// Single showcase
-	} elseif ( dps_is_single_forum() ) {
+	} elseif ( dps_is_single_showcase() ) {
 		$new_content = showcase()->shortcodes->display_showcase( array( 'id' => get_the_ID() ) );
 	}
 
@@ -651,7 +651,7 @@ function dps_remove_all_filters( $tag, $priority = false ) {
 }
 
 /**
- * Restores filters from the $bbp global that were removed using dps_remove_all_filters()
+ * Restores filters from the showcase() global that were removed using dps_remove_all_filters()
  *
  * @since Showcase (1.0)
  * @global WP_filter $wp_filter

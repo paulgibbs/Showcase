@@ -1,6 +1,6 @@
 <?php
 /**
- * Showcase Forum Template Tags
+ * Showcase Template Tags
  *
  * @package Showcase
  * @subpackage TemplateTags
@@ -23,7 +23,7 @@ function dps_showcase_post_type() {
 	 * Return the unique id of the custom post type for showcase
 	 *
 	 * @since Showcase (1.0)
-	 * @return string The unique forum post type id
+	 * @return string 
 	 */
 	function dps_get_showcase_post_type() {
 		return apply_filters( 'dps_get_showcase_post_type', showcase()->showcase_post_type );
@@ -37,7 +37,7 @@ function dps_showcase_post_type() {
  *
  * @since Showcase (1.0)
  * @param mixed $args All the arguments supported by {@link WP_Query}
- * @return object Multidimensional array of forum information
+ * @return object Multidimensional array of showcase information
  */
 function dps_has_showcases( $args = '' ) {
 	$filtered_args = dps_parse_args( $args, array(
@@ -46,19 +46,21 @@ function dps_has_showcases( $args = '' ) {
 	), 'has_showcases' );
 
 	// Run the query
-	$showcase->showcase_query = new WP_Query( $filtered_args );
+	showcase()->showcase_query = new WP_Query( $filtered_args );
 
-	return apply_filters( 'dps_has_showcases', $showcase->showcase_query->have_posts(), $showcase->showcase_query );
+	return apply_filters( 'dps_has_showcases', showcase()->showcase_query->have_posts(), showcase()->showcase_query );
 }
 
 /**
  * Whether there are more showcase items available in the loop
  *
  * @since Showcase (1.0)
- * @return object Forum information
+ * @return object
  */
 function dps_showcases() {
 	$have_posts = showcase()->showcase_query->have_posts();
+
+	// Reset the post data when finished
 	if ( empty( $have_posts ) )
 		wp_reset_postdata();
 
@@ -69,7 +71,7 @@ function dps_showcases() {
  * Loads up the current showcase in the loop
  *
  * @since Showcase (1.0)
- * @return object Forum information
+ * @return object
  */
 function dps_the_showcase() {
 	return showcase()->showcase_query->the_post();
@@ -172,12 +174,12 @@ function dps_showcase_permalink( $showcase_id = 0 ) {
 	echo dps_get_showcase_permalink( $showcase_id );
 }
 	/**
-	 * Return the link to the forum
+	 * Return the link to the showcase
 	 *
 	 * @since Showcase (1.0)
 	 * @param int $showcase_id Optional. Showcase id
 	 * @param $string $redirect_to Optional. Pass a redirect value for use with shortcodes and other fun things.
-	 * @return string Permanent link to forum
+	 * @return string Permanent link to showcase
 	 */
 	function dps_get_showcase_permalink( $showcase_id = 0, $redirect_to = '' ) {
 		$showcase_id = dps_get_showcase_id( $showcase_id );
@@ -313,4 +315,27 @@ function dps_showcase_class( $showcase_id = 0, $classes = array() ) {
 		$retval    = 'class="' . join( ' ', $classes ) . '"';
 
 		return $retval;
+	}
+
+/**
+ * Output the author ID of the showcase
+ *
+ * @since Showcase (1.0)
+ * @param int $showcase_id Optional. Showcase id
+ */
+function dps_showcase_author_id( $showcase_id = 0 ) {
+	echo dps_get_showcase_author_id( $showcase_id );
+}
+	/**
+	 * Return the author ID of the showcase
+	 *
+	 * @since Showcase (1.0)
+	 * @param int $showcase_id Optional. Showcase id
+	 * @return string
+	 */
+	function dps_get_showcase_author_id( $showcase_id = 0 ) {
+		$showcase_id = dps_get_showcase_id( $showcase_id );
+		$author_id   = get_post_field( 'post_author', $showcase_id );
+
+		return (int) apply_filters( 'dps_get_showcase_author_id', (int) $author_id, $showcase_id );
 	}

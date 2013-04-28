@@ -138,8 +138,8 @@ class DPS_Shortcodes {
 	/** Showcase shortcodes ******************************************************/
 
 	/**
-	 * Display an index of all visible root level forums in an output buffer
-	 * and return to ensure that post/page contents are displayed first.
+	 * Display an index of all showcase items in an output buffer and return to ensure
+	 * that post/page contents are displayed first.
 	 *
 	 * @since Showcase (1.0)
 	 * @param array $attr
@@ -161,7 +161,7 @@ class DPS_Shortcodes {
 	}
 
 	/**
-	 * Display the contents of a specific forum ID in an output buffer
+	 * Display the contents of a specific showcase item ID in an output buffer
 	 * and return to ensure that post/page contents are displayed first.
 	 *
 	 * @since Showcase (1.0)
@@ -185,7 +185,7 @@ class DPS_Shortcodes {
 		// Start output buffer
 		$this->start( 'dps_single_showcase' );
 
-		dps_get_template_part( 'content-single-forum' );
+		dps_get_template_part( 'content-single-showcase' );
 
 		// Return contents of output buffer
 		return $this->end();
