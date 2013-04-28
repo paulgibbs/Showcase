@@ -64,7 +64,6 @@ class DPS_Admin {
 	 * @since Showcase (1.0)
 	 */
 	private function includes() {
-		require( $this->admin_dir . 'functions.php' );
 	}
 
 	/**
@@ -77,8 +76,6 @@ class DPS_Admin {
 		// Bail to prevent interfering with the deactivation process
 		if ( dps_is_deactivation() )
 			return;
-
-		/** Dependencies ******************************************************/
 
 		// Allow plugins to modify these actions
 		do_action_ref_array( 'dps_admin_loaded', array( &$this ) );
