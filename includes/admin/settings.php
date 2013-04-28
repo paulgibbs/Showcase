@@ -1268,19 +1268,19 @@ function dps_converter_settings() {
 
 		<h2 class="nav-tab-wrapper"><?php dps_tools_admin_tabs( __( 'Import Forums', 'dps' ) ); ?></h2>
 
-		<form action="#" method="post" id="bbp-converter-settings">
+		<form action="#" method="post" id="dps-converter-settings">
 
 			<?php settings_fields( 'showcase_converter' ); ?>
 
 			<?php do_settings_sections( 'showcase_converter' ); ?>
 
 			<p class="submit">
-				<input type="button" name="submit" class="button-primary" id="bbp-converter-start" value="<?php esc_attr_e( 'Start', 'dps' ); ?>" onclick="bbconverter_start()" />
-				<input type="button" name="submit" class="button-primary" id="bbp-converter-stop" value="<?php esc_attr_e( 'Stop', 'dps' ); ?>" onclick="bbconverter_stop()" />
-				<img id="bbp-converter-progress" src="">
+				<input type="button" name="submit" class="button-primary" id="dps-converter-start" value="<?php esc_attr_e( 'Start', 'dps' ); ?>" onclick="bbconverter_start()" />
+				<input type="button" name="submit" class="button-primary" id="dps-converter-stop" value="<?php esc_attr_e( 'Stop', 'dps' ); ?>" onclick="bbconverter_stop()" />
+				<img id="dps-converter-progress" src="">
 			</p>
 
-			<div class="bbp-converter-updated" id="bbp-converter-message"></div>
+			<div class="dps-converter-updated" id="dps-converter-message"></div>
 		</form>
 	</div>
 

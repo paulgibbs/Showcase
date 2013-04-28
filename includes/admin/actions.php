@@ -15,8 +15,8 @@
  *  - showcase: In {@link Showcase::setup_actions()} in showcase.php
  *  - Admin: More in {@link DPS_Admin::setup_actions()} in admin.php
  *
- * @see bbp-core-actions.php
- * @see bbp-core-filters.php
+ * @see dps-core-actions.php
+ * @see dps-core-filters.php
  */
 
 // Exit if accessed directly

@@ -290,7 +290,7 @@ class BB_Forums_Admin {
 			return $forum_id;
 
 		// Only save for forum post-types
-		if ( ! dps_is_forum( $forum_id ) )
+		if ( ! dps_is_showcase( $forum_id ) )
 			return $forum_id;
 
 		// Bail if current user cannot edit this forum

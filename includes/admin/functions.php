@@ -76,8 +76,8 @@ function dps_tools_modify_menu_highlight() {
 	global $plugin_page, $submenu_file;
 
 	// This tweaks the Tools subnav menu to only show one showcase menu item
-	if ( ! in_array( $plugin_page, array( 'bbp-settings' ) ) )
-		$submenu_file = 'bbp-repair';
+	if ( ! in_array( $plugin_page, array( 'dps-settings' ) ) )
+		$submenu_file = 'dps-repair';
 }
 
 /**
@@ -106,15 +106,15 @@ function dps_tools_admin_tabs( $active_tab = '' ) {
 		// Setup core admin tabs
 		$tabs = apply_filters( 'dps_tools_admin_tabs', array(
 			'0' => array(
-				'href' => get_admin_url( '', add_query_arg( array( 'page' => 'bbp-repair'    ), 'tools.php' ) ),
+				'href' => get_admin_url( '', add_query_arg( array( 'page' => 'dps-repair'    ), 'tools.php' ) ),
 				'name' => __( 'Repair Forums', 'dps' )
 			),
 			'1' => array(
-				'href' => get_admin_url( '', add_query_arg( array( 'page' => 'bbp-converter' ), 'tools.php' ) ),
+				'href' => get_admin_url( '', add_query_arg( array( 'page' => 'dps-converter' ), 'tools.php' ) ),
 				'name' => __( 'Import Forums', 'dps' )
 			),
 			'2' => array(
-				'href' => get_admin_url( '', add_query_arg( array( 'page' => 'bbp-reset'     ), 'tools.php' ) ),
+				'href' => get_admin_url( '', add_query_arg( array( 'page' => 'dps-reset'     ), 'tools.php' ) ),
 				'name' => __( 'Reset Forums', 'dps' )
 			)
 		) );

@@ -11,14 +11,14 @@
 
 <?php do_action( 'dps_template_before_pagination_loop' ); ?>
 
-<div class="bbp-pagination">
-	<div class="bbp-pagination-count">
+<div class="dps-pagination">
+	<div class="dps-pagination-count">
 
 		<?php dps_forum_pagination_count(); ?>
 
 	</div>
 
-	<div class="bbp-pagination-links">
+	<div class="dps-pagination-links">
 
 		<?php dps_forum_pagination_links(); ?>
 

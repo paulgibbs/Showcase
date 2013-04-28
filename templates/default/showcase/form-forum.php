@@ -21,13 +21,13 @@
 
 <?php if ( dps_current_user_can_access_create_forum_form() ) : ?>
 
-	<div id="new-forum-<?php dps_forum_id(); ?>" class="bbp-forum-form">
+	<div id="new-forum-<?php dps_forum_id(); ?>" class="dps-forum-form">
 
 		<form id="new-post" name="new-post" method="post" action="<?php the_permalink(); ?>">
 
 			<?php do_action( 'dps_theme_before_forum_form' ); ?>
 
-			<fieldset class="bbp-form">
+			<fieldset class="dps-form">
 				<legend>
 
 					<?php
@@ -43,7 +43,7 @@
 
 				<?php if ( !dps_is_forum_edit() && dps_is_forum_closed() ) : ?>
 
-					<div class="bbp-template-notice">
+					<div class="dps-template-notice">
 						<p><?php _e( 'This forum is closed to new content, however your account still allows you to do so.', 'dps' ); ?></p>
 					</div>
 
@@ -51,7 +51,7 @@
 
 				<?php if ( current_user_can( 'unfiltered_html' ) ) : ?>
 
-					<div class="bbp-template-notice">
+					<div class="dps-template-notice">
 						<p><?php _e( 'Your account has the ability to post unrestricted HTML content.', 'dps' ); ?></p>
 					</div>
 
@@ -86,15 +86,6 @@
 					<?php endif; ?>
 
 					<?php do_action( 'dps_theme_after_forum_form_content' ); ?>
-
-					<?php if ( !current_user_can( 'unfiltered_html' ) ) : ?>
-
-						<p class="form-allowed-tags">
-							<label><?php _e( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:','showcase' ); ?></label><br />
-							<code><?php dps_allowed_tags(); ?></code>
-						</p>
-
-					<?php endif; ?>
 
 					<?php do_action( 'dps_theme_before_forum_form_type' ); ?>
 
@@ -142,7 +133,7 @@
 
 					<?php do_action( 'dps_theme_before_forum_form_submit_wrapper' ); ?>
 
-					<div class="bbp-submit-wrapper">
+					<div class="dps-submit-wrapper">
 
 						<?php do_action( 'dps_theme_before_forum_form_submit_button' ); ?>
 
@@ -167,16 +158,16 @@
 
 <?php elseif ( dps_is_forum_closed() ) : ?>
 
-	<div id="no-forum-<?php dps_forum_id(); ?>" class="bbp-no-forum">
-		<div class="bbp-template-notice">
+	<div id="no-forum-<?php dps_forum_id(); ?>" class="dps-no-forum">
+		<div class="dps-template-notice">
 			<p><?php printf( __( 'The forum &#8216;%s&#8217; is closed to new content.', 'dps' ), dps_get_forum_title() ); ?></p>
 		</div>
 	</div>
 
 <?php else : ?>
 
-	<div id="no-forum-<?php dps_forum_id(); ?>" class="bbp-no-forum">
-		<div class="bbp-template-notice">
+	<div id="no-forum-<?php dps_forum_id(); ?>" class="dps-no-forum">
+		<div class="dps-template-notice">
 			<p><?php is_user_logged_in() ? _e( 'You cannot create new forums.', 'dps' ) : _e( 'You must be logged in to create new forums.', 'dps' ); ?></p>
 		</div>
 	</div>

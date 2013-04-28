@@ -55,9 +55,9 @@ function dps_has_forums( $args = '' ) {
 
 	// Run the query
 	$bbp              = showcase();
-	$bbp->forum_query = new WP_Query( $dps_f );
+	$dps->forum_query = new WP_Query( $dps_f );
 
-	return apply_filters( 'dps_has_forums', $bbp->forum_query->have_posts(), $bbp->forum_query );
+	return apply_filters( 'dps_has_forums', $dps->forum_query->have_posts(), $dps->forum_query );
 }
 
 /**
@@ -115,7 +115,7 @@ function dps_forum_id( $forum_id = 0 ) {
 	 * @uses Showcase::forum_query::in_the_loop To check if we're in the loop
 	 * @uses Showcase::forum_query::post::ID To get the forum id
 	 * @uses WP_Query::post::ID To get the forum id
-	 * @uses dps_is_forum() To check if the search result is a forum
+	 * @uses dps_is_showcase() To check if the search result is a forum
 	 * @uses dps_is_single_forum() To check if it's a forum page
 	 * @uses dps_is_single_topic() To check if it's a topic page
 	 * @uses dps_get_topic_forum_id() To get the topic forum id
@@ -136,7 +136,7 @@ function dps_forum_id( $forum_id = 0 ) {
 			$dps_forum_id = showcase()->forum_query->post->ID;
 
 		// Currently inside a search loop
-		} elseif ( !empty( showcase()->search_query->in_the_loop ) && isset( showcase()->search_query->post->ID ) && dps_is_forum( showcase()->search_query->post->ID ) ) {
+		} elseif ( !empty( showcase()->search_query->in_the_loop ) && isset( showcase()->search_query->post->ID ) && dps_is_showcase( showcase()->search_query->post->ID ) ) {
 			$dps_forum_id = showcase()->search_query->post->ID;
 
 		// Currently viewing a forum
@@ -629,9 +629,9 @@ function dps_forum_get_subforums( $args = '' ) {
  * Output a list of forums (can be used to list subforums)
  *
  * @param mixed $args The function supports these args:
- *  - before: To put before the output. Defaults to '<ul class="bbp-forums">'
+ *  - before: To put before the output. Defaults to '<ul class="dps-forums">'
  *  - after: To put after the output. Defaults to '</ul>'
- *  - link_before: To put before every link. Defaults to '<li class="bbp-forum">'
+ *  - link_before: To put before every link. Defaults to '<li class="dps-forum">'
  *  - link_after: To put after every link. Defaults to '</li>'
  *  - separator: Separator. Defaults to ', '
  *  - forum_id: Forum id. Defaults to ''
@@ -653,9 +653,9 @@ function dps_list_forums( $args = '' ) {
 
 	// Parse arguments against default values
 	$r = dps_parse_args( $args, array(
-		'before'            => '<ul class="bbp-forums-list">',
+		'before'            => '<ul class="dps-forums-list">',
 		'after'             => '</ul>',
-		'link_before'       => '<li class="bbp-forum">',
+		'link_before'       => '<li class="dps-forum">',
 		'link_after'        => '</li>',
 		'count_before'      => ' (',
 		'count_after'       => ')',
@@ -697,7 +697,7 @@ function dps_list_forums( $args = '' ) {
 			}
 
 			// Build this sub forums link
-			$output .= $r['link_before'] . '<a href="' . $permalink . '" class="bbp-forum-link">' . $title . $counts . '</a>' . $show_sep . $r['link_after'];
+			$output .= $r['link_before'] . '<a href="' . $permalink . '" class="dps-forum-link">' . $title . $counts . '</a>' . $show_sep . $r['link_after'];
 		}
 
 		// Output the list
@@ -1483,7 +1483,7 @@ function dps_is_forum_public( $forum_id = 0, $check_ancestors = true ) {
 		$ancestors = dps_get_forum_ancestors( $forum_id );
 
 		foreach ( (array) $ancestors as $ancestor ) {
-			if ( dps_is_forum( $ancestor ) && dps_is_forum_public( $ancestor, false ) ) {
+			if ( dps_is_showcase( $ancestor ) && dps_is_forum_public( $ancestor, false ) ) {
 				$retval = true;
 			}
 		}
@@ -1519,7 +1519,7 @@ function dps_is_forum_private( $forum_id = 0, $check_ancestors = true ) {
 		$ancestors = dps_get_forum_ancestors( $forum_id );
 
 		foreach ( (array) $ancestors as $ancestor ) {
-			if ( dps_is_forum( $ancestor ) && dps_is_forum_private( $ancestor, false ) ) {
+			if ( dps_is_showcase( $ancestor ) && dps_is_forum_private( $ancestor, false ) ) {
 				$retval = true;
 			}
 		}
@@ -1555,7 +1555,7 @@ function dps_is_forum_hidden( $forum_id = 0, $check_ancestors = true ) {
 		$ancestors = dps_get_forum_ancestors( $forum_id );
 
 		foreach ( (array) $ancestors as $ancestor ) {
-			if ( dps_is_forum( $ancestor ) && dps_is_forum_hidden( $ancestor, false ) ) {
+			if ( dps_is_showcase( $ancestor ) && dps_is_forum_hidden( $ancestor, false ) ) {
 				$retval = true;
 			}
 		}
@@ -1656,17 +1656,17 @@ function dps_forum_class( $forum_id = 0, $classes = array() ) {
 	function dps_get_forum_class( $forum_id = 0, $classes = array() ) {
 		$bbp       = showcase();
 		$forum_id  = dps_get_forum_id( $forum_id );
-		$count     = isset( $bbp->forum_query->current_post ) ? $bbp->forum_query->current_post : 1;
+		$count     = isset( $dps->forum_query->current_post ) ? $dps->forum_query->current_post : 1;
 		$classes   = (array) $classes;
 
 		// Get some classes
 		$classes[] = 'loop-item-' . $count;
 		$classes[] = ( (int) $count % 2 )                      ? 'even'              : 'odd';
 		$classes[] = dps_is_forum_category( $forum_id )        ? 'status-category'   : '';
-		$classes[] = dps_get_forum_subforum_count( $forum_id ) ? 'bbp-has-subforums' : '';
-		$classes[] = dps_get_forum_parent_id( $forum_id )      ? 'bbp-parent-forum-' . dps_get_forum_parent_id( $forum_id ) : '';
-		$classes[] = 'bbp-forum-status-'     . dps_get_forum_status( $forum_id );
-		$classes[] = 'bbp-forum-visibility-' . dps_get_forum_visibility( $forum_id );
+		$classes[] = dps_get_forum_subforum_count( $forum_id ) ? 'dps-has-subforums' : '';
+		$classes[] = dps_get_forum_parent_id( $forum_id )      ? 'dps-parent-forum-' . dps_get_forum_parent_id( $forum_id ) : '';
+		$classes[] = 'dps-forum-status-'     . dps_get_forum_status( $forum_id );
+		$classes[] = 'dps-forum-visibility-' . dps_get_forum_visibility( $forum_id );
 
 		// Ditch the empties
 		$classes   = array_filter( $classes );
@@ -1720,7 +1720,7 @@ function dps_single_forum_description( $args = '' ) {
 		// Parse arguments against default values
 		$r = dps_parse_args( $args, array(
 			'forum_id'  => 0,
-			'before'    => '<div class="bbp-template-notice info"><p class="bbp-forum-description">',
+			'before'    => '<div class="dps-template-notice info"><p class="dps-forum-description">',
 			'after'     => '</p></div>',
 			'size'      => 14,
 			'feed'      => true
@@ -2166,7 +2166,7 @@ function dps_forum_topics_feed_link( $forum_id = 0 ) {
 				) ) );
 			}
 
-			$link = '<a href="' . $url . '" class="bbp-forum-rss-link topics"><span>' . __( 'Topics', 'dps' ) . '</span></a>';
+			$link = '<a href="' . $url . '" class="dps-forum-rss-link topics"><span>' . __( 'Topics', 'dps' ) . '</span></a>';
 		}
 
 		return apply_filters( 'dps_get_forum_topics_feed_link', $link, $url, $forum_id );
@@ -2220,7 +2220,7 @@ function dps_forum_replies_feed_link( $forum_id = 0 ) {
 				) ) );
 			}
 
-			$link = '<a href="' . $url . '" class="bbp-forum-rss-link replies"><span>' . __( 'Replies', 'dps' ) . '</span></a>';
+			$link = '<a href="' . $url . '" class="dps-forum-rss-link replies"><span>' . __( 'Replies', 'dps' ) . '</span></a>';
 		}
 
 		return apply_filters( 'dps_get_forum_replies_feed_link', $link, $url, $forum_id );

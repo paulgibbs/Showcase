@@ -80,7 +80,7 @@ function dps_delete_options() {
 
 /**
  * Add filters to each showcase option and allow them to be overloaded from
- * inside the $bbp->options array.
+ * inside the $dps->options array.
  *
  * @since Showcase (1.0)
  * @uses dps_get_default_options() To get default options
@@ -99,7 +99,7 @@ function dps_setup_option_filters() {
 
 /**
  * Filter default options and allow them to be overloaded from inside the
- * $bbp->options array.
+ * $dps->options array.
  *
  * @since Showcase (1.0)
  * @param bool $value Optional. Default value false

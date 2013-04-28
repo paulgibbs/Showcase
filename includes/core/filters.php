@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_filter( 'request',                 'dps_request',            10    );
 add_filter( 'template_include',        'dps_template_include',   10    );
 add_filter( 'wp_title',                'dps_title',              10, 3 );
-add_filter( 'body_class',              'dps_body_class',         10, 2 );
+add_filter( 'body_class',              'dps_get_the_body_class', 10, 2 );
 add_filter( 'plugin_locale',           'dps_plugin_locale',      10, 2 );
 
 /**

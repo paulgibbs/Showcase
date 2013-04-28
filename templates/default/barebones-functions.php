@@ -67,8 +67,8 @@ class BB_Default extends DPS_Theme_Compat {
 		$this->id      = 'default';
 		$this->name    = __( 'Showcase Default', 'dps' );
 		$this->version = dps_get_version();
-		$this->dir     = trailingslashit( $bbp->themes_dir . 'default' );
-		$this->url     = trailingslashit( $bbp->themes_url . 'default' );
+		$this->dir     = trailingslashit( $dps->themes_dir . 'default' );
+		$this->url     = trailingslashit( $dps->themes_url . 'default' );
 	}
 
 	/**

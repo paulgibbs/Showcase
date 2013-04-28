@@ -11,7 +11,7 @@
 
 <div id="showcase-forums">
 
-	<div class="bbp-search-form">
+	<div class="dps-search-form">
 
 		<?php dps_get_template_part( 'form', 'search' ); ?>
 

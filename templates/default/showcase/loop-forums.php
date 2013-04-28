@@ -11,20 +11,20 @@
 
 <?php do_action( 'dps_template_before_forums_loop' ); ?>
 
-<ul id="forums-list-<?php dps_forum_id(); ?>" class="bbp-forums">
+<ul id="forums-list-<?php dps_forum_id(); ?>" class="dps-forums">
 
-	<li class="bbp-header">
+	<li class="dps-header">
 
 		<ul class="forum-titles">
-			<li class="bbp-forum-info"><?php _e( 'Forum', 'dps' ); ?></li>
-			<li class="bbp-forum-topic-count"><?php _e( 'Topics', 'dps' ); ?></li>
-			<li class="bbp-forum-reply-count"><?php dps_show_lead_topic() ? _e( 'Replies', 'dps' ) : _e( 'Posts', 'dps' ); ?></li>
-			<li class="bbp-forum-freshness"><?php _e( 'Freshness', 'dps' ); ?></li>
+			<li class="dps-forum-info"><?php _e( 'Forum', 'dps' ); ?></li>
+			<li class="dps-forum-topic-count"><?php _e( 'Topics', 'dps' ); ?></li>
+			<li class="dps-forum-reply-count"><?php dps_show_lead_topic() ? _e( 'Replies', 'dps' ) : _e( 'Posts', 'dps' ); ?></li>
+			<li class="dps-forum-freshness"><?php _e( 'Freshness', 'dps' ); ?></li>
 		</ul>
 
-	</li><!-- .bbp-header -->
+	</li><!-- .dps-header -->
 
-	<li class="bbp-body">
+	<li class="dps-body">
 
 		<?php while ( dps_forums() ) : dps_the_forum(); ?>
 
@@ -32,15 +32,15 @@
 
 		<?php endwhile; ?>
 
-	</li><!-- .bbp-body -->
+	</li><!-- .dps-body -->
 
-	<li class="bbp-footer">
+	<li class="dps-footer">
 
 		<div class="tr">
 			<p class="td colspan4">&nbsp;</p>
 		</div><!-- .tr -->
 
-	</li><!-- .bbp-footer -->
+	</li><!-- .dps-footer -->
 
 </ul><!-- .forums-directory -->
 

@@ -55,44 +55,44 @@ class DPS_Shortcodes {
 
 			/** Forums ********************************************************/
 
-			'bbp-forum-index'      => array( $this, 'display_forum_index'   ), // Forum Index
-			'bbp-forum-form'       => array( $this, 'display_forum_form'    ), // Topic form
-			'bbp-single-forum'     => array( $this, 'display_forum'         ), // Specific forum - pass an 'id' attribute
+			'dps-forum-index'      => array( $this, 'display_forum_index'   ), // Forum Index
+			'dps-forum-form'       => array( $this, 'display_forum_form'    ), // Topic form
+			'dps-single-forum'     => array( $this, 'display_forum'         ), // Specific forum - pass an 'id' attribute
 
 			/** Topics ********************************************************/
 
-			'bbp-topic-index'      => array( $this, 'display_topic_index'   ), // Topic index
-			'bbp-topic-form'       => array( $this, 'display_topic_form'    ), // Topic form
-			'bbp-single-topic'     => array( $this, 'display_topic'         ), // Specific topic - pass an 'id' attribute
+			'dps-topic-index'      => array( $this, 'display_topic_index'   ), // Topic index
+			'dps-topic-form'       => array( $this, 'display_topic_form'    ), // Topic form
+			'dps-single-topic'     => array( $this, 'display_topic'         ), // Specific topic - pass an 'id' attribute
 
 			/** Topic Tags ****************************************************/
 
-			'bbp-topic-tags'       => array( $this, 'display_topic_tags'    ), // All topic tags in a cloud
-			'bbp-single-tag'       => array( $this, 'display_topics_of_tag' ), // Topics of Tag
+			'dps-topic-tags'       => array( $this, 'display_topic_tags'    ), // All topic tags in a cloud
+			'dps-single-tag'       => array( $this, 'display_topics_of_tag' ), // Topics of Tag
 
 			/** Replies *******************************************************/
 
-			'bbp-reply-form'       => array( $this, 'display_reply_form'    ), // Reply form
-			'bbp-single-reply'     => array( $this, 'display_reply'         ), // Specific reply - pass an 'id' attribute
+			'dps-reply-form'       => array( $this, 'display_reply_form'    ), // Reply form
+			'dps-single-reply'     => array( $this, 'display_reply'         ), // Specific reply - pass an 'id' attribute
 
 			/** Views *********************************************************/
 
-			'bbp-single-view'      => array( $this, 'display_view'          ), // Single view
+			'dps-single-view'      => array( $this, 'display_view'          ), // Single view
 
 			/** Search ********************************************************/
 
-			'bbp-search-form'      => array( $this, 'display_search_form'   ), // Search form
-			'bbp-search'           => array( $this, 'display_search'        ), // Search
+			'dps-search-form'      => array( $this, 'display_search_form'   ), // Search form
+			'dps-search'           => array( $this, 'display_search'        ), // Search
 
 			/** Account *******************************************************/
 
-			'bbp-login'            => array( $this, 'display_login'         ), // Login
-			'bbp-register'         => array( $this, 'display_register'      ), // Register
-			'bbp-lost-pass'        => array( $this, 'display_lost_pass'     ), // Lost Password
+			'dps-login'            => array( $this, 'display_login'         ), // Login
+			'dps-register'         => array( $this, 'display_register'      ), // Register
+			'dps-lost-pass'        => array( $this, 'display_lost_pass'     ), // Lost Password
 
 			/** Others *******************************************************/
 
-			'bbp-stats'            => array( $this, 'display_stats'         ), // Stats
+			'dps-stats'            => array( $this, 'display_stats'         ), // Stats
 		) );
 	}
 
@@ -239,7 +239,7 @@ class DPS_Shortcodes {
 		$forum_id = showcase()->current_forum_id = $attr['id'];
 
 		// Bail if ID passed is not a forum
-		if ( !dps_is_forum( $forum_id ) )
+		if ( !dps_is_showcase( $forum_id ) )
 			return $content;
 
 		// Start output buffer
