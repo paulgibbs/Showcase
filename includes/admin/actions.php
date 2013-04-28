@@ -43,7 +43,6 @@ add_action( 'admin_notices', 'dps_admin_notices'        );
 add_action( 'wpmu_new_blog', 'dps_new_site',      10, 6 );
 
 // Hook on to admin_init
-add_action( 'dps_admin_init', 'dps_admin_forums'       );
 add_action( 'dps_admin_init', 'dps_setup_updater', 999 );
 
 // Initialize the admin area
