@@ -271,8 +271,11 @@ function dps_register_theme_package( $theme = array(), $override = true ) {
 	if ( ! is_a( $theme, 'DPS_Theme_Compat' ) )
 		return;
 
-	// Only override if the
+	// Only override if the flag is set and not previously registered
+	if ( empty( showcase()->theme_compat->packages[$theme->id] ) || true === $override )
+		showcase()->theme_compat->packages[$theme->id] = $theme;
 }
+
 /**
  * This fun little function fills up some WordPress globals with dummy data to
  * stop your average page template from complaining about it missing.
