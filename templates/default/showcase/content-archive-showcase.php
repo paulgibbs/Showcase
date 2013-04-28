@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Archive Forum Content Part
+ * Archive Showcase Content Part
  *
  * @package Showcase
  * @subpackage Theme
@@ -9,28 +9,20 @@
 
 ?>
 
-<div id="showcase-forums">
+<div id="dps-showcase">
 
-	<div class="dps-search-form">
-
-		<?php dps_get_template_part( 'form', 'search' ); ?>
-
-	</div>
-
-	<?php dps_breadcrumb(); ?>
-
-	<?php do_action( 'dps_template_before_forums_index' ); ?>
+	<?php do_action( 'dps_template_before_showcase_index' ); ?>
 
 	<?php if ( dps_has_showcase() ) : ?>
 
-		<?php dps_get_template_part( 'loop',     'forums'    ); ?>
+		<?php dps_get_template_part( 'loop-showcase' ); ?>
 
 	<?php else : ?>
 
-		<?php dps_get_template_part( 'feedback', 'no-forums' ); ?>
+		<?php dps_get_template_part( 'feedback-no-showcase' ); ?>
 
 	<?php endif; ?>
 
-	<?php do_action( 'dps_template_after_forums_index' ); ?>
+	<?php do_action( 'dps_template_after_showcase_index' ); ?>
 
 </div>
