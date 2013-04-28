@@ -28,7 +28,7 @@ function dps_get_default_options() {
 		'_dps_theme_package_id' => 'default', // The ID for the current theme package.
 
 		/** Per Page **********************************************************/
-		'_dps_showcases_per_page' => 8, // Forums per page
+		'_dps_showcases_per_page' => 8, // Showcase items per page
 
 		/** Archive Slugs *****************************************************/
 		'_dps_root_slug' => 'showcase', // Showcase archive slug
@@ -139,6 +139,6 @@ function dps_get_theme_package_id( $default = 'default' ) {
  * @since Showcase (1.0)
  * @return string
  */
-function dps_get_root_slug( $default = 'forums' ) {
+function dps_get_root_slug( $default = 'showcase' ) {
 	return apply_filters( 'dps_get_root_slug', get_option( '_dps_root_slug', $default ) );
 }
