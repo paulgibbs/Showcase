@@ -128,13 +128,6 @@ function dps_get_the_body_class( $wp_classes, $custom_classes = false ) {
 		$dps_classes[] = dps_get_showcase_post_type();
 	}
 
-	/** Clean up **************************************************************/
-
-	// Add showcase class if we are within a showcase page
-	if ( ! empty( $dps_classes ) ) {
-		$dps_classes[] = 'showcase';
-	}
-
 	// Merge WP classes with showcase classes and remove any duplicates
 	$classes = array_unique( array_merge( (array) $dps_classes, (array) $wp_classes ) );
 
